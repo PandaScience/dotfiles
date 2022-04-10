@@ -1,0 +1,93 @@
+# Emojis via ttf-joypixels package
+# https://www.joypixels.com/emoji
+# https://www.nerdfonts.com/cheat-sheet
+# Resize single icons/emojis -- ?
+
+# prompt-wide configuration
+# command_timeout = 2000
+right_format = "$status$cmd_duration$time"
+
+
+### right prompt
+[time]
+disabled = false
+# format = '[ $time ]($style) '
+style = "grey"
+format = '[ $time]($style)'
+
+[cmd_duration]
+style = "grey"
+format = "took [$duration]($style) "
+
+[status]
+disabled = false
+symbol = "✖"
+success_symbol = "✔️"
+not_executable_symbol = "🚫"
+not_found_symbol = "🔍"
+sigint_symbol = "🧱"
+recognize_signal_code = true
+map_symbol = false
+pipestatus = false
+pipestatus_separator = "|"
+
+### left prompt
+
+# Replace the "❯" symbol in the prompt with "➜"
+[character]
+success_symbol = "[➜](bold green)"
+
+[directory]
+# truncation_symbol = "..."
+# fish_style_pwd_dir_length = 1
+truncate_to_repo = false
+truncation_length = 2
+
+[aws]
+format = '[$symbol($profile )(\($region\) )]($style)'
+style = "bold blue"
+symbol = "🅰 "
+
+[aws.region_aliases]
+us-east-1 = "va"
+eu-central-1 = "eu-c1"
+
+[python]
+format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+symbol = ""
+version_format = "${raw}"
+
+[ruby]
+format = "[$symbol($version )]($style)"
+symbol = ""
+
+version_format = "${raw}"
+
+[git_branch]
+truncation_length = 30
+truncation_symbol = "…"
+
+[terraform]
+# format = "[ $version$workspace]($style) "
+format = "[ $version]($style) "
+detect_files = [".terraform-version", ".terraform.lock.hcl"]
+detect_folders = [".terraform"]
+
+[nodejs]
+format = "[$symbol($version )]($style)"
+version_format = "${raw}"
+symbol = ""
+
+[package]
+format = "[$symbol$version]($style) "
+version_format = "${raw}"
+symbol = "📦"
+
+
+[kubernetes]
+# format = 'on [⛵ $context \($namespace\)](dimmed green) '
+# disabled = false
+[kubernetes.context_aliases]
+# "dev.local.cluster.k8s" = "dev"
+# ".*/openshift-cluster/.*" = "openshift"
+# "gke_.*_(?P<cluster>[\\w-]+)" = "gke-$cluster"
