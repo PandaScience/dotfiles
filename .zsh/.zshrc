@@ -145,7 +145,7 @@ _fzf_compgen_dir() {
 }
 
 # add default options for fzf
-export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border --bind='?:toggle-preview' --preview 'bat --style=plain --color=always {}' --preview-window hidden"
 
 
 #---------- HISTORY -----------------------------------------------------------
@@ -216,10 +216,11 @@ bindkey -M isearch '.' self-insert
 # --> SSH agent is handeled by systemd user (~/.config/systemd/user/ssh-agent.service)
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
-export GOPATH=${HOME}/.go
-
 export PATH=/home/rene/.local/bin:${PATH}
 export PATH=/home/rene/bin:${PATH}
+
+export GOPATH=${HOME}/.go
+export PATH=${GOPATH}/bin:${PATH}
 
 # include community/broot
 source /home/rene/.config/broot/launcher/bash/br
