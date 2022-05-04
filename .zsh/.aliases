@@ -50,3 +50,12 @@ greenclip-reload() { killall greenclip ; nohup greenclip daemon > /dev/null 2>&1
 # use greenclip clear
 # greenclip clear history
 # greenclip-clear() { killall greenclip ; rm ~/.cache/greenclip.history && nohup greenclip daemon > /dev/null 2>&1 & }
+
+# tfenv wrapper for dynamic p10k prompt entry: https://github.com/romkatv/powerlevel10k/issues/1622
+tfenv() {
+  command tfenv "$@"
+
+  if [[ "$1" == "use" ]]; then
+    TFENV_VERSION=$(tfenv version-name)
+  fi
+}
