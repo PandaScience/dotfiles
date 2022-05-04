@@ -1,0 +1,48 @@
+# ---------- LANDO-specific aliases --------------------------------------------
+
+
+# refresh AWS credentials
+alias lando_dev='${HOME}/bin/generate-temp-creds.sh dev && source ~/.aws/.lando-dev.envrc'
+alias lando_reu='${HOME}/bin/generate-temp-creds.sh reu && source ~/.aws/.lando-reu.envrc'
+alias lando_rgc='${HOME}/bin/generate-temp-creds.sh rgc && source ~/.aws/.lando-rgc.envrc'
+
+
+# lando stacks: one command to rule them all
+stack_init() {
+	local RED=$(tput setaf 1)
+	local BLUE=$(tput setaf 4)
+	local GREEN=$(tput setaf 2)
+	local BOLD=$(tput bold)
+	local CLEAR=$(tput sgr0)
+	if [[ ! "$PWD" =~ "Lando" ]] || [ ! -d ".git" ]; then
+		echo "${RED}[error] not in a Lando repo${CLEAR}"; return 1
+	elif [ -f ".gitmodules" ] || [ ! -z "$(grep submodule .git/config)" ]; then
+		echo "${BLUE}> updating git submodule${CLEAR}"
+		git submodule update --init --recursive
+	elif [ -f "package.json" ]; then
+		echo "${BLUE}> running npm install${CLEAR}";
+		npm install
+	elif [ -f "batect" ]; then
+		echo "${BLUE}> running batect init${CLEAR}"
+		"${PWD}"/batect init
+	fi
+
+	[[ $? == 0 ]] && echo -e "---\n${GREEN}${BOLD}OK${CLEAR}"; return 0 || return 1
+}
+
+
+# conveniently create strawpoll polls with pre-defined voting options
+poll_create() {
+	curl -s 'https://api.strawpoll.com/v2/polls' \
+		--header 'X-API-KEY: 24BD767C-A943-11EC-9BB8-D3E3981B88AA' \
+		--data-raw '{"type":"multiple_choice","title":"'"$1"'","poll_meta":{"description":"","location":""},"media":{"path":null},"poll_options":[{"value":"Pidgeon"},{"value":"Cat"},{"value":"Dog"},{"value":"Boar"},{"value":"Stallion"},{"value":"Hippo"},{"value":"Elephant"},{"value":"Blue Whale"},{"value":"???"}],"poll_config":{"is_private":1,"allow_comments":0,"is_multiple_choice":0,"multiple_choice_min":null,"multiple_choice_max":null,"require_voter_names":0,"duplication_checking":"ip","deadline_at":null,"status":"draft"}}' \
+		--compressed | jq -r '.poll.url'
+}
+
+
+# conveniently setup non-work git repos
+git-config-private() {
+	git config user.name "René Wirnata"
+	git config user.email "rene.wirnata@pandascience.net"
+	git config user.signingkey "1F8375B06B86E11DB5707569FB9D7A2564F37DB4!"
+}
