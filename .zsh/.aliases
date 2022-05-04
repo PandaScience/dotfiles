@@ -1,0 +1,52 @@
+alias edit_aliases='vim ~/.zsh/.aliases'
+
+# global aliases
+alias -g pnl="| tr ': ' '\n'"
+
+# convenience (re)definitions
+alias vim=nvim
+alias ssh='TERM=xterm-256color ssh'
+alias sshx='ssh -X'
+alias rgi='rg --no-ignore --hidden'
+alias mountc='mount | column -t'
+alias rsync-archive='rsync -avzh --info=progress2 --numeric-ids'
+alias tf='terraform'
+alias pel='echo -e "\n\n\n\n\n\n\n\n\n\n"'
+alias yless="jless --yaml"
+tree() { br -i -c :pt "$@" }
+
+# let watch expand aliases (see https://unix.stackexchange.com/a/25329)
+alias watch='watch -n1 '
+
+# follow copied and moved files to destination directory
+# https://unix.stackexchange.com/questions/49802/follow-a-moved-file-to-its-destination-directory
+goto() { [ -d "$1"  ] && cd "$1" || cd "$(dirname "$1")";  }
+cpf() { cp "$@" && goto "$_";  }
+mvf() { mv "$@" && goto "$_";  }
+
+# swap names of two files and stop when there is a problem with tmpfile
+swap(){
+	local TMPFILE=tmp.$$
+	mv "$1" $TMPFILE && mv "$2" "$1" && mv $TMPFILE $2
+}
+
+# list files - but fancy
+alias la='ls -a'
+alias ls='exa --group-directories-first'
+alias ll='exa --group-directories-first -l --git'
+alias lll='exa --group-directories-first -hHlFg --color-scale --git -@ -mu'
+alias l='lll -a'               # Long format, all files
+
+# additional git aliases
+alias gst='git status'
+
+# conversion helpers
+alias print_cert_from_clipboard="xclip -o | awk '{\$1=\$1};1' | openssl x509 -text -noout"
+alias convert_ssh_repo="xclip -o | sed -e 's~.*git@~https://~' -e 's~:7999~/scm~' -e 's~?ref.*~~'"
+
+# greenclip convenience functions
+greenclip-config() { killall greenclip ; $EDITOR ~/.config/greenclip.toml && nohup greenclip daemon > /dev/null 2>&1 & }
+greenclip-reload() { killall greenclip ; nohup greenclip daemon > /dev/null 2>&1 & }
+# use greenclip clear
+# greenclip clear history
+# greenclip-clear() { killall greenclip ; rm ~/.cache/greenclip.history && nohup greenclip daemon > /dev/null 2>&1 & }

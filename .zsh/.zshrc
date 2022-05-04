@@ -211,7 +211,7 @@ bindkey -M isearch '.' self-insert
 #---------- MISC --------------------------------------------------------------
 
 # source alias file
-[ -f "$HOME/.bash_aliases" ] && source $HOME/.bash_aliases
+source "${ZDOTDIR}/.aliases"
 
 # --> SSH agent is handeled by systemd user (~/.config/systemd/user/ssh-agent.service)
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
