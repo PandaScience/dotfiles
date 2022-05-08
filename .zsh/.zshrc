@@ -168,6 +168,9 @@ setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording en
 setopt HIST_VERIFY               # Don't execute immediately upon history expansion.
 setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 
+# ensure autocompletion for aliases is disabled (if option set by e.g. ohmyzsh)
+unsetopt completealiases
+
 
 #---------- FURTHER ZSH SETTINGS ----------------------------------------------
 
@@ -206,6 +209,27 @@ double-dot-expand() {
 zle -N double-dot-expand
 bindkey '.' double-dot-expand
 bindkey -M isearch '.' self-insert
+
+
+#---------- CUSTOM WIDGETS ----------------------------------------------------
+
+# show alias definition, see https://superuser.com/a/894379
+expand_alias() {
+  emulate -L zsh
+  local CURRENT_WORD="${LBUFFER/* /}${RBUFFER/ */}"
+  local ALIAS_FULL="$(alias -- "$CURRENT_WORD")"
+  local ALIAS_RHS="${${ALIAS_FULL#*\'}%\'}"
+  if [[ "$RBUFFER" =~ "  #" ]]; then
+    RBUFFER="${RBUFFER%   #*}"
+  elif [[ ! -z "$ALIAS_RHS" ]]; then
+    RBUFFER="${RBUFFER}   # ${ALIAS_RHS}"
+    # apply syntax highlighting to new buffer
+    zle redisplay
+  fi
+}
+# create widget from function and bind key
+zle -N expand_alias
+bindkey "^G" expand_alias
 
 
 #---------- MISC --------------------------------------------------------------
