@@ -231,6 +231,21 @@ expand_alias() {
 zle -N expand_alias
 bindkey "^G" expand_alias
 
+# copy terminal buffer to clipboard
+copy_command_to_clipboard() {
+  print -rn $BUFFER | xclip -i
+}
+zle -N copy_command_to_clipboard
+bindkey "^[c" copy_command_to_clipboard
+
+# cut terminal buffer to clipboard
+kill_command_to_clipboard() {
+  zle kill-buffer
+  print -rn $CUTBUFFER | xclip -i
+}
+zle -N kill_command_to_clipboard
+bindkey "^[c^[c" kill_command_to_clipboard
+
 
 #---------- MISC --------------------------------------------------------------
 
