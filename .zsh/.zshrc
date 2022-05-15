@@ -30,6 +30,7 @@ zstyle ':completion:*:messages' format ' %F{purple} -- %d --%f'
 zstyle ':completion:*:warnings' format ' %F{red}-- no matches found --%f'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*:*:-command-:*:*' group-order alias builtins functions commands
 
 # enable Shift+Tab for reverse search: https://unix.stackexchange.com/a/84869
 zmodload zsh/complist
@@ -213,8 +214,8 @@ bindkey -M isearch '.' self-insert
 
 #---------- CUSTOM WIDGETS ----------------------------------------------------
 
-# show alias definition, see https://superuser.com/a/894379
-expand_alias() {
+# show inline alias definition, see https://superuser.com/a/894379
+inline_alias() {
   emulate -L zsh
   local CURRENT_WORD="${LBUFFER/* /}${RBUFFER/ */}"
   local ALIAS_FULL="$(alias -- "$CURRENT_WORD")"
@@ -228,8 +229,20 @@ expand_alias() {
   fi
 }
 # create widget from function and bind key
-zle -N expand_alias
-bindkey "^G" expand_alias
+zle -N inline_alias
+bindkey "^G" inline_alias
+
+# fuzzy search aliases
+fzf_alias() {
+  # emulate -L zsh
+  local CURRENT_WORD="${LBUFFER/* /}${RBUFFER/ */}"
+  zle backward-word
+  RBUFFER="$(alias | grep -i "^$CURRENT_WORD" | column -ts '=' | fzf | cut -f1 -d ' ' )"
+  zle forward-word
+  zle redisplay
+}
+zle -N fzf_alias
+bindkey "^F" fzf_alias
 
 # copy terminal buffer to clipboard
 copy_command_to_clipboard() {
