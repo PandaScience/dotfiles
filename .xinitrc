@@ -1,6 +1,7 @@
 [[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
 
-# according to arch wiki DO NOT delete this!
+# DO NOT delete this! -> source global scripts
+# https://wiki.archlinux.org/title/Xinit#xinitrc
 if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do
   [ -x "$f" ] && . "$f"
@@ -18,6 +19,14 @@ eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,gpg)
 # eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,gpg,ssh)
 # export SSH_AUTH_SOCK
 
+# https://wiki.archlinux.org/title/Fcitx5
+# if not working, paste into ~/.config/environment.d/fcitx.conf
+GTK_IM_MODULE=fcitx
+QT_IM_MODULE=fcitx
+XMODIFIERS=@im=fcitx
+
+# https://wiki.archlinux.org/title/Kitty#Enable_IME_support
+export GLFW_IM_MODULE=ibus
 
 # start display manager
 exec i3
