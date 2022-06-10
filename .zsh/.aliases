@@ -5,9 +5,10 @@ alias -g pnl="| tr ': ' '\n'"
 
 # convenience (re)definitions
 alias vim=nvim
+alias magit='nvim -c MagitOnly'
 alias ssh='TERM=xterm-256color ssh'
 alias sshx='ssh -X'
-alias rgi='rg --no-ignore --hidden'
+alias rgi='rg --no-ignore --hidden --follow'
 alias mountc='mount | column -t'
 alias rsync-archive='rsync -avzh --info=progress2 --numeric-ids'
 alias tf='terraform'
