@@ -21,9 +21,9 @@ eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,gpg)
 
 # https://wiki.archlinux.org/title/Fcitx5
 # if not working, paste into ~/.config/environment.d/fcitx.conf
-GTK_IM_MODULE=fcitx
-QT_IM_MODULE=fcitx
-XMODIFIERS=@im=fcitx
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
 
 # https://wiki.archlinux.org/title/Kitty#Enable_IME_support
 export GLFW_IM_MODULE=ibus
