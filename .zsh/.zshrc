@@ -80,6 +80,9 @@ if ! zgenom saved; then
   zgenom load agkozak/zsh-z
   zgenom load dannyzen/cf-zsh-autocomplete-plugin.git
 
+  # fish-like auto expand aliases
+  # zgenom load olets/zsh-abbr
+
   zgenom load https://github.com/zimfw/git  # https://github.com/zimfw/git
 
   # Ohmyzsh cherry-picks; base library not necessarily required in all cases!
@@ -98,7 +101,7 @@ fi
 
 #---------- NAVIGATION --------------------------------------------------------
 
-# TODO check autoload zkbd ; --> zkbd bindkey  "${key[Home]}"
+# TODO: check autoload zkbd ; --> zkbd bindkey  "${key[Home]}"
 
 # find keycodes with `cat -v`: `[[D = LEFT, `[[C = RIGHT, `[[A = UP `[[B = DOWN
 bindkey '^[[A' history-substring-search-up
