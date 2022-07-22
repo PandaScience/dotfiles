@@ -39,6 +39,9 @@
 	old = red bold
 	new = green bold
 	whitespace = red reverse
+# workaround for https://github.com/so-fancy/diff-so-fancy/issues/437
+[add "interactive"]
+	useBuiltin = false
 
 # set meld as diff & merge tool
 [merge]
