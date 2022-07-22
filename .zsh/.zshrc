@@ -279,6 +279,9 @@ export PATH=/home/rene/bin:${PATH}
 export GOPATH=${HOME}/.go
 export PATH=${GOPATH}/bin:${PATH}
 
+# include asdf from AUR, put after final PATH setting
+source /opt/asdf-vm/asdf.sh
+
 # include community/broot
 source /home/rene/.config/broot/launcher/bash/br
 
