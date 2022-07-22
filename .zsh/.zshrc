@@ -283,7 +283,7 @@ export PATH=${GOPATH}/bin:${PATH}
 source /home/rene/.config/broot/launcher/bash/br
 
 # autocomplete kubectl
-# source <(kubectl completion zsh)   # done by ohmyzsh plugin
+source <(kubectl completion zsh)
 source <(minikube completion zsh)
 
 # autocomplete via bash
