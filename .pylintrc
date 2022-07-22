@@ -1,0 +1,4 @@
+[LOGGING]
+# https://github.com/PyCQA/pylint/issues/3570
+# logging-format-style=fstr
+disable=logging-fstring-interpolation
