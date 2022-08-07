@@ -177,6 +177,8 @@ setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 # ensure autocompletion for aliases is disabled (if option set by e.g. ohmyzsh)
 unsetopt completealiases
 
+# disable control flow via ^S and ^Q
+setopt noflowcontrol
 
 #---------- FURTHER ZSH SETTINGS ----------------------------------------------
 
