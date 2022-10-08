@@ -2,9 +2,9 @@
 
 
 # refresh AWS credentials
-alias lando_dev='${HOME}/bin/generate-temp-creds.sh dev && source ~/.aws/.lando-dev.envrc'
-alias lando_reu='${HOME}/bin/generate-temp-creds.sh reu && source ~/.aws/.lando-reu.envrc'
-alias lando_rgc='${HOME}/bin/generate-temp-creds.sh rgc && source ~/.aws/.lando-rgc.envrc'
+alias lando_dev='${HOME}/bin/lando_aws.sh dev'
+alias lando_reu='${HOME}/bin/lando_aws.sh reu'
+alias lando_rgc='${HOME}/bin/lando_aws.sh rgc'
 
 
 # lando stacks: one command to rule them all
