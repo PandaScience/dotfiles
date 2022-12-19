@@ -17,6 +17,9 @@ alias pel='echo -e "\n\n\n\n\n\n\n\n\n\n"'
 alias yless="jless --yaml"
 tree() { br -i -c :pt "$@" }
 
+# see https://superuser.com/questions/1050894/using-dd-to-clone-a-hdd-to-an-ssd and refs therein
+alias dd-disk-clone="dd status=progress bs=64K conv=noerror,sync iflag=fullblock"
+
 # let watch expand aliases (see https://unix.stackexchange.com/a/25329)
 alias watch='watch -n1 '
 
