@@ -44,6 +44,7 @@ alias l='lll -a'               # Long format, all files
 
 # additional git aliases
 alias gst='git status'
+alias gpu='git push -u origin HEAD'
 alias gopen="git config remote.origin.url | sed -e 's~.*git@~https://~' -e 's~:7999~/scm~' -e 's~?ref.*~~' | xargs firefox"
 
 # conversion helpers
