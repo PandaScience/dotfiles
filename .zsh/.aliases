@@ -68,4 +68,4 @@ tfenv() {
 }
 
 # load local aliases
-source "${ZDOTDIR}/.aliases_local"
+F="${ZDOTDIR}/.aliases_local"; [ -f $F ] && source $F
