@@ -1,5 +1,7 @@
 # ---------- LANDO-specific aliases --------------------------------------------
 
+# quick Dell XPS13 dual monitor setup
+alias fix_screens="autorandr -l home_left && sleep 2 && autorandr -l home_dual && feh --bg-scale ~/Pictures/backgrounds/field.jpg"
 
 # refresh AWS credentials
 alias lando_dev='${HOME}/bin/lando_aws.sh dev'
