@@ -282,14 +282,15 @@ export GOPATH=${HOME}/.go
 export PATH=${GOPATH}/bin:${PATH}
 
 # include asdf from AUR, put after final PATH setting
-source /opt/asdf-vm/asdf.sh
+command -v asdf &> /dev/null && source /opt/asdf-vm/asdf.sh
 
 # include community/broot
-source /home/rene/.config/broot/launcher/bash/br
+command -v broot &> /dev/null && source /home/rene/.config/broot/launcher/bash/br
 
 # autocomplete kubectl
-source <(kubectl completion zsh)
-source <(minikube completion zsh)
+command -v kubectl  &> /dev/null && source <(kubectl completion zsh)
+command -v minikube &> /dev/null && source <(minikube completion zsh)
+command -v k3d      &> /dev/null && source <(k3d completion zsh)
 
 # autocomplete via bash
 autoload bashcompinit && bashcompinit
