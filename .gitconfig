@@ -49,6 +49,7 @@
 [mergetool "meld"]
 	# cmd = meld "$LOCAL" "$BASE" "$REMOTE" --output "$MERGED"
 	cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
+	hideResolved = true
 [diff]
 	tool = meld
 [difftool]
