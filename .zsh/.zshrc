@@ -123,7 +123,7 @@ export ZSHZ_TILDE=1
 export ZSHZ_CASE=smart
 export ZSHZ_TRAILING_SLASH=1
 export ZSHZ_UNCOMMON=1
-
+export ZSHZ_NO_RESOLVE_SYMLINKS=1
 
 #---------- FZF ---------------------------------------------------------------
 
