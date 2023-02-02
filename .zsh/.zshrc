@@ -282,7 +282,7 @@ export GOPATH=${HOME}/.go
 export PATH=${GOPATH}/bin:${PATH}
 
 # include asdf from AUR, put after final PATH setting
-command -v asdf &> /dev/null && source /opt/asdf-vm/asdf.sh
+FILE=/opt/asdf-vm/asdf.sh && test -f ${FILE} && source ${FILE}
 
 # include community/broot
 command -v broot &> /dev/null && source /home/rene/.config/broot/launcher/bash/br
