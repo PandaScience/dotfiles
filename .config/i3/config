@@ -342,7 +342,7 @@ bar {
 	font pango:DejaVuSansMonoNerdFontMono 11
 	# indicator kernel_mod uptime_mod caffeine pasink pasource \
 	status_command bumblebee-status -m \
-		arch-update indicator kernel_mod caffeine pasink pasource \
+		arch-update indicator kernel_short caffeine pasink pasource \
 			brightness cpu2 memory disk nic battery date time dunstctl \
 		-p time.format="%H:%M" date.format="%a, %b %d (%V)" \
 		-p memory.format="{free}" \
