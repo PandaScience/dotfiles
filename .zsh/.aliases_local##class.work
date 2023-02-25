@@ -46,5 +46,5 @@ poll_create() {
 git-config-private() {
 	git config user.name "René Wirnata"
 	git config user.email "rene.wirnata@pandascience.net"
-	git config user.signingkey "1F8375B06B86E11DB5707569FB9D7A2564F37DB4!"
+	git config user.signingkey "EA3F95ACC23878850B7A4BAC3CED6B58A364B115!"
 }
