@@ -16,10 +16,9 @@ fi
 # setxkbmap -model pc105 -layout us -variant altgr-intl
 setxkbmap -model pc105 -layout us,de -variant altgr-intl,koy -option 'grp:ctrls_toggle'
 
-# start gnome-keyring manager but use keepassXC for SSH
-eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,gpg)
+# start gnome-keyring manager but use GPG agent for SSH (see zshrc)
+eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets)
 # eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,gpg,ssh)
-# export SSH_AUTH_SOCK
 
 # https://wiki.archlinux.org/title/Fcitx5
 # if not working, paste into ~/.config/environment.d/fcitx.conf

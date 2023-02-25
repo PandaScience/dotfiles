@@ -87,10 +87,11 @@ if ! zgenom saved; then
 
   # Ohmyzsh cherry-picks; base library not necessarily required in all cases!
   # zgenom ohmyzsh
-  zgenom ohmyzsh plugins/kubectl  # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/kubectl
-  zgenom ohmyzsh plugins/aliases  # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/aliases
-  zgenom ohmyzsh plugins/sudo     # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/sudo
+  zgenom ohmyzsh plugins/kubectl    # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/kubectl
+  zgenom ohmyzsh plugins/aliases    # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/aliases
+  zgenom ohmyzsh plugins/sudo       # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/sudo
   zgenom ohmyzsh plugins/dirhistory # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/dirhistory
+  zgenom ohmyzsh plugins/gpg-agent  # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/gpg-agent
 
   # save all to init script
   zgenom save
@@ -272,9 +273,6 @@ bindkey "^[c^[c" kill_command_to_clipboard
 # source alias file
 source "${ZDOTDIR}/.aliases"
 
-# --> SSH agent is handeled by systemd user (~/.config/systemd/user/ssh-agent.service)
-export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
-
 export PATH=/home/rene/.local/bin:${PATH}
 export PATH=/home/rene/bin:${PATH}
 
@@ -300,11 +298,11 @@ complete -o nospace -C "$(which terraform)" terraform
 # autocomplete 'the proper way' with files from /usr/share/zsh/site-functions/*
 # see: https://github.com/gopasspw/gopass/blob/master/docs/setup.md
 # and: https://github.com/gopasspw/gopass/issues/585
-#
-# gopass completion zsh > ~/_gopass
-# sudo mv ~/_gopass /usr/share/zsh/site-functions/_gopass
-# rm -i ${ZDOTDIR:-${HOME:?No ZDOTDIR or HOME}}/.zcompdump && compinit
 
+# let gpg not encrypt anonymously, otherwise OpenKeyChain / APS won't work
+# https://github.com/android-password-store/Android-Password-Store/issues/173
+# https://github.com/drduh/YubiKey-Guide/issues/152
+export GOPASS_GPG_OPTS="--no-throw-keyids"
 
 # set editor for crontab etc.
 export VISUAL="nvim"
