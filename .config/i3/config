@@ -13,8 +13,7 @@ set $mod Mod4
 set $alt Mod1
 
 # General Configuration
-# font pango:System San Francisco Display 12
-font pango:Hack Nerd Font 12
+font pango:DejaVuSansMonoNerdFontMono 11
 floating_modifier $mod
 
 for_window [class=".*"] border pixel 5
@@ -334,11 +333,8 @@ client.focused          #4c7899 #285577 #ffffff #2e9ef4   #285577
 bar {
 	tray_output primary
 	# status_command i3blocks -c /home/rene/.config/i3/i3blocks.conf
-	# font pango: System San Francisco Display, FontAwesome 9
 
 	height 20 # for 12pt --> 22
-	# font pango:FiraCode 11
-	# font pango:DejaVuSansMono,FontAwesome 11
 	font pango:DejaVuSansMonoNerdFontMono 11
 	# indicator kernel_mod uptime_mod caffeine pasink pasource \
 	status_command bumblebee-status -m \
