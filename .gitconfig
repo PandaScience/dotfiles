@@ -21,27 +21,12 @@
 	pager = true
 [core]
 	editor = nvim
-	pager = diff-so-fancy | less --tabs=4 -RFX
-
-# https://github.com/so-fancy/diff-so-fancy
-[interactive]
-	diffFilter = diff-so-fancy --patch
-[color "diff-highlight"]
-	oldNormal = red bold
-	oldHighlight = red bold 52
-	newNormal = green bold
-	newHighlight = green bold 22
-[color "diff"]
-	meta = 11
-	frag = magenta bold
-	func = 146 bold
-	commit = yellow bold
-	old = red bold
-	new = green bold
-	whitespace = red reverse
-# workaround for https://github.com/so-fancy/diff-so-fancy/issues/437
-[add "interactive"]
-	useBuiltin = false
+	pager = delta
+[delta]
+	features = decorations
+	line-numbers = true
+	diff-so-fancy = true
+	navigate = true
 
 # set meld as diff & merge tool
 [merge]
