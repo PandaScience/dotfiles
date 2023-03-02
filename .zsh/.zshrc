@@ -222,6 +222,20 @@ bindkey -M isearch '.' self-insert
 
 #---------- CUSTOM WIDGETS ----------------------------------------------------
 
+# NOTE: find escape codes through plain `cat` + key-combo
+
+# toggle comment
+toggle_comment() {
+  zle kill-buffer
+  if [[ "${CUTBUFFER}" =~ "^#" ]]; then
+    zle -U $(echo ${CUTBUFFER} | sed -e 's/^#[[:space:]]*//')
+  else
+    zle -U "# ${CUTBUFFER}"
+  fi
+}
+zle -N toggle_comment
+bindkey "^_^_" toggle_comment
+
 # show inline alias definition, see https://superuser.com/a/894379
 inline_alias() {
   emulate -L zsh
