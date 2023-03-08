@@ -226,12 +226,12 @@ bindkey -M isearch '.' self-insert
 
 # toggle comment
 toggle_comment() {
-  zle kill-buffer
-  if [[ "${CUTBUFFER}" =~ "^#" ]]; then
-    zle -U $(echo ${CUTBUFFER} | sed -e 's/^#[[:space:]]*//')
+  if [[ "${BUFFER}" =~ "^#" ]]; then
+    BUFFER=$(echo ${BUFFER} | sed -e 's/^#[[:space:]]*//')
   else
-    zle -U "# ${CUTBUFFER}"
+    BUFFER="# ${BUFFER}"
   fi
+  zle redisplay
 }
 zle -N toggle_comment
 bindkey "^_^_" toggle_comment
