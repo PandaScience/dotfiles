@@ -10,8 +10,13 @@
 #   HostName <IP>
 #   IdentityFile <backup-ssh-key>
 #   User <local_hostname>
+#
+# Logging:
+#   touch /var/log/syncoid.log
+#   chown root:wheel /var/log/syncoid.log
+#   chmod ug+rw /var/log/syncoid.log
 
-USERNAME=$(hostname)
+CLIENT=$(hostname)
 
 echo -e "\n\nStarting syncoid backup: $(date +"%F @ %T")\n---"
 notify-send -t 30000 -u normal -i /SHARE/backup.png "Starting Backup!"
@@ -20,7 +25,7 @@ syncoid \
 	--sendoptions="w" \
 	--no-privilege-elevation \
 	--no-sync-snap \
-	zroot/encr ${USERNAME}@backup:backup/${USERNAME}/encr
+	zroot/encr ${CLIENT}@backup:backup/${CLIENT}/encr
 
 EXITCODE=$?
 if [[ ${EXITCODE} != 0 ]]; then
