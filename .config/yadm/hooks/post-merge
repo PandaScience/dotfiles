@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Moves the README.md downloaded from github back to ~/.config/yadm/README.md
+# so that changes made through the web interacted stay updated locally
+
+cd || exit $?
+[[ -f ~/README.md ]] && mv ~/README.md ~/.config/yadm/README.md
+[[ -f ~/LICENSE ]] && mv ~/LICENSE ~/.config/yadm/LICENSE
