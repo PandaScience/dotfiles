@@ -291,8 +291,17 @@ source "${ZDOTDIR}/.aliases"
 export PATH=/home/rene/.local/bin:${PATH}
 export PATH=/home/rene/bin:${PATH}
 
-export GOPATH=${HOME}/.go
-export PATH=${GOPATH}/bin:${PATH}
+# add go to $PATH
+if [[ $(command -v go) ]]; then
+  export GOPATH=${HOME}/.go
+  export PATH=${GOPATH}/bin:${PATH}
+fi
+
+# add rust to $PATH
+if [[ $(command -v go) ]]; then
+  export CARGOPATH=${HOME}/.cargo
+  export PATH=${CARGOPATH}/bin:${PATH}
+fi
 
 # include asdf from AUR, put after final PATH setting
 FILE=/opt/asdf-vm/asdf.sh && test -f ${FILE} && source ${FILE}
