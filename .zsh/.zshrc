@@ -60,6 +60,7 @@ zgenom autoupdate
 
 ZGEN_RESET_ON_CHANGE=("${ZDOTDIR}/.zshrc")
 
+# change default zimfw git prefix
 zstyle ':zim:git' aliases-prefix 'g'
 
 # load plugins
@@ -83,7 +84,7 @@ if ! zgenom saved; then
   # fish-like auto expand aliases
   # zgenom load olets/zsh-abbr
 
-  zgenom load https://github.com/zimfw/git  # https://github.com/zimfw/git
+  zgenom load zimfw/git  # https://github.com/zimfw/git
 
   # Ohmyzsh cherry-picks; base library not necessarily required in all cases!
   # zgenom ohmyzsh
