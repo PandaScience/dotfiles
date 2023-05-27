@@ -335,7 +335,7 @@ bar {
 	# status_command i3blocks -c /home/rene/.config/i3/i3blocks.conf
 
 	height 20 # for 12pt --> 22
-	font pango:DejaVuSansMonoNerdFontMono 11
+	font pango:DejaVuSansM Nerd Font Mono 11
 	# indicator kernel_mod uptime_mod caffeine pasink pasource \
 	status_command bumblebee-status -m \
 		arch-update indicator kernel_short caffeine pasink pasource \
