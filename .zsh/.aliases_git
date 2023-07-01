@@ -1,0 +1,39 @@
+# https://www.peterp.me/articles/cli-tips-interactive-branch-delete/
+git-branch-delete-interactive () {
+  # no arguments
+  local branches branch
+  branches=$(git for-each-ref --count=30 --sort=-committerdate refs/heads/ --format="%(refname:short)") &&
+  branch=$(echo "$branches" | fzf --multi ) &&
+  git branch -D $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+}
+
+# https://gist.github.com/cmatskas/454e3369e6963a1c8c89
+git-branch-delete-remote () {
+  # $1 -> local branch name
+  local remote
+  remote=$(git rev-parse --abbrev-ref ${1}@{upstream})
+  # delete local remote-tracking branch; short form: -dr
+  git branch --delete --remote ${remote}
+  # delete branch on remote server
+  git push origin --delete ${remote#origin/}
+}
+
+git-branch-delete-all-merged () {
+  git branch --merged | grep -Ev "(^\*|main|master)" | xargs git branch -d
+}
+
+# https://digitaldrummerj.me/git-remove-local-merged-branches/
+git-branch-list-all-with-no-remote () {
+  git branch -vv | grep ': gone]' | grep -v '\*' | awk '{ print $1; }'
+}
+
+# zimfw git alias overrides
+alias gbx='git branch --delete'
+alias gbX='git branch --delete --force'
+alias gbXi='git-branch-delete-interactive'
+
+# additional git aliases
+alias gst='git status'
+alias gpu='git push -u origin HEAD'
+alias gbb='git rev-list --left-right --pretty=oneline' # usage: gbb branch1...branch2
+alias gopen="git config remote.origin.url | sed -e 's~.*git@~https://~' -e 's~:7999~/scm~' -e 's~?ref.*~~' | xargs firefox"

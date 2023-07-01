@@ -43,12 +43,6 @@ alias ll='exa --group-directories-first -l --git'
 alias lll='exa --group-directories-first -hHlFg --color-scale --git -@ -mu'
 alias l='lll -a'
 
-# additional git aliases
-alias gst='git status'
-alias gpu='git push -u origin HEAD'
-alias gbb='git rev-list --left-right --pretty=oneline' # usage: gbb branch1...branch2
-alias gopen="git config remote.origin.url | sed -e 's~.*git@~https://~' -e 's~:7999~/scm~' -e 's~?ref.*~~' | xargs firefox"
-
 # conversion helpers
 alias print_cert_from_clipboard="xclip -o | awk '{\$1=\$1};1' | openssl x509 -text -noout"
 alias convert_ssh_repo="xclip -o | sed -e 's~.*git@~https://~' -e 's~:7999~/scm~' -e 's~?ref.*~~'"
@@ -68,6 +62,9 @@ tfenv() {
     TFENV_VERSION=$(tfenv version-name)
   fi
 }
+
+# load git aliases
+F="${ZDOTDIR}/.aliases_git"; [ -f $F ] && source $F
 
 # load local aliases
 F="${ZDOTDIR}/.aliases_local"; [ -f $F ] && source $F
