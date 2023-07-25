@@ -1,7 +1,3 @@
-# local user.name|.email|.signingkey
-[include]
-	path = .gitconfig.local
-
 # core stuff
 [init]
 	defaultBranch = main
@@ -69,3 +65,7 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+
+# local user.name|.email|.signingkey
+[include]
+	path = .gitconfig.local
