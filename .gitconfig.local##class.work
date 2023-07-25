@@ -2,3 +2,6 @@
 	name = René Wirnata
 	email = rene.wirnata@scandio.de
 	signingkey = 264778E8E777BA5B0595374CCA6C37069DF7F925!
+
+[commit]
+	gpgsign = true
