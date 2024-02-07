@@ -289,7 +289,6 @@ bindkey "^[c^[c" kill_command_to_clipboard
 source "${ZDOTDIR}/.aliases"
 
 export PATH=/home/rene/.local/bin:${PATH}
-export PATH=/home/rene/bin:${PATH}
 
 # add go to $PATH
 if [[ $(command -v go) ]]; then
