@@ -1,0 +1,165 @@
+* {
+  border: none;
+  border-radius: 4px;
+  min-height: 0;
+  font-family: DejaVuSansM Nerd Font;
+  font-size: 12px;
+  opacity: 0.98;
+}
+
+window#waybar {
+  background: transparent;
+  background-color: #181825;
+}
+
+.modules-left,
+.modules-center,
+.modules-right {
+  /* background-color: #181825; */
+}
+
+#workspaces button {
+  all: initial;
+  padding: 6px 18px;
+  margin: 6px 3px;
+  border-radius: 4px;
+  background-color: #1e1e2e;
+  color: #cdd6f4;
+  font-weight: bold;
+}
+
+#workspaces button.active {
+  color: #1e1e2e;
+  background-color: #cdd6f4;
+}
+
+#workspaces button:hover {
+  box-shadow: inherit;
+  text-shadow: inherit;
+  color: #1e1e2e;
+  background-color: #cdd6f4;
+}
+
+#workspaces button.urgent {
+  background-color: #f38ba8;
+}
+
+#custom-logo,
+#taskbar,
+#custom-updates,
+#clock,
+#backlight,
+#idle_inhibitor,
+#custom-vpn,
+#custom-kernel,
+#bluetooth,
+#pulseaudio,
+#temperature,
+#cpu,
+#memory,
+#disk,
+#network,
+#battery,
+#tray,
+#custom-power {
+  margin: 6px 3px;
+  padding: 0 12px;
+  color: #000000;
+}
+
+#custom-logo {
+  padding-left: 7px;
+  font-size: 15px;
+  color: #1793d1;
+  /* background-color: #525e75; */
+}
+
+#taskbar,
+#tray {
+  background: #555555;
+}
+
+#custom-updates {
+  background-color: #445566;
+  color: white;
+}
+
+#clock {
+  font-family: DejaVuSans;
+  background-color: #cba6f7;
+}
+
+#backlight {
+  background-color: #aac4ff;
+}
+
+#idle_inhibitor {
+  background-color: #445566;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+#custom-vpn {
+  background-color: #ff1111;
+}
+
+#custom-kernel {
+  background-color: #bee1e6;
+}
+
+#bluetooth,
+#pulseaudio {
+  background-color: #f9e2af;
+}
+
+#temperature,
+#cpu,
+#memory,
+#disk {
+  background-color: #fab387;
+}
+
+#network {
+  background-color: #94e2d5;
+  padding-right: 17px;
+}
+
+@keyframes blink {
+  to {
+    background-color: #f38ba8;
+    color: #181825;
+  }
+}
+#battery {
+  background-color: #a0bcc2;
+}
+#battery.warning,
+#battery.critical,
+#battery.urgent {
+  background-color: #ff0048;
+  color: #181825;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+#battery.charging {
+  background-color: #a6e3a1;
+}
+
+#custom-power {
+  background-color: #f2cdcd;
+  margin-right: 6px;
+}
+
+tooltip {
+  border-radius: 8px;
+  padding: 15px;
+  background-color: rgba(40, 60, 80, 0.7);
+}
+
+tooltip label {
+  font-size: 16px;
+}

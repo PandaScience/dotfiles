@@ -1,0 +1,33 @@
+{
+  "layer": "top",
+  "position": "top",
+  "spacing": 5,
+  "height": 30,
+
+  "include": ["~/.config/waybar/modules.jsonc"],
+
+  "modules-left": ["custom/logo", "hyprland/workspaces", "wlr/taskbar"],
+
+  "modules-center": ["custom/updates", "clock", "idle_inhibitor"],
+
+  "modules-right": [
+    "custom/vpn",
+    "custom/kernel",
+    "backlight",
+    "group/audio",
+    "group/system",
+    "network",
+    "battery",
+    "tray"
+  ],
+
+  "group/audio": {
+    "orientation": "horizontal",
+    "modules": ["bluetooth", "pulseaudio"]
+  },
+
+  "group/system": {
+    "orientation": "horizontal",
+    "modules": ["temperature", "cpu", "memory", "disk"]
+  }
+}
