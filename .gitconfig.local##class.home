@@ -1,7 +1,6 @@
 [user]
 	name = René Wirnata
 	email = rene.wirnata@pandascience.net
-	signingkey = 1F8375B06B86E11DB5707569FB9D7A2564F37DB4!
-
+	signingkey = EA3F95ACC23878850B7A4BAC3CED6B58A364B115!
 [commit]
 	gpgsign = true
