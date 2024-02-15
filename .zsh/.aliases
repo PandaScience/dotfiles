@@ -39,9 +39,9 @@ swap(){
 # list files - but fancy
 alias l1='ls -1'
 alias la='ls -a'
-alias ls='exa --group-directories-first'
-alias ll='exa --group-directories-first -l --git'
-alias lll='exa --group-directories-first -hHlFg --color-scale --git -@ -mu'
+alias ls='eza --group-directories-first'
+alias ll='eza --group-directories-first -l --git'
+alias lll='eza --group-directories-first -hHlgF --color-scale --git -@ -mu'
 alias l='lll -a'
 
 # conversion helpers
