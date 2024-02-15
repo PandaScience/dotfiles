@@ -15,6 +15,7 @@ alias rsync-archive='rsync -avzh --info=progress2 --numeric-ids'
 alias tf='terraform'
 alias pel='echo -e "\n\n\n\n\n\n\n\n\n\n"'
 alias yless="jless --yaml"
+alias icat="kitten icat"
 tree() { br -i -c :pt "$@" }
 
 # see https://superuser.com/questions/1050894/using-dd-to-clone-a-hdd-to-an-ssd and refs therein
