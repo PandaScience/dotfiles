@@ -269,7 +269,7 @@ bindkey "^F" fzf_alias
 
 # copy terminal buffer to clipboard
 copy_command_to_clipboard() {
-  print -rn $BUFFER | xsel
+  print -rn $BUFFER | wl-copy
 }
 zle -N copy_command_to_clipboard
 bindkey "^[c" copy_command_to_clipboard
@@ -277,7 +277,7 @@ bindkey "^[c" copy_command_to_clipboard
 # cut terminal buffer to clipboard
 kill_command_to_clipboard() {
   zle kill-buffer
-  print -rn $CUTBUFFER | xsel
+  print -rn $CUTBUFFER | wl-copy
 }
 zle -N kill_command_to_clipboard
 bindkey "^[c^[c" kill_command_to_clipboard
