@@ -1,0 +1,3 @@
+[submodule ".config/easyeffects/output##hostname.framework"]
+	path = ".config/easyeffects/output##hostname.framework"
+	url = https://github.com/ceiphr/ee-framework-presets.git
