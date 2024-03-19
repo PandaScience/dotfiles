@@ -155,8 +155,10 @@
     "max-length": 10
   },
 
-  "disk": {
-    "format": " {percentage_used}%"
+  "custom/zpool": {
+    "format": " {}",
+    "exec": "zpool list -H -o free",
+    "interval": 300
   },
 
   "network": {

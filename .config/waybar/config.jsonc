@@ -28,6 +28,6 @@
 
   "group/system": {
     "orientation": "horizontal",
-    "modules": ["temperature", "cpu", "memory", "disk"]
+    "modules": ["temperature", "cpu", "memory", "custom/zpool"]
   }
 }
