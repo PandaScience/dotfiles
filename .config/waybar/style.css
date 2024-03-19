@@ -1,6 +1,5 @@
 * {
   border: none;
-  border-radius: 4px;
   min-height: 0;
   font-family: DejaVuSansM Nerd Font;
   font-size: 12px;
@@ -12,10 +11,16 @@ window#waybar {
   background-color: #181825;
 }
 
-.modules-left,
-.modules-center,
-.modules-right {
-  /* background-color: #181825; */
+#workspaces {
+  background: #445566;
+  border-radius: 0px;
+}
+#workspaces > .persistent:nth-child(1) {
+  margin-left: 2em;
+}
+#workspaces > .persistent:nth-child(3),
+#workspaces > .persistent:nth-child(6) {
+  margin-right: 2em;
 }
 
 #workspaces button {
@@ -26,6 +31,10 @@ window#waybar {
   background-color: #1e1e2e;
   color: #cdd6f4;
   font-weight: bold;
+}
+
+#workspaces button * {
+  font-size: 14px;
 }
 
 #workspaces button.active {
@@ -64,6 +73,7 @@ window#waybar {
 #custom-power {
   margin: 6px 3px;
   padding: 0 12px;
+  border-radius: 4px;
   color: #000000;
 }
 

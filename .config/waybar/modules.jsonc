@@ -3,20 +3,20 @@
     "on-click": "activate",
     "format": "{icon}",
     "format-icons": {
-      "default": "",
-      "1": "1",
-      "2": "2",
-      "3": "3",
-      "4": "4",
-      "5": "5",
-      "6": "6",
-      "7": "7",
-      "8": "8",
-      "9": "9",
-      "active": "󱓻",
-      "urgent": "󱓻"
+      "active": "",
+      "default": "",
+      "empty": " ",
+      "urgent": "",
+      "visible": "•"
     },
-    "persistent_workspaces": {}
+    "persistent_workspaces": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+      "5": [],
+      "6": []
+    }
   },
 
   "wlr/taskbar": {
@@ -123,6 +123,7 @@
     },
     "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
     "on-click-right": "pavucontrol",
+    "on-click-middle": "helvum",
     "ignored-sinks": ["Easy Effects Sink"],
     "scroll-step": 5
   },

@@ -2,7 +2,7 @@
   "layer": "top",
   "position": "top",
   "spacing": 5,
-  "height": 30,
+  "height": 40,
 
   "include": ["~/.config/waybar/modules.jsonc"],
 
