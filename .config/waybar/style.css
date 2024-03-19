@@ -1,3 +1,5 @@
+/* widget tree: box.modules-left > widget > box#module1, label#module2 */
+
 * {
   border: none;
   min-height: 0;
@@ -11,7 +13,18 @@ window#waybar {
   background-color: #181825;
 }
 
+.modules-left .module,
+.modules-center .module,
+.modules-right .module {
+  margin: 6px 3px;
+  padding: 0 12px;
+  border-radius: 4px;
+  color: #000000;
+}
+
 #workspaces {
+  margin: 0px;
+  padding: 0px;
   background: #445566;
   border-radius: 0px;
 }
@@ -53,35 +66,10 @@ window#waybar {
   background-color: #f38ba8;
 }
 
-#custom-logo,
-#taskbar,
-#custom-updates,
-#clock,
-#backlight,
-#idle_inhibitor,
-#custom-vpn,
-#custom-kernel,
-#bluetooth,
-#pulseaudio,
-#temperature,
-#cpu,
-#memory,
-#custom-zpool,
-#network,
-#battery,
-#tray,
-#custom-power {
-  margin: 6px 3px;
-  padding: 0 12px;
-  border-radius: 4px;
-  color: #000000;
-}
-
 #custom-logo {
   padding-left: 7px;
   font-size: 15px;
   color: #1793d1;
-  /* background-color: #525e75; */
 }
 
 #taskbar,
