@@ -5,6 +5,8 @@ alias -g pnl="| tr ': ' '\n'"
 
 # convenience (re)definitions
 alias vim=nvim
+alias v=nvim
+alias e=nvim
 alias magit='nvim -c MagitOnly'
 alias ssh='TERM=xterm-256color ssh'
 alias sshx='ssh -X'
