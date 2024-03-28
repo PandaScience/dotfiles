@@ -38,11 +38,11 @@ swap(){
 
 # list files - but fancy
 alias l1='ls -1'
-alias la='ls -a'
 alias ls='eza --group-directories-first'
-alias ll='eza --group-directories-first -l --git'
-alias lll='eza --group-directories-first -hHlgF --color-scale --git -@ -mu'
-alias l='lll -a'
+alias l='eza --group-directories-first -l --git'
+alias la='l -a'
+alias ll='eza --group-directories-first -hHlgF --color-scale --git -@ -mu'
+alias lla='ll -a'
 
 # conversion helpers
 alias print_cert_from_clipboard="xclip -o | awk '{\$1=\$1};1' | openssl x509 -text -noout"
