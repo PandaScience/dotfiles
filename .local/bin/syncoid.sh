@@ -1,8 +1,11 @@
 #!/usr/bin/bash
 
+# USAGE:
+# ======
+#
 # crontab -e
 # CRON_TZ=UTC
-# 0 19 * * *     /usr/bin/bash /home/rene/bin/syncoid.sh &>> /var/log/syncoid.log
+# 0 19 * * *  DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/<userid>/bus SLACK_URL=<webhook_url> /usr/bin/bash <path/to/syncoid.sh> &>> /var/log/syncoid.log
 #
 # ~/.ssh/config
 #
@@ -16,24 +19,43 @@
 #   chown root:wheel /var/log/syncoid.log
 #   chmod ug+rw /var/log/syncoid.log
 
-CLIENT=$(hostname)
+# uncomment only for testing!
+# set -euxo pipefail
+# SLACK_URL=<webhook_url>
+
+CLIENT=$(hostnamectl hostname)
+ICON="${HOME}/.local/share/icons/backup.png"
+
+slack_notification() {
+	if [ -n "${SLACK_URL}" ]; then
+		local log
+		local subj
+		local json
+		subj="*Syncoid backup from host ${CLIENT^^} failed!*"
+		log="$(tail /var/log/syncoid.log)"
+		# special characters must be properly escaped for valid JSON -> use jq
+		# shellcheck disable=SC2016
+		json="$(printf '%s\n\n```%s```' "${subj}" "${log}" | jq -Rsa)"
+		curl -s -o /dev/null --json '{"text": '"${json}"'}' "${SLACK_URL}"
+	fi
+}
 
 echo -e "\n\nStarting syncoid backup: $(date +"%F @ %T")\n---"
-notify-send -t 30000 -u normal -i /SHARE/backup.png "Starting Backup!"
+notify-send -t 30000 -u normal -i "${ICON}" "Starting Backup!"
 syncoid \
 	--recursive \
 	--sendoptions="w" \
 	--no-privilege-elevation \
 	--no-sync-snap \
-	zroot/encr ${CLIENT}@backup:backup/${CLIENT}/encr
+	zroot/encr "${CLIENT}@backup:backup/${CLIENT}/encr"
 
 EXITCODE=$?
-if [[ ${EXITCODE} != 0 ]]; then
-	notify-send -u critical -i /SHARE/backup.png "Backup failed!"
+if [ ${EXITCODE} != 0 ]; then
+	notify-send -u critical -i  "${ICON}" "Backup failed!"
 	echo -e "---\nSyncoid backup failed!: $(date +"%F @ %T")"
-
+	slack_notification
 else
-	notify-send -t 30000 -u normal -i /SHARE/backup.png "Backup completed!"
+	notify-send -t 30000 -u normal -i  "${ICON}" "Backup completed!"
 	echo -e "---\nFinished syncoid backup: $(date +"%F @ %T")"
 fi
 
