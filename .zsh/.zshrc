@@ -330,8 +330,8 @@ if [[ $(command -v go) ]]; then
   export PATH=${CARGOPATH}/bin:${PATH}
 fi
 
-# include asdf from AUR, put after final PATH setting
-FILE=/opt/asdf-vm/asdf.sh && test -f ${FILE} && source ${FILE}
+# activate rtx; completion is already installed by AUR build
+command -v rtx &> /dev/null && eval "$(rtx activate zsh)"
 
 # include community/broot
 command -v broot &> /dev/null && source /home/rene/.config/broot/launcher/bash/br
@@ -340,6 +340,13 @@ command -v broot &> /dev/null && source /home/rene/.config/broot/launcher/bash/b
 command -v kubectl  &> /dev/null && source <(kubectl completion zsh)
 command -v minikube &> /dev/null && source <(minikube completion zsh)
 command -v k3d      &> /dev/null && source <(k3d completion zsh)
+
+# does not work - maybe b/c of rtx
+# workaround: install `istio` package, but use `latest` in global rtx
+command -v istioctl &> /dev/null && source <(istioctl completion zsh)
+
+# HACK: gcloud completion - is there no proper ZSH way to do this??
+source "${HOME}"/.local/share/rtx/installs/gcloud/latest/completion.zsh.inc
 
 # autocomplete via bash
 autoload bashcompinit && bashcompinit
