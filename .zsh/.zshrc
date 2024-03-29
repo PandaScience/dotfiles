@@ -332,7 +332,12 @@ if [[ $(command -v go) ]]; then
 fi
 
 # activate mise-en-place
-(( ${+commands[mise]} )) && eval "$(mise activate zsh)"
+if [ ${+commands[mise]} ]; then
+  eval "$(mise activate zsh)"
+  # make plugin commands available for following completion checks,
+  # see https://mise.jdx.dev/dev-tools/shims.html#zshrc-bashrc-files
+  eval "$(mise hook-env -s zsh)"
+fi
 
 # include community/broot
 (( ${+commands[broot]} )) && source "${HOME}"/.config/broot/launcher/bash/br
@@ -341,9 +346,6 @@ fi
 (( ${+commands[kubectl]} )) && source <(kubectl completion zsh)
 (( ${+commands[minikube]} )) && source <(minikube completion zsh)
 (( ${+commands[k3d]} )) && source <(k3d completion zsh)
-
-# does not work - maybe b/c of rtx
-# workaround: install `istio` package, but use `latest` in global rtx
 (( ${+commands[istioctl]} )) && source <(istioctl completion zsh)
 
 # HACK: gcloud completion - is there no proper ZSH way to do this??
