@@ -136,17 +136,11 @@ if [[ -f $fzf1 ]] || [[ -e $fzf1 ]]; then
   . "$fzf2"
 fi
 
+# use fd (https://github.com/sharkdp/fd) instead of the default find
 # https://github.com/junegunn/fzf#settings
-#
-# Use fd (https://github.com/sharkdp/fd) instead of the default find
-# command for listing path candidates.
-# - The first argument to the function ($1) is the base path to start traversal
-# - See the source code (completion.{bash,zsh}) for the details.
 _fzf_compgen_path() {
   fd --no-ignore --hidden --follow --exclude ".git" . "$1"
 }
-
-# Use fd to generate the list for directory completion
 _fzf_compgen_dir() {
   fd --no-ignore --type d --hidden --follow --exclude ".git" . "$1"
 }
@@ -157,9 +151,10 @@ export FZF_DEFAULT_OPTS="
   --layout=reverse
   --border
   --bind='?:toggle-preview'
-  --preview 'bat --style=plain --color=always {}'
   --preview-window hidden"
 
+# add options for fzf file search
+export FZF_CTRL_T_OPTS="--preview 'bat --style=plain --color=always {}'"
 
 #---------- HISTORY -----------------------------------------------------------
 
