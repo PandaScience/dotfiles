@@ -40,4 +40,18 @@ alias gyc='git switch -c'
 alias guc='git reset --soft HEAD~' # -> i.e. git uncommit
 alias gui='git restore --staged'
 alias guw='git restore'
-alias gopen="git config remote.origin.url | sed -e 's~.*git@~https://~' -e 's~:7999~/scm~' -e 's~?ref.*~~' | xargs firefox"
+# alias gopen='git config remote.origin.url | xargs xdg-open'
+
+# open any git url in browser
+gopen() {
+  local url="$(git config remote.origin.url)"
+  if [[ $url == "" ]]; then
+    echo "Not in a git repository"
+  # github
+  elif [[ $url =~ "^git@github.com" ]]; then
+    sed -e 's|git@github.com:|https://github.com/|' <<< "$url" | xargs xdg-open
+  # bitbucket
+  elif [[ $url =~ "^ssh://git@.*:7999" ]]; then
+    sed -e 's|^.*git@|https://|' -e 's|:7999|/scm|' <<< "$url" | xargs xdg-open
+  fi
+}
