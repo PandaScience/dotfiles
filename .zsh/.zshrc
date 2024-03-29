@@ -330,8 +330,8 @@ if [[ $(command -v go) ]]; then
   export PATH=${CARGOPATH}/bin:${PATH}
 fi
 
-# activate rtx; completion is already installed by AUR build
-command -v rtx &> /dev/null && eval "$(rtx activate zsh)"
+# activate mise-en-place
+command -v mise &> /dev/null && eval "$(mise activate zsh)"
 
 # include community/broot
 command -v broot &> /dev/null && source /home/rene/.config/broot/launcher/bash/br
