@@ -208,7 +208,7 @@ setopt NO_CLOBBER
 # setopt NO_AUTO_MENU
 
 # taken from zimfw
-double-dot-expand() {
+widget-double_dot_expand() {
   # Expand .. at the beginning, after space, or after any of ! " & ' / ; < > |
   if [[ ${LBUFFER} == (|*[[:space:]!\"\&\'/\;\<\>|]).. ]]; then
     LBUFFER+='/..'
@@ -216,8 +216,8 @@ double-dot-expand() {
     LBUFFER+='.'
   fi
 }
-zle -N double-dot-expand
-bindkey '.' double-dot-expand
+zle -N widget-double_dot_expand
+bindkey '.' widget-double_dot_expand
 bindkey -M isearch '.' self-insert
 
 
@@ -226,7 +226,7 @@ bindkey -M isearch '.' self-insert
 # NOTE: find escape codes through plain `cat` + key-combo
 
 # toggle comment
-toggle_comment() {
+widget-toggle_comment() {
   if [[ "${BUFFER}" =~ "^#" ]]; then
     BUFFER=$(echo ${BUFFER} | sed -e 's/^#[[:space:]]*//')
   else
@@ -234,11 +234,11 @@ toggle_comment() {
   fi
   zle redisplay
 }
-zle -N toggle_comment
-bindkey "^_^_" toggle_comment
+zle -N widget-toggle_comment
+bindkey "^_^_" widget-toggle_comment
 
 # show inline alias definition, see https://superuser.com/a/894379
-inline_alias() {
+widget-inline_alias() {
   emulate -L zsh
   local CURRENT_WORD="${LBUFFER/* /}${RBUFFER/ */}"
   local ALIAS_FULL="$(alias -- "$CURRENT_WORD")"
@@ -252,11 +252,11 @@ inline_alias() {
   fi
 }
 # create widget from function and bind key
-zle -N inline_alias
-bindkey "^G" inline_alias
+zle -N widget-inline_alias
+bindkey "^G" widget-inline_alias
 
 # fuzzy search aliases
-fzf_alias() {
+widget-fzf_alias() {
   # emulate -L zsh
   local CURRENT_WORD="${LBUFFER/* /}${RBUFFER/ */}"
   zle backward-word
@@ -264,23 +264,25 @@ fzf_alias() {
   zle forward-word
   zle redisplay
 }
-zle -N fzf_alias
-bindkey "^F" fzf_alias
+zle -N widget-fzf_alias
+bindkey "^F" widget-fzf_alias
+
+# BUG: terminal unresponsive after cut/copy widget use
 
 # copy terminal buffer to clipboard
-copy_command_to_clipboard() {
+widget-copy_command_to_clipboard() {
   print -rn $BUFFER | wl-copy
 }
-zle -N copy_command_to_clipboard
-bindkey "^[c" copy_command_to_clipboard
+zle -N widget-copy_command_to_clipboard
+bindkey "^[c" widget-copy_command_to_clipboard
 
 # cut terminal buffer to clipboard
-kill_command_to_clipboard() {
+widget-kill_command_to_clipboard() {
   zle kill-buffer
   print -rn $CUTBUFFER | wl-copy
 }
-zle -N kill_command_to_clipboard
-bindkey "^[c^[c" kill_command_to_clipboard
+zle -N widget-kill_command_to_clipboard
+bindkey "^[c^[c" widget-kill_command_to_clipboard
 
 
 #---------- MISC --------------------------------------------------------------
