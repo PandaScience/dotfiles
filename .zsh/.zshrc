@@ -17,7 +17,6 @@ fi
 # To customize prompt, run `p10k configure` or edit ~/.zsh/.p10k.zsh.
 [[ ! -f ~/.zsh/.p10k.zsh ]] || source ~/.zsh/.p10k.zsh
 
-
 # Completion menu modifications
 # https://thevaluable.dev/zsh-completion-guide-examples/
 zstyle ':completion:*' completer _extensions _complete _approximate
@@ -133,8 +132,8 @@ export ZSHZ_NO_RESOLVE_SYMLINKS=1
 fzf1="/usr/share/fzf/completion.zsh"
 fzf2="/usr/share/fzf/key-bindings.zsh"
 if [[ -f $fzf1 ]] || [[ -e $fzf1 ]]; then
-	. "$fzf1"
-	. "$fzf2"
+  . "$fzf1"
+  . "$fzf2"
 fi
 
 # https://github.com/junegunn/fzf#settings
@@ -153,7 +152,13 @@ _fzf_compgen_dir() {
 }
 
 # add default options for fzf
-export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border --bind='?:toggle-preview' --preview 'bat --style=plain --color=always {}' --preview-window hidden"
+export FZF_DEFAULT_OPTS="
+  --height 40%
+  --layout=reverse
+  --border
+  --bind='?:toggle-preview'
+  --preview 'bat --style=plain --color=always {}'
+  --preview-window hidden"
 
 
 #---------- HISTORY -----------------------------------------------------------
