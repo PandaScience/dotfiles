@@ -284,6 +284,32 @@ widget-kill_command_to_clipboard() {
 zle -N widget-kill_command_to_clipboard
 bindkey "^[c^[c" widget-kill_command_to_clipboard
 
+# edit file with fzf selection; see https://github.com/junegunn/fzf/issues/3650
+widget-fzf_edit_file() {
+  fzf --bind 'enter:become(nvim {})' <"${TTY}"
+  zle reset-prompt
+}
+zle -N widget-fzf_edit_file
+bindkey "^e" widget-fzf_edit_file
+
+# z with fzf selection
+widget-fzf_z() {
+  eval cd "$(z | tac | fzf | awk '{print $2}')"
+  zle kill-buffer
+  zle accept-line
+  # NOTE: if you prefer to have cd cmds in history do instead:
+  # (this is also how fzf is doing it for ALT+C, check /usr/share/fzf/key-bindings.zsh)
+  # local dir="$(z | tac | fzf | awk '{print $2}')"
+  # BUFFER="cd -- ${dir}"
+  # TODO: below really required?
+  # local ret=$?
+  # unset dir
+  # zle reset-prompt
+  # return $ret
+}
+zle -N widget-fzf_z
+bindkey "^z" widget-fzf_z
+
 
 #---------- MISC --------------------------------------------------------------
 
