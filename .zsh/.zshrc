@@ -332,19 +332,19 @@ if [[ $(command -v go) ]]; then
 fi
 
 # activate mise-en-place
-command -v mise &> /dev/null && eval "$(mise activate zsh)"
+(( ${+commands[mise]} )) && eval "$(mise activate zsh)"
 
 # include community/broot
-command -v broot &> /dev/null && source "${HOME}"/.config/broot/launcher/bash/br
+(( ${+commands[broot]} )) && source "${HOME}"/.config/broot/launcher/bash/br
 
-# autocomplete kubectl
-command -v kubectl  &> /dev/null && source <(kubectl completion zsh)
-command -v minikube &> /dev/null && source <(minikube completion zsh)
-command -v k3d      &> /dev/null && source <(k3d completion zsh)
+# zsh-native autocompletions
+(( ${+commands[kubectl]} )) && source <(kubectl completion zsh)
+(( ${+commands[minikube]} )) && source <(minikube completion zsh)
+(( ${+commands[k3d]} )) && source <(k3d completion zsh)
 
 # does not work - maybe b/c of rtx
 # workaround: install `istio` package, but use `latest` in global rtx
-command -v istioctl &> /dev/null && source <(istioctl completion zsh)
+(( ${+commands[istioctl]} )) && source <(istioctl completion zsh)
 
 # HACK: gcloud completion - is there no proper ZSH way to do this??
 source "${HOME}"/.local/share/rtx/installs/gcloud/latest/completion.zsh.inc
