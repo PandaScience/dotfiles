@@ -316,7 +316,8 @@ bindkey "^z" widget-fzf_z
 # source alias file
 source "${ZDOTDIR}/.aliases"
 
-export PATH=/home/rene/.local/bin:${PATH}
+# add local bin folder to path
+export PATH=${HOME}/.local/bin:${PATH}
 
 # add go to $PATH
 if [[ $(command -v go) ]]; then
@@ -334,7 +335,7 @@ fi
 command -v mise &> /dev/null && eval "$(mise activate zsh)"
 
 # include community/broot
-command -v broot &> /dev/null && source /home/rene/.config/broot/launcher/bash/br
+command -v broot &> /dev/null && source "${HOME}"/.config/broot/launcher/bash/br
 
 # autocomplete kubectl
 command -v kubectl  &> /dev/null && source <(kubectl completion zsh)
