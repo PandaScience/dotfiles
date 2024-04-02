@@ -1,0 +1,50 @@
+[global]
+    width = 320
+    height = 200
+    origin = top-right
+    offset = 30x20
+    notification_limit = 10
+    icon_corner_radius = 1
+    indicate_hidden = yes
+    separator_height = 0
+    frame_width = 4
+    frame_color = "#999999aa"
+    horizontal_padding = 20
+    text_icon_padding=20
+    gap_size = 15
+    sort = urgency_descending
+    idle_threshold = 60
+    font = DejaVuSansM Nerd Font 12
+    line_height = 0
+    format = "<b>%s</b>\n%b"
+    # min_icon_size =
+    max_icon_size = 56
+    dmenu = /usr/bin/wofi
+    browser = /usr/bin/xdg-open
+    corner_radius = 10
+    mouse_left_click = do_action, close_current
+    mouse_middle_click = none
+    mouse_right_click = close_current
+
+[urgency_low]
+    background = "#222222"
+    foreground = "#888888"
+    timeout = 10
+
+[urgency_normal]
+    frame_color = "#537188"
+    background = "#10101089"
+    foreground = "#c9e8e9"
+    timeout = 10
+    override_pause_level = 30
+    default_icon = ~/.local/share/icons/notify-send/info.png
+
+[urgency_critical]
+    frame_color = "#D5A4A5"
+    foreground = "#c9e8e9"
+    background = "#90000044"
+    timeout = 0
+    override_pause_level = 60
+    default_icon = ~/.local/share/icons/notify-send/caution.png
+
+# vim: ft=toml
