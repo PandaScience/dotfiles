@@ -66,6 +66,19 @@
     "interval": 300
   },
 
+  "custom/dunst-status": {
+    "tooltip": false,
+    "exec": "~/.config/waybar/scripts/dunst-status.sh",
+    "on-click": "dunstctl set-paused toggle",
+    "return-type": "json",
+    "format": "{icon}{}",
+    "format-icons": {
+      "paused": "󱙎",
+      "unpaused": "󰍪"
+    },
+    "interval": 1
+  },
+
   "custom/vpn": {
     "format": "VPN ",
     "exec": "echo '{\"class\": \"connected\"}'",

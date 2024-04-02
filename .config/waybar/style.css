@@ -96,6 +96,19 @@ window#waybar {
   color: white;
   font-size: 16px;
   font-weight: bold;
+  margin-right: 0;
+}
+
+#custom-dunst-status {
+  background-color: #445566;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  margin-left: 0;
+}
+
+#custom-dunst-status span {
+  color: red;
 }
 
 #custom-vpn {

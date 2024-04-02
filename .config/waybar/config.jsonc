@@ -8,7 +8,12 @@
 
   "modules-left": ["custom/logo", "hyprland/workspaces", "wlr/taskbar"],
 
-  "modules-center": ["custom/updates", "clock", "idle_inhibitor"],
+  "modules-center": [
+    "custom/updates",
+    "clock",
+    "idle_inhibitor",
+    "custom/dunst-status"
+  ],
 
   "modules-right": [
     "custom/vpn",
