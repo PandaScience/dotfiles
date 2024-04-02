@@ -184,8 +184,8 @@
     "tooltip-format-wifi": "{icon} {essid} {ipaddr}\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
     "tooltip-format-ethernet": "󰀂  {ifname} {ipaddr}\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
     "tooltip-format-disconnected": "Disconnected",
-    "on-click": "~/.config/rofi/wifi/wifi.sh &",
-    "on-click-right": "~/.config/rofi/wifi/wifinew.sh &",
+    // "on-click": "~/.config/rofi/wifi/wifi.sh &",
+    // "on-click-right": "~/.config/rofi/wifi/wifinew.sh &",
     "interval": 5,
     "nospacing": 1
   },
