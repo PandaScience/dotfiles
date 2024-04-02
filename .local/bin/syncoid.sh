@@ -24,7 +24,9 @@
 # SLACK_URL=<webhook_url>
 
 CLIENT=$(hostnamectl hostname)
-ICON="${HOME}/.local/share/icons/backup.png"
+ICON_START="${HOME}/.local/share/icons/notify-send/backup.png"
+ICON_SUCCESS="${HOME}/.local/share/icons/notify-send/check.png"
+ICON_FAIL="${HOME}/.local/share/icons/notify-send/caution.png"
 
 slack_notification() {
 	if [ -n "${SLACK_URL}" ]; then
@@ -41,7 +43,7 @@ slack_notification() {
 }
 
 echo -e "\n\nStarting syncoid backup: $(date +"%F @ %T")\n---"
-notify-send -t 30000 -u normal -i "${ICON}" "Starting Backup!"
+notify-send -t 30000 -u normal -i "${ICON_START}" "Starting Backup!"
 syncoid \
 	--recursive \
 	--sendoptions="w" \
@@ -51,11 +53,11 @@ syncoid \
 
 EXITCODE=$?
 if [ ${EXITCODE} != 0 ]; then
-	notify-send -u critical -i  "${ICON}" "Backup failed!"
+	notify-send -u critical -i  "${ICON_FAIL}" "Backup failed!"
 	echo -e "---\nSyncoid backup failed!: $(date +"%F @ %T")"
 	slack_notification
 else
-	notify-send -t 30000 -u normal -i  "${ICON}" "Backup completed!"
+	notify-send -t 30000 -u normal -i  "${ICON_SUCCESS}" "Backup completed!"
 	echo -e "---\nFinished syncoid backup: $(date +"%F @ %T")"
 fi
 
