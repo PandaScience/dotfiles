@@ -18,6 +18,8 @@ alias tf='terraform'
 alias pel='echo -e "\n\n\n\n\n\n\n\n\n\n"'
 alias yless="jless --yaml"
 alias icat="kitten icat"
+alias btd="bluetoothctl disconnect"
+alias btc="bluetoothctl connect"
 tree() { br -i -c :pt "$@" }
 
 # see https://superuser.com/questions/1050894/using-dd-to-clone-a-hdd-to-an-ssd and refs therein
