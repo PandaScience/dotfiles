@@ -348,8 +348,13 @@ fi
 (( ${+commands[k3d]} )) && source <(k3d completion zsh)
 (( ${+commands[istioctl]} )) && source <(istioctl completion zsh)
 
-# HACK: gcloud completion - is there no proper ZSH way to do this??
-source "${HOME}"/.local/share/rtx/installs/gcloud/latest/completion.zsh.inc
+# google cloud CLI binary & completion for AUR package
+# NOTE: use double bracket and $(cmd) instead of plain cmd to surpress output
+# instead of redirecting stdout to /dev/null
+if [[ $(pacman -Qi google-cloud-cli) ]]; then
+  source /etc/profile.d/google-cloud-cli.sh
+  source ${GOOGLE_CLOUD_SDK_HOME}/completion.zsh.inc
+fi
 
 # autocomplete via bash
 autoload bashcompinit && bashcompinit
