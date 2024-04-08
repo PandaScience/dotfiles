@@ -319,14 +319,14 @@ source "${ZDOTDIR}/.aliases"
 # add local bin folder to path
 export PATH=${HOME}/.local/bin:${PATH}
 
-# add go to $PATH
-if [[ $(command -v go) ]]; then
+# add go package binaries to $PATH
+if [ ${+commands[go]} ]; then
   export GOPATH=${HOME}/.go
   export PATH=${GOPATH}/bin:${PATH}
 fi
 
-# add rust to $PATH
-if [[ $(command -v go) ]]; then
+# add rust package binaries to $PATH
+if [ ${+commands[cargo]} ]; then
   export CARGOPATH=${HOME}/.cargo
   export PATH=${CARGOPATH}/bin:${PATH}
 fi
