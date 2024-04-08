@@ -17,8 +17,7 @@
     font = DejaVuSansM Nerd Font 12
     line_height = 0
     format = "<b>%s</b>\n%b"
-    # min_icon_size =
-    max_icon_size = 56
+    max_icon_size = 32
     dmenu = /usr/bin/wofi
     browser = /usr/bin/xdg-open
     corner_radius = 10
