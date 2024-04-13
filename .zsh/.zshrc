@@ -176,12 +176,6 @@ setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording en
 setopt HIST_VERIFY               # Don't execute immediately upon history expansion.
 setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 
-# ensure autocompletion for aliases is disabled (if option set by e.g. ohmyzsh)
-unsetopt completealiases
-
-# disable control flow via ^S and ^Q
-setopt noflowcontrol
-
 #---------- FURTHER ZSH SETTINGS ----------------------------------------------
 
 # Remove path separator from WORDCHARS.
@@ -189,8 +183,6 @@ WORDCHARS=${WORDCHARS//[\/]}
 
 # enable comments with # in interactive shells
 setopt INTERACTIVE_COMMENTS
-# error on unmatched quotes in command (-> no multiline commands!)
-# setopt CSH_JUNKIE_QUOTES
 # correct commands and options
 setopt CORRECT
 setopt CORRECT_ALL
@@ -198,14 +190,20 @@ setopt CORRECT_ALL
 setopt AUTOCD
 # enable dir stack with cd -<TAB>
 setopt AUTO_PUSHD
-# exchange meaning of -/+
+# exchange meaning of -/+ in `cd -N`
 setopt PUSHD_MINUS
 # prevent overwriting existing files
 setopt NO_CLOBBER
-# no special treatment for file names with a leading dot
-# setopt GLOB_DOTS
-# require an extra TAB press to open the completion menu
-# setopt NO_AUTO_MENU
+# treat the #, ~ and ^ characters as part of patterns for filename generation
+setopt EXTENDED_GLOB
+# disable control flow via ^S and ^Q
+setopt NO_FLOW_CONTROL
+# ensure autocompletion for aliases is disabled (if option set by e.g. ohmyzsh)
+unsetopt COMPLETE_ALIASES
+
+#---------- CUSTOM WIDGETS ----------------------------------------------------
+
+# NOTE: find escape codes through plain `cat` + key-combo
 
 # taken from zimfw
 widget-double_dot_expand() {
@@ -219,11 +217,6 @@ widget-double_dot_expand() {
 zle -N widget-double_dot_expand
 bindkey '.' widget-double_dot_expand
 bindkey -M isearch '.' self-insert
-
-
-#---------- CUSTOM WIDGETS ----------------------------------------------------
-
-# NOTE: find escape codes through plain `cat` + key-combo
 
 # toggle comment
 widget-toggle_comment() {
