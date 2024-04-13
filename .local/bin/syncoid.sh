@@ -53,11 +53,11 @@ syncoid \
 
 EXITCODE=$?
 if [ ${EXITCODE} != 0 ]; then
-	notify-send -u critical -i  "${ICON_FAIL}" "Backup failed!"
+	notify-send -u critical -i "${ICON_FAIL}" "Backup failed!"
 	echo -e "---\nSyncoid backup failed!: $(date +"%F @ %T")"
 	slack_notification
 else
-	notify-send -t 30000 -u normal -i  "${ICON_SUCCESS}" "Backup completed!"
+	notify-send -t 30000 -u normal -i "${ICON_SUCCESS}" "Backup completed!"
 	echo -e "---\nFinished syncoid backup: $(date +"%F @ %T")"
 fi
 
