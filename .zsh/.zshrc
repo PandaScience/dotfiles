@@ -14,6 +14,14 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 (( ${+commands[direnv]} )) && emulate zsh -c "$(direnv hook zsh)"
 
+# activate mise-en-place
+if [ ${+commands[mise]} ]; then
+  eval "$(mise activate zsh)"
+  # make plugin commands available for following completion checks,
+  # see https://mise.jdx.dev/dev-tools/shims.html#zshrc-bashrc-files
+  eval "$(mise hook-env -s zsh)"
+fi
+
 # To customize prompt, run `p10k configure` or edit ~/.zsh/.p10k.zsh.
 [[ ! -f ~/.zsh/.p10k.zsh ]] || source ~/.zsh/.p10k.zsh
 
@@ -322,14 +330,6 @@ fi
 if [ ${+commands[cargo]} ]; then
   export CARGOPATH=${HOME}/.cargo
   export PATH=${CARGOPATH}/bin:${PATH}
-fi
-
-# activate mise-en-place
-if [ ${+commands[mise]} ]; then
-  eval "$(mise activate zsh)"
-  # make plugin commands available for following completion checks,
-  # see https://mise.jdx.dev/dev-tools/shims.html#zshrc-bashrc-files
-  eval "$(mise hook-env -s zsh)"
 fi
 
 # include community/broot
