@@ -52,8 +52,7 @@
 	unstage = reset HEAD --
 
 	# re-applying same commit msg after a `git uncommit`
-	commit-reuse = commit -eF .git/COMMIT_EDITMSG
-	commit-reuse-yadm = commit -eF ~/.local/share/yadm/repo.git/COMMIT_EDITMSG
+	commit-reuse = commit --reuse-message=ORIG_HEAD
 
 	lg = log --graph --abbrev-commit --all
 
