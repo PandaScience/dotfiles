@@ -268,11 +268,9 @@ widget-fzf_alias() {
 zle -N widget-fzf_alias
 bindkey "^F" widget-fzf_alias
 
-# BUG: terminal unresponsive after cut/copy widget use
-
 # copy terminal buffer to clipboard
 widget-copy_command_to_clipboard() {
-  print -rn $BUFFER | wl-copy
+  print -rn $BUFFER | wl-copy -o
 }
 zle -N widget-copy_command_to_clipboard
 bindkey "^[c" widget-copy_command_to_clipboard
@@ -280,7 +278,7 @@ bindkey "^[c" widget-copy_command_to_clipboard
 # cut terminal buffer to clipboard
 widget-kill_command_to_clipboard() {
   zle kill-buffer
-  print -rn $CUTBUFFER | wl-copy
+  print -rn $CUTBUFFER | wl-copy -o
 }
 zle -N widget-kill_command_to_clipboard
 bindkey "^[c^[c" widget-kill_command_to_clipboard
