@@ -15,7 +15,7 @@ fi
 (( ${+commands[direnv]} )) && emulate zsh -c "$(direnv hook zsh)"
 
 # activate mise-en-place
-if [ ${+commands[mise]} ]; then
+if (( ${+commands[mise]} )); then
   eval "$(mise activate zsh)"
   # make plugin commands available for following completion checks,
   # see https://mise.jdx.dev/dev-tools/shims.html#zshrc-bashrc-files
@@ -340,9 +340,7 @@ fi
 (( ${+commands[istioctl]} )) && source <(istioctl completion zsh)
 
 # google cloud CLI binary & completion for AUR package
-# NOTE: use double bracket and $(cmd) instead of plain cmd to surpress output
-# instead of redirecting stdout to /dev/null
-if [[ $(pacman -Qi google-cloud-cli) ]]; then
+if pacman -Qi google-cloud-cli &> /dev/null; then
   source /etc/profile.d/google-cloud-cli.sh
   source ${GOOGLE_CLOUD_SDK_HOME}/completion.zsh.inc
 fi
