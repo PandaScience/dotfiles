@@ -1,5 +1,7 @@
 {
   "hyprland/workspaces": {
+    "all-outputs": true,
+    "sort-by": "number",
     "on-click": "activate",
     "format": "{icon}",
     "format-icons": {
@@ -9,7 +11,7 @@
       "urgent": "",
       "visible": "•"
     },
-    "persistent_workspaces": {
+    "persistent-workspaces": {
       "1": [],
       "2": [],
       "3": [],
