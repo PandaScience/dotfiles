@@ -332,6 +332,9 @@ if [ ${+commands[cargo]} ]; then
   export PATH=${CARGOPATH}/bin:${PATH}
 fi
 
+# add krew binaries to path
+(( ${+commands[krew]} )) && export PATH=${KREW_ROOT:-$HOME/.krew}/bin:${PATH}
+
 # include community/broot
 (( ${+commands[broot]} )) && source "${HOME}"/.config/broot/launcher/bash/br
 
@@ -340,6 +343,10 @@ fi
 (( ${+commands[minikube]} )) && source <(minikube completion zsh)
 (( ${+commands[k3d]} )) && source <(k3d completion zsh)
 (( ${+commands[istioctl]} )) && source <(istioctl completion zsh)
+(( ${+commands[kubeone]} )) && source <(kubeone completion zsh)
+(( ${+commands[argocd]} )) && source <(argocd completion zsh)
+(( ${+commands[helm]} )) && source <(helm completion zsh)
+(( ${+commands[switcher]} )) && source <(switcher completion zsh)
 
 # google cloud CLI binary & completion for AUR package
 if pacman -Qi google-cloud-cli &> /dev/null; then
