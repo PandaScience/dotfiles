@@ -204,6 +204,8 @@ setopt PUSHD_MINUS
 setopt NO_CLOBBER
 # treat the #, ~ and ^ characters as part of patterns for filename generation
 setopt EXTENDED_GLOB
+# only throw error when ALL file globs do not match anything
+setopt CSH_NULL_GLOB
 # disable control flow via ^S and ^Q
 setopt NO_FLOW_CONTROL
 # ensure autocompletion for aliases is disabled (if option set by e.g. ohmyzsh)
