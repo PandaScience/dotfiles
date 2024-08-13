@@ -2,7 +2,17 @@
 experimental = true
 
 [tools]
+# required for auto-completion by mise itself
+usage = "latest"
+
+# IaC
+terraform = "latest"
+opentofu = "latest"
+
+# k8s related
 kubectl = "latest"
 k9s = "latest"
-terraform = "latest"
 istioctl = "latest"
+krew = "latest"
+argocd = "latest"
+kubeone = "latest"
