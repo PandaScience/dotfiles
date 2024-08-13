@@ -6,20 +6,20 @@
 //
 // NOTE: Changing this file requires a restart of VS Code.
 {
-	// Use software rendering instead of hardware accelerated rendering.
-	// This can help in cases where you see rendering issues in VS Code.
-	// "disable-hardware-acceleration": true,
+  // Use software rendering instead of hardware accelerated rendering.
+  // This can help in cases where you see rendering issues in VS Code.
+  // "disable-hardware-acceleration": true,
 
-	// Allows to disable crash reporting.
-	// Should restart the app if the value is changed.
-	"enable-crash-reporter": true,
+  // Allows to disable crash reporting.
+  // Should restart the app if the value is changed.
+  "enable-crash-reporter": true,
 
-	// Unique id used for correlating crash reports sent from this instance.
-	// Do not edit this value.
-	"crash-reporter-id": "699d9f55-6e0c-4e53-ac0b-60975f6bb7cd",
+  // Unique id used for correlating crash reports sent from this instance.
+  // Do not edit this value.
+  "crash-reporter-id": "699d9f55-6e0c-4e53-ac0b-60975f6bb7cd",
 
-	// enable KeepassXC's secret service as password store, see
-	// https://github.com/microsoft/vscode/issues/187338 and 
-	// https://c3pb.de/blog/keepassxc-secrets-service.html
-	"password-store": "gnome-libsecret"
+  // enable KeepassXC's secret service as password store, see
+  // https://github.com/microsoft/vscode/issues/187338 and
+  // https://c3pb.de/blog/keepassxc-secrets-service.html
+  "password-store": "gnome-libsecret"
 }
