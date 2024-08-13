@@ -39,6 +39,9 @@
 	prompt = true
 [difftool "meld"]
 	cmd = meld "$LOCAL" "$REMOTE"
+[difftool "diffpdf"]
+	# usage: git difftool --tool=diffpdf file.pdf
+    cmd = diffpdf --view "$LOCAL" "$REMOTE"
 
 # useful aliases
 [alias]
