@@ -73,7 +73,7 @@
     "exec": "~/.config/waybar/scripts/dunst-status.sh",
     "on-click": "dunstctl set-paused toggle",
     "return-type": "json",
-    "format": "{icon}{}",
+    "format": "{icon}",
     "format-icons": {
       "paused": "󱙎",
       "unpaused": "󰍪"
