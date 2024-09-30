@@ -35,6 +35,8 @@
 	hideResolved = true
 [diff]
 	tool = meld
+[diff "sopsdiffer"]
+	textconv = sops decrypt
 [difftool]
 	prompt = true
 [difftool "meld"]
