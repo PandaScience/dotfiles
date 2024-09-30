@@ -15,9 +15,12 @@ alias fdi='fd --no-ignore --hidden --follow'
 alias mountc='mount | column -t'
 alias rsync-archive='rsync -avzh --info=progress2 --numeric-ids'
 alias tf='terraform'
+alias ks='switcher'
+alias kns='switcher ns'
 alias pel='echo -e "\n\n\n\n\n\n\n\n\n\n"'
 alias yless="jless --yaml"
 alias icat="kitten icat"
+alias mr="mise r"
 alias btd="bluetoothctl disconnect"
 alias btc="bluetoothctl connect"
 tree() { br -i -c :pt "$@" }
