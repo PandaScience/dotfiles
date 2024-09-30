@@ -22,17 +22,24 @@ window#waybar {
   color: #000000;
 }
 
+/* sway mode */
+#mode {
+  color: red;
+  font-weight: bold;
+}
+
 #workspaces {
   margin: 0px;
   padding: 0px;
   background: #445566;
   border-radius: 0px;
 }
-#workspaces > .persistent:nth-child(1) {
+#workspaces > button:nth-child(1) {
   margin-left: 2em;
 }
-#workspaces > .persistent:nth-child(3),
-#workspaces > .persistent:nth-child(6) {
+#workspaces > button:nth-child(3),
+#workspaces > button:nth-child(6),
+#workspaces > button:last-child {
   margin-right: 2em;
 }
 
