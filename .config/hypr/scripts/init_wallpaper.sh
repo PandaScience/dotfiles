@@ -6,6 +6,6 @@
 #   failed to read the event queue: Io(Os { code: 11, kind: WouldBlock, message: "Resource temporarily unavailable" })
 sleep 1
 # check if swww is already running and start if necessary
-swww query || swww init
+swww query || swww-daemon
 # set background to last used wallpaper
 swww img ~/.cache/current_wallpaper.jpg
