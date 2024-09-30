@@ -6,7 +6,13 @@
 
   "include": ["~/.config/waybar/modules.jsonc"],
 
-  "modules-left": ["custom/logo", "hyprland/workspaces", "wlr/taskbar"],
+  "modules-left": [
+    "custom/logo",
+    "sway/workspaces",
+    "sway/mode",
+    "hyprland/workspaces",
+    "wlr/taskbar"
+  ],
 
   "modules-center": [
     "custom/updates",

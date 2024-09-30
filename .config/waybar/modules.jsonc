@@ -1,4 +1,19 @@
 {
+  "sway/workspaces": {
+    "sort-by": "number",
+    "on-click": "activate",
+    "format": "{name} {icon}",
+    "format-icons": {
+      "focused": "",
+      "default": "",
+      "urgent": ""
+    }
+  },
+
+  "sway/mode": {
+    "format": "{}"
+  },
+
   "hyprland/workspaces": {
     "all-outputs": true,
     "sort-by": "number",
