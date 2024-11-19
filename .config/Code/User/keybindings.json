@@ -1,0 +1,19 @@
+// Place your key bindings in this file to override the defaults
+[
+    {
+        "key": "ctrl+shift+`",
+        "command": "workbench.action.toggleMaximizedPanel",
+        // "when": "terminalFocus"
+    },
+
+    // cycle through tabs of the current window/split view
+    // alternatively: nextEditor, previousEditor
+    {
+        "key": "ctrl+tab",
+        "command": "workbench.action.nextEditorInGroup"
+    },
+    {
+        "key": "ctrl+shift+tab",
+        "command": "workbench.action.previousEditorInGroup"
+    }
+]
