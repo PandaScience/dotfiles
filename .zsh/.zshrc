@@ -359,6 +359,11 @@ autoload bashcompinit && bashcompinit
 complete -C "$(which aws_completer)" aws
 complete -o nospace -C "$(which terraform)" terraform
 
+# azure CLI autocomplete (bash)
+if pacman -Qi azure-cli &> /dev/null; then
+  source /usr/share/bash-completion/completions/az
+fi
+
 # autocomplete 'the proper way' with files from /usr/share/zsh/site-functions/*
 # see: https://github.com/gopasspw/gopass/blob/master/docs/setup.md
 # and: https://github.com/gopasspw/gopass/issues/585
