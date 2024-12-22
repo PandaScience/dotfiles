@@ -1,0 +1,6 @@
+# ---------- Source Configs ----------------------------------------------------
+include ~/.config/sway/autostart.conf
+include ~/.config/sway/bindings.conf
+include ~/.config/sway/appearance.conf
+# uncomment for sway-fx
+include ~/.config/sway/fx.conf
