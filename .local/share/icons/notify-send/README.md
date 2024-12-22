@@ -2,6 +2,7 @@ Attribution links for all externally created icons in this folder:
 
 | file                       | creator link                                                          | statement                                     |
 | -------------------------- | --------------------------------------------------------------------- | --------------------------------------------- |
+| [monitor.png](monitor.png) | [flaticon](https://www.flaticon.com/free-icon/monitor_124092)         | Monitor icons created by Freepik - Flaticon   |
 | [check.png](check.png)     | [flaticon](https://www.flaticon.com/free-icon/check_1721585)          | Tick icons created by Freepik - Flaticon      |
 | [cancel.png](cancel.png)   | [flaticon](https://www.flaticon.com/free-icon/cancel_391247)          | Cancel icons created by Freepik - Flaticon    |
 | [info.png](info.png)       | [flaticon](https://www.flaticon.com/free-icon/information_1076337)    | Info icons created by Freepik - Flaticon      |

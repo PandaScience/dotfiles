@@ -1,0 +1,49 @@
+[[profile]]
+name = "laptop"
+exec = ["bash $HOME/.local/bin/shikane-notify.sh"]
+
+    [[profile.output]]
+    search = "eDP-1"
+    enable = true
+    scale = 1.175
+    mode = "2256x1504@60Hz"
+
+
+[[profile]]
+name = "dock-full"
+exec = ["bash $HOME/.local/bin/shikane-notify.sh"]
+
+    [[profile.output]]
+    search = "eDP-1"
+    enable = false
+
+    [[profile.output]]
+    enable = true
+    search = ["v=AOC", "m=Q27G2G4"]
+    # mode = "2560x1440@59.951Hz"
+    mode = "2560x1440@60Hz"
+    position = "0,0"
+
+    [[profile.output]]
+    enable = true
+    # NOTE: on hyprland: "v=Xiaomi Corporation" whereas on sway: "v=XMI"
+    search = ["v/Xiaomi Corporation|XMI", "m=Mi Monitor"]
+    mode = "3440x1440@50Hz"
+    position = "2560,0"
+
+
+[[profile]]
+name = "mobile-right"
+exec = ["bash $HOME/.local/bin/shikane-notify.sh"]
+
+    [[profile.output]]
+    search = "eDP-1"
+    enable = true
+    scale = 1.171875
+
+    [[profile.output]]
+    enable = true
+    search = ["m=ARZOPA"]
+    mode = "1920x1080@60Hz"
+    position = "1920,0"
+    scale = 1
