@@ -53,6 +53,7 @@
 	sw = switch
 	com = commit
 
+	root = rev-parse --show-toplevel
 	uncommit = reset --soft HEAD~
 	unstage = reset HEAD --
 
