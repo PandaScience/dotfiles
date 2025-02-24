@@ -291,7 +291,7 @@ widget-fzf_edit_file() {
   zle reset-prompt
 }
 zle -N widget-fzf_edit_file
-bindkey "^v" widget-fzf_edit_file
+bindkey "^p" widget-fzf_edit_file
 
 # z with fzf selection
 widget-fzf_z() {
