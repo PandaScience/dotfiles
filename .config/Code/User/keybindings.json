@@ -1,11 +1,24 @@
 // Place your key bindings in this file to override the defaults
 [
+    // re-introduce tab closing (masked by nvim shortcuts)
+    {
+        "key": "ctrl+w ctrl+w",
+        "command": "workbench.action.closeActiveEditor",
+    },
+    // adjust terminal visibility 
     {
         "key": "ctrl+shift+`",
         "command": "workbench.action.toggleMaximizedPanel",
-        // "when": "terminalFocus"
     },
-
+    {
+        "key": "alt+`",
+        "command": "workbench.action.terminal.focus",
+    },
+    {
+        "key": "alt+`",
+        "command": "workbench.action.focusActiveEditorGroup",
+        "when": "terminalFocus"
+    },
     // cycle through tabs of the current window/split view
     // alternatively: nextEditor, previousEditor
     {
@@ -15,5 +28,11 @@
     {
         "key": "ctrl+shift+tab",
         "command": "workbench.action.previousEditorInGroup"
+    },
+    // complement VScode Neovim shortcut for decreasing editor height
+    {
+        "key": "ctrl+w shift+=",
+        "command": "workbench.action.increaseViewHeight",
+        "when": "!editorTextFocus && !isAuxiliaryWindowFocusedContext && !terminalFocus && neovim.mode != 'cmdline'"
     }
 ]
