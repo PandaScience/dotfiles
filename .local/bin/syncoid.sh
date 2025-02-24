@@ -43,6 +43,12 @@ slack_notification() {
 }
 
 echo -e "\n\nStarting syncoid backup: $(date +"%F @ %T")\n---"
+
+if ! ssh backup 'whoami' >/dev/null 2>&1; then
+	notify-send -u critical -i "${ICON_FAIL}" "Backup host not reachable!"
+	exit
+fi
+
 notify-send -t 30000 -u normal -i "${ICON_START}" "Starting Backup!"
 syncoid \
 	--recursive \
