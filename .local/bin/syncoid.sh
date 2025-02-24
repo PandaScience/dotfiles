@@ -42,14 +42,22 @@ slack_notification() {
 	fi
 }
 
+notify() {
+	if [ -z "${DISPLAY}" ]; then
+		return
+	else
+		notify-send "$@"
+	fi
+}
+
 echo -e "\n\nStarting syncoid backup: $(date +"%F @ %T")\n---"
 
 if ! ssh backup 'whoami' >/dev/null 2>&1; then
-	notify-send -u critical -i "${ICON_FAIL}" "Backup host not reachable!"
+	notify -u critical -i "${ICON_FAIL}" "Backup host not reachable!"
 	exit
 fi
 
-notify-send -t 30000 -u normal -i "${ICON_START}" "Starting Backup!"
+notify -t 30000 -u normal -i "${ICON_START}" "Starting Backup!"
 syncoid \
 	--recursive \
 	--sendoptions="w" \
@@ -59,11 +67,11 @@ syncoid \
 
 EXITCODE=$?
 if [ ${EXITCODE} != 0 ]; then
-	notify-send -u critical -i "${ICON_FAIL}" "Backup failed!"
+	notify -u critical -i "${ICON_FAIL}" "Backup failed!"
 	echo -e "---\nSyncoid backup failed!: $(date +"%F @ %T")"
 	slack_notification
 else
-	notify-send -t 30000 -u normal -i "${ICON_SUCCESS}" "Backup completed!"
+	notify -t 30000 -u normal -i "${ICON_SUCCESS}" "Backup completed!"
 	echo -e "---\nFinished syncoid backup: $(date +"%F @ %T")"
 fi
 
