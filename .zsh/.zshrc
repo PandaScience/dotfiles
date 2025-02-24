@@ -347,6 +347,7 @@ fi
 (( ${+commands[argocd]} )) && source <(argocd completion zsh)
 (( ${+commands[helm]} )) && source <(helm completion zsh)
 (( ${+commands[switcher]} )) && source <(switcher completion zsh)
+(( ${+commands[dlv]} )) && source <(dlv completion zsh)
 
 # google cloud CLI binary & completion for AUR package
 if pacman -Qi google-cloud-cli &> /dev/null; then
