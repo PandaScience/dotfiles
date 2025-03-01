@@ -1,16 +1,30 @@
+# NOTE: scaling is not affected when applying new profile as long as
+# it is not explicitly defined there
+
 [[profile]]
-name = "laptop"
+name = "framework"
 exec = ["bash $HOME/.local/bin/shikane-notify.sh"]
-
-    [[profile.output]]
-    search = "eDP-1"
-    enable = true
-    scale = 1.175
-    mode = "2256x1504@60Hz"
+output = [{ search = "BOE", enable = true, scale = 1.175 }]
 
 
 [[profile]]
-name = "dock-full"
+name = "t14"
+exec = ["bash $HOME/.local/bin/shikane-notify.sh"]
+output = [{ search = "m=LP140WU4-SPK1", enable = true, scale = 1 }]
+
+
+[[profile]]
+name = "arzopa"
+exec = ["bash $HOME/.local/bin/shikane-notify.sh"]
+output = [
+    # move eDP to left of arzopa independently of its resolution
+    {search = "eDP-1", enable = true, position = "-1920,0"},
+    {search = "ARZOPA", enable = true, position = "0,0"},
+]
+
+
+[[profile]]
+name = "dock"
 exec = ["bash $HOME/.local/bin/shikane-notify.sh"]
 
     [[profile.output]]
@@ -20,7 +34,6 @@ exec = ["bash $HOME/.local/bin/shikane-notify.sh"]
     [[profile.output]]
     enable = true
     search = ["v=AOC", "m=Q27G2G4"]
-    # mode = "2560x1440@59.951Hz"
     mode = "2560x1440@60Hz"
     position = "0,0"
 
@@ -30,20 +43,3 @@ exec = ["bash $HOME/.local/bin/shikane-notify.sh"]
     search = ["v/Xiaomi Corporation|XMI", "m=Mi Monitor"]
     mode = "3440x1440@50Hz"
     position = "2560,0"
-
-
-[[profile]]
-name = "mobile-right"
-exec = ["bash $HOME/.local/bin/shikane-notify.sh"]
-
-    [[profile.output]]
-    search = "eDP-1"
-    enable = true
-    scale = 1.171875
-
-    [[profile.output]]
-    enable = true
-    search = ["m=ARZOPA"]
-    mode = "1920x1080@60Hz"
-    position = "1920,0"
-    scale = 1
