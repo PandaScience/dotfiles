@@ -27,6 +27,9 @@ git-branch-list-all-with-no-remote () {
   git branch -vv | grep ': gone]' | grep -v '\*' | awk '{ print $1; }'
 }
 
+# free gh (git help) for github cli
+unalias gh
+
 # zimfw git alias overrides
 alias gbx='git branch --delete'
 alias gbX='git branch --delete --force'
