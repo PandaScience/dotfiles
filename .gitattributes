@@ -1,2 +1,2 @@
 .gitattributes !filter !diff
-.config/rbw/config.json filter=git-crypt diff=git-crypt
+.config/rbw/config.json* filter=git-crypt diff=git-crypt
