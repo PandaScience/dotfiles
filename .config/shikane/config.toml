@@ -24,6 +24,22 @@ output = [
 
 
 [[profile]]
+name = "office-right"
+exec = ["bash $HOME/.local/bin/shikane-notify.sh"]
+output = [
+    {search = "m=P27h-20", enable = true, scale = 1, position = "0,0"},
+    {search = "eDP-1", enable = true, scale = 1, position = "2560,0"},
+]
+
+[[profile]]
+name = "office-left"
+exec = ["bash $HOME/.local/bin/shikane-notify.sh"]
+output = [
+    {search = "m=P27h-20", enable = true, scale = 1, position = "1920,0"},
+    {search = "eDP-1", enable = true, scale = 1, position = "0,0"},
+]
+
+[[profile]]
 name = "dock"
 exec = ["bash $HOME/.local/bin/shikane-notify.sh"]
 
