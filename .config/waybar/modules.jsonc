@@ -98,7 +98,7 @@
 
   "custom/vpn": {
     "format": "VPN ",
-    "exec": "echo '{\"class\": \"connected\"}'",
+    "exec": "~/.config/waybar/scripts/vpn.sh",
     "exec-if": "test -d /proc/sys/net/ipv4/conf/tun0",
     "return-type": "json",
     "interval": 5
