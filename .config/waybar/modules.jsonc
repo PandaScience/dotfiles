@@ -99,7 +99,7 @@
   "custom/vpn": {
     "format": "VPN ",
     "exec": "~/.config/waybar/scripts/vpn.sh",
-    "exec-if": "test -d /proc/sys/net/ipv4/conf/tun0",
+    "exec-if": "nmcli con show --active | grep -qw vpn",
     "return-type": "json",
     "interval": 5
   },
