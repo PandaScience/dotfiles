@@ -38,12 +38,15 @@ alias gbXi='git-branch-delete-interactive'
 # additional git aliases
 alias gst='git status'
 alias gpu='git push -u origin HEAD'
+alias gpuo='git push -u origin HEAD -o merge_request.create'
 alias gbb='git rev-list --left-right --pretty=oneline' # usage: gbb branch1...branch2
 alias gyc='git switch -c'
 alias guc='git reset --soft HEAD~' # -> i.e. git uncommit
 alias gui='git restore --staged'
 alias guw='git restore'
-# alias gopen='git config remote.origin.url | xargs xdg-open'
+
+# cd to git root directory (also aliased to `git root`, see ~/.gitconfig)
+alias groot='cd $(git rev-parse --show-toplevel)'
 
 # open any git url in browser
 gopen() {
@@ -56,5 +59,8 @@ gopen() {
   # bitbucket
   elif [[ $url =~ "^ssh://git@.*:7999" ]]; then
     sed -e 's|^.*git@|https://|' -e 's|:7999|/scm|' <<< "$url" | xargs xdg-open
+  # gitlab
+  elif [[ $url =~ "^git@gitlab" ]]; then
+    sed -e 's|git@\(.*\):|https://\1/|' <<< "$url" | xargs xdg-open
   fi
 }
