@@ -15,7 +15,7 @@ terraform = "latest"
 opentofu = "latest"
 
 # k8s related
-kubectl = "latest"
+"asdf:kubectl" = "latest"
 kubecolor = "latest"
 k9s = "latest"
 istioctl = "latest"
