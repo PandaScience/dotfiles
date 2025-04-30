@@ -4,6 +4,11 @@ experimental = true
 [tools]
 # required for auto-completion by mise itself
 usage = "latest"
+# required for aqua verifications
+slsa-verifier = "latest"
+
+# cloud
+aws-cli = "latest"
 
 # IaC
 terraform = "latest"
@@ -16,3 +21,5 @@ istioctl = "latest"
 krew = "latest"
 argocd = "latest"
 kubeone = "latest"
+crossplane-cli = "latest"
+kafkactl = "latest"
