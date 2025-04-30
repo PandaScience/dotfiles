@@ -15,8 +15,6 @@ alias fdi='fd --no-ignore --hidden --follow'
 alias mountc='mount | column -t'
 alias rsync-archive='rsync -avzh --info=progress2 --numeric-ids'
 alias tf='terraform'
-alias ks='switch'
-alias kns='switch ns'
 alias pel='echo -e "\n\n\n\n\n\n\n\n\n\n"'
 alias yless="jless --yaml"
 alias icat="kitten icat"
@@ -24,6 +22,10 @@ alias mr="mise r"
 alias btd="bluetoothctl disconnect"
 alias btc="bluetoothctl connect"
 tree() { br -i -c :pt "$@" }
+
+alias kubectl=kubecolor
+alias ks='switch'
+alias kns='switch ns'
 
 # see https://superuser.com/questions/1050894/using-dd-to-clone-a-hdd-to-an-ssd and refs therein
 alias dd-disk-clone="dd status=progress bs=64K conv=noerror,sync iflag=fullblock"

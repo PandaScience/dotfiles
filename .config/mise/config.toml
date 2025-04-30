@@ -16,6 +16,7 @@ opentofu = "latest"
 
 # k8s related
 kubectl = "latest"
+kubecolor = "latest"
 k9s = "latest"
 istioctl = "latest"
 krew = "latest"

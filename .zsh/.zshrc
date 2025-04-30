@@ -340,6 +340,7 @@ fi
 
 # zsh-native autocompletions
 (( ${+commands[kubectl]} )) && source <(kubectl completion zsh)
+(( ${+commands[kubecolor]} )) && compdef kubecolor=kubectl
 (( ${+commands[minikube]} )) && source <(minikube completion zsh)
 (( ${+commands[k3d]} )) && source <(k3d completion zsh)
 (( ${+commands[istioctl]} )) && source <(istioctl completion zsh)
