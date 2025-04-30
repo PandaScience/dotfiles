@@ -1,3 +1,4 @@
 .gitattributes !filter !diff
 .config/rbw/config.json* filter=git-crypt diff=git-crypt
 .local/bin/mdm* filter=git-crypt diff=git-crypt
+.gitconfig.d/** filter=git-crypt diff=git-crypt

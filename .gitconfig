@@ -43,7 +43,7 @@
 	cmd = meld "$LOCAL" "$REMOTE"
 [difftool "diffpdf"]
 	# usage: git difftool --tool=diffpdf file.pdf
-    cmd = diffpdf --view "$LOCAL" "$REMOTE"
+	cmd = diffpdf --view "$LOCAL" "$REMOTE"
 
 # useful aliases
 [alias]
@@ -81,4 +81,4 @@
 
 # local user.name|.email|.signingkey
 [include]
-	path = .gitconfig.local
+	path = ~/.gitconfig.d/local
