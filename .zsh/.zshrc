@@ -346,7 +346,7 @@ fi
 (( ${+commands[kubeone]} )) && source <(kubeone completion zsh)
 (( ${+commands[argocd]} )) && source <(argocd completion zsh)
 (( ${+commands[helm]} )) && source <(helm completion zsh)
-(( ${+commands[switcher]} )) && source <(switcher completion zsh)
+(( ${+commands[switcher]} )) && source <(switcher init zsh) && source <(switcher completion zsh)
 (( ${+commands[dlv]} )) && source <(dlv completion zsh)
 
 # google cloud CLI binary & completion for AUR package
