@@ -27,9 +27,8 @@ output = [
 name = "Iiyama"
 exec = ["bash $HOME/.local/bin/shikane-notify.sh"]
 output = [
-    # move eDP to left of arzopa independently of its resolution
     {search = "eDP-1", enable = false},
-    {search = "PL3497WQP", enable = true},
+    {search = "PL3497WQP", enable = true, adaptive_sync = true, mode="3440x1440@100"},
 ]
 
 
