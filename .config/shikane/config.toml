@@ -14,16 +14,6 @@ output = [{ search = "m=LP140WU4-SPK1", enable = true, scale = 1 }]
 
 
 [[profile]]
-name = "arzopa"
-exec = ["bash $HOME/.local/bin/shikane-notify.sh"]
-output = [
-    # move eDP to left of arzopa independently of its resolution
-    {search = "eDP-1", enable = true, position = "-1920,0"},
-    {search = "ARZOPA", enable = true, position = "0,0"},
-]
-
-
-[[profile]]
 name = "Iiyama"
 exec = ["bash $HOME/.local/bin/shikane-notify.sh"]
 output = [
@@ -33,20 +23,41 @@ output = [
 
 
 [[profile]]
-name = "office-right"
+name = "arzopa-left"
+exec = ["bash $HOME/.local/bin/shikane-notify.sh"]
+output = [
+    {search = "ARZOPA", enable = true, position = "0,0"},
+    {search = "eDP-1", enable = true, position = "1920,0"},
+]
+
+
+[[profile]]
+name = "arzopa-right"
+exec = ["bash $HOME/.local/bin/shikane-notify.sh"]
+output = [
+    # works for both laptops since after scaling 2256 / 1.175 = 1920
+    {search = "eDP-1", enable = true, position = "0,0"},
+    {search = "ARZOPA", enable = true, position = "1920,0"},
+]
+
+
+[[profile]]
+name = "office-left"
 exec = ["bash $HOME/.local/bin/shikane-notify.sh"]
 output = [
     {search = "m=P27h-20", enable = true, scale = 1, position = "0,0"},
     {search = "eDP-1", enable = true, scale = 1, position = "2560,0"},
 ]
 
+
 [[profile]]
-name = "office-left"
+name = "office-right"
 exec = ["bash $HOME/.local/bin/shikane-notify.sh"]
 output = [
-    {search = "m=P27h-20", enable = true, scale = 1, position = "1920,0"},
     {search = "eDP-1", enable = true, scale = 1, position = "0,0"},
+    {search = "m=P27h-20", enable = true, scale = 1, position = "1920,0"},
 ]
+
 
 [[profile]]
 name = "dock"
