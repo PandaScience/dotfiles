@@ -195,7 +195,7 @@ setopt INTERACTIVE_COMMENTS
 setopt CORRECT
 setopt CORRECT_ALL
 # cd by typing the path
-setopt AUTOCD
+setopt AUTO_CD
 # enable dir stack with cd -<TAB>
 setopt AUTO_PUSHD
 # exchange meaning of -/+ in `cd -N`
