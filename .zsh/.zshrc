@@ -164,6 +164,11 @@ export FZF_DEFAULT_OPTS="
 # add options for fzf file search
 export FZF_CTRL_T_OPTS="--preview 'bat --style=plain --color=always {}'"
 
+# print tree structure in the preview window
+export FZF_ALT_C_OPTS="
+  --walker-skip .git,node_modules,target
+  --preview 'tree -C {}'"
+
 #---------- HISTORY -----------------------------------------------------------
 
 # https://askubuntu.com/questions/23630/how-do-you-share-history-between-terminals-in-zsh
@@ -287,11 +292,23 @@ bindkey "^[c^[c" widget-kill_command_to_clipboard
 
 # edit file with fzf selection; see https://github.com/junegunn/fzf/issues/3650
 widget-fzf_edit_file() {
-  fzf --bind 'enter:become(nvim {})' <"${TTY}"
+  fzf \
+    --preview 'bat --style=plain --color=always {}' \
+    --bind 'enter:become(nvim {})' <"${TTY}"
   zle reset-prompt
 }
 zle -N widget-fzf_edit_file
 bindkey "^p" widget-fzf_edit_file
+
+# cd-to-path with fzf selection
+# NOTE: don't use built-in fzf-cd-widget, it will leave "builtin cd -- <path>" entries in history
+widget-fzf_cd_to_path() {
+  eval cd "$(fd --type d --hidden --exclude .git | fzf --preview 'tree -C')"
+  zle kill-buffer
+  zle accept-line
+}
+zle -N widget-fzf_cd_to_path
+bindkey "^o" widget-fzf_cd_to_path
 
 # z with fzf selection
 widget-fzf_z() {
