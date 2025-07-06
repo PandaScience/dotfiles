@@ -16,7 +16,7 @@ opentofu = "latest"
 
 # k8s related
 "asdf:kubectl" = "latest"
-kubecolor = "latest"
+"aqua:kubecolor/kubecolor" = "latest"
 k9s = "latest"
 istioctl = "latest"
 krew = "latest"
