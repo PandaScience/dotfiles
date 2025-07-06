@@ -17,12 +17,20 @@ opentofu = "latest"
 # k8s related
 "asdf:kubectl" = "latest"
 "aqua:kubecolor/kubecolor" = "latest"
+krew = "latest"
 k9s = "latest"
 istioctl = "latest"
-krew = "latest"
 argocd = "latest"
 kubeone = "latest"
 crossplane-cli = "latest"
+
+# krew plugins
+# get-all
+# rbac-tool
+# tree
+# who-can
+
+# misc
 kafkactl = "latest"
-regal = "latest"
 opa = "latest"
+regal = "latest"
