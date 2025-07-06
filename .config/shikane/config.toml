@@ -18,7 +18,7 @@ name = "Iiyama"
 exec = ["bash $HOME/.local/bin/shikane-notify.sh"]
 output = [
     {search = "eDP-1", enable = false},
-    {search = "PL3497WQP", enable = true, adaptive_sync = true, mode="3440x1440@100"},
+    {search = "PL3497WQP", enable = true, mode="3440x1440@120"},
 ]
 
 
