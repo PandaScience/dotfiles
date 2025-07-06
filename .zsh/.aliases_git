@@ -19,7 +19,9 @@ git-branch-delete-remote () {
 }
 
 git-branch-delete-all-merged () {
-  git branch --merged | grep -Ev "(^\*|main|master)" | xargs git branch -d
+  local list
+  list=$(git branch --merged | grep -Ev "(^\*|main|master)")
+  [[ -n $list ]] && echo "$list" | xargs git branch -d
 }
 
 # https://digitaldrummerj.me/git-remove-local-merged-branches/
@@ -34,6 +36,7 @@ unalias gh
 alias gbx='git branch --delete'
 alias gbX='git branch --delete --force'
 alias gbXi='git-branch-delete-interactive'
+alias gbxm='git-branch-delete-all-merged'
 
 # fzf branch selection
 alias gyb='git switch $(git branch --all | grep -v "^*" | sed "s|remotes/origin/||g" | fzf)'
@@ -41,12 +44,17 @@ alias gyb='git switch $(git branch --all | grep -v "^*" | sed "s|remotes/origin/
 # additional git aliases
 alias gst='git status'
 alias gpu='git push -u origin HEAD'
-alias gpuo='git push -u origin HEAD -o merge_request.create'
+alias gpm='git push -u origin HEAD -o merge_request.create'
+alias gpd='git push -u origin HEAD -o merge_request.create -o merge_request.draft'
 alias gbb='git rev-list --left-right --pretty=oneline' # usage: gbb branch1...branch2
 alias gyc='git switch -c'
 alias guc='git reset --soft HEAD~' # -> i.e. git uncommit
 alias gui='git restore --staged'
 alias guw='git restore'
+
+# "git origin diff" - in analogy to gwd and gid
+# parsing help: https://andrewlock.net/verifiying-tricky-git-rebases-with-range-diffs/
+alias god='git range-diff $(git rev-parse --abbrev-ref HEAD)...origin/$(git rev-parse --abbrev-ref HEAD)'
 
 # cd to git root directory (also aliased to `git root`, see ~/.gitconfig)
 alias groot='cd $(git rev-parse --show-toplevel)'
