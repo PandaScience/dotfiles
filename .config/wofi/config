@@ -1,6 +1,5 @@
 hide_scroll=true
 width=45%
-lines=11
 line_wrap=word
 term=kitty
 allow_markup=true
