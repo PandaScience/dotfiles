@@ -21,6 +21,7 @@ krew = "latest"
 k9s = "latest"
 istioctl = "latest"
 argocd = "latest"
+"aqua:fluxcd/flux2" = "2.5.1"
 kubeone = "latest"
 crossplane-cli = "latest"
 
