@@ -50,7 +50,7 @@ notify() {
 	fi
 }
 
-echo -e "\n\nStarting syncoid backup: $(date +"%F @ %T")\n---"
+echo -e "\n\nStarting syncoid backup: $(date -u +"%F @ %T UTC")\n---"
 
 if ! ssh backup 'whoami' >/dev/null 2>&1; then
 	notify -u critical -i "${ICON_FAIL}" "Backup host not reachable!"
@@ -68,11 +68,11 @@ syncoid \
 EXITCODE=$?
 if [ ${EXITCODE} != 0 ]; then
 	notify -u critical -i "${ICON_FAIL}" "Backup failed!"
-	echo -e "---\nSyncoid backup failed!: $(date +"%F @ %T")"
+	echo -e "---\nSyncoid backup failed!: $(date -u +"%F @ %T UTC")"
 	slack_notification
 else
 	notify -t 30000 -u normal -i "${ICON_SUCCESS}" "Backup completed!"
-	echo -e "---\nFinished syncoid backup: $(date +"%F @ %T")"
+	echo -e "---\nFinished syncoid backup: $(date -u +"%F @ %T UTC")"
 fi
 
 exit "${EXITCODE}"
