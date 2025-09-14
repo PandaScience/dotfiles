@@ -24,6 +24,7 @@ argocd = "latest"
 "aqua:fluxcd/flux2" = "2.5.1"
 kubeone = "latest"
 crossplane-cli = "latest"
+"ubi:vitobotta/hetzner-k3s" = "latest"
 
 # krew plugins
 # get-all
