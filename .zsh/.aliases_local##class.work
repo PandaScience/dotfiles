@@ -1,5 +1,3 @@
 git-me() {
 	export GIT_SSH_COMMAND="ssh -i ~/.ssh/personal/yubikey.pub -o IdentitiesOnly=yes"
 }
-
-alias kapitan="docker run -t --rm -u $(id -u) -v $(pwd):/src:delegated kapicorp/kapitan:release-0.32.0"
