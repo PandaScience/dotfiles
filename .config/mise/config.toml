@@ -1,11 +1,18 @@
 [settings]
 experimental = true
 
+# NOTE: enable this only in local configs, comes with performance penalty!
+# https://mise.jdx.dev/configuration.html#idiomatic-version-files
+# idiomatic_version_file_enable_tools = ["terraform", "opentofu", "python"]
+
 [tools]
 # required for auto-completion by mise itself
 usage = "latest"
 # required for aqua verifications
 slsa-verifier = "latest"
+
+# misc
+oras = "latest"
 
 # git
 "ubi:lindell/multi-gitter" = "latest"
@@ -46,3 +53,4 @@ crossplane-cli = "latest"
 # rbac-tool
 # tree
 # who-can
+# resource-capacity
