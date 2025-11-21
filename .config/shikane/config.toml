@@ -64,8 +64,8 @@ name = "dock"
 exec = ["bash $HOME/.local/bin/shikane-notify.sh"]
 
     [[profile.output]]
-    search = "eDP-1"
     enable = false
+    search = "eDP-1"
 
     [[profile.output]]
     enable = true
@@ -79,3 +79,20 @@ exec = ["bash $HOME/.local/bin/shikane-notify.sh"]
     search = ["v/Xiaomi Corporation|XMI", "m=Mi Monitor"]
     mode = "3440x1440@50Hz"
     position = "2560,0"
+
+[[profile]]
+name = "dock-center"
+exec = ["bash $HOME/.local/bin/shikane-notify.sh"]
+
+    [[profile.output]]
+    enable = false
+    search = "eDP-1"
+
+    [[profile.output]]
+    enable = false
+    search = ["v=AOC", "m=Q27G2G4"]
+
+    [[profile.output]]
+    enable = true
+    search = ["v/Xiaomi Corporation|XMI", "m=Mi Monitor"]
+    mode = "3440x1440@50Hz"
