@@ -8,23 +8,17 @@ experimental = true
 [tools]
 # required for auto-completion by mise itself
 usage = "latest"
-# required for aqua verifications
-slsa-verifier = "latest"
 
 # misc
+kafkactl = "latest"
 oras = "latest"
-
-# git
 "ubi:lindell/multi-gitter" = "latest"
 
-# code
+# eso
 opa = "latest"
 regal = "latest"
 kcl = "latest"
-# "aqua:kcl-lang/kcl" = "latest" # -> AUR for vscode -> add mise bin path?
-
-# kafka
-kafkactl = "latest"
+# "aqua:kcl-lang/kcl" = "latest" # https://github.com/kcl-lang/kcl.nvim/issues/18
 
 # cloud
 aws-cli = "latest"
@@ -34,9 +28,10 @@ terraform = "latest"
 opentofu = "latest"
 "ubi:busser/tfautomv" = "latest"
 
-# k8s related
+# k8s
 kubectl = "latest"
 "aqua:kubecolor/kubecolor" = "latest"
+"aqua:danielfoehrKn/kubeswitch" = "latest"
 krew = "latest"
 k9s = "latest"
 istioctl = "latest"
@@ -47,10 +42,9 @@ crossplane-cli = "latest"
 "ubi:vitobotta/hetzner-k3s" = "latest"
 # "http:up" = {version = "v0.41.0", url = "https://cli.upbound.io/stable/{{version}}/bin/linux_amd64/up"} # or version="current"
 
-
 # krew plugins
-# get-all
-# rbac-tool
-# tree
-# who-can
-# resource-capacity
+# - get-all
+# - rbac-tool
+# - tree
+# - who-can
+# - resource-capacity
