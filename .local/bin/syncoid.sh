@@ -52,7 +52,7 @@ notify() {
 
 echo -e "\n\nStarting syncoid backup: $(date -u +"%F @ %T UTC")\n---"
 
-if ! ssh backup 'whoami' >/dev/null 2>&1; then
+if ! ssh "${CLIENT}@backup" 'whoami' >/dev/null 2>&1; then
 	notify -u critical -i "${ICON_FAIL}" "Backup host not reachable!"
 	exit
 fi
