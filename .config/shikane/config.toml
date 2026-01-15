@@ -60,6 +60,16 @@ output = [
 
 
 [[profile]]
+name = "office-wide"
+exec = ["bash $HOME/.local/bin/shikane-notify.sh"]
+output = [
+    # don't set mode here, for some reason this monitor will then disconnect
+    {search = "m=S34C65xU", enable = true, scale = 1, position = "0,0"},
+    {search = "eDP-1", enable = true, scale = 1, position = "3440,0"},
+]
+
+
+[[profile]]
 name = "dock"
 exec = ["bash $HOME/.local/bin/shikane-notify.sh"]
 
@@ -79,6 +89,7 @@ exec = ["bash $HOME/.local/bin/shikane-notify.sh"]
     search = ["v/Xiaomi Corporation|XMI", "m=Mi Monitor"]
     mode = "3440x1440@50Hz"
     position = "2560,0"
+
 
 [[profile]]
 name = "dock-center"
