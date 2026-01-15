@@ -51,6 +51,7 @@ alias gyc='git switch -c'
 alias guc='git reset --soft HEAD~' # -> i.e. git uncommit
 alias gui='git restore --staged'
 alias guw='git restore'
+alias gux='git restore --staged --worktree'
 
 # "git origin diff" - in analogy to gwd and gid
 # parsing help: https://andrewlock.net/verifiying-tricky-git-rebases-with-range-diffs/

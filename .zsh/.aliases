@@ -26,6 +26,8 @@ tree() { br -i -c :pt "$@" }
 alias kubectl=kubecolor
 alias ks='switch'
 alias kns='switch ns'
+alias kg='kubectl get'
+alias kd='kubectl describe'
 
 # see https://superuser.com/questions/1050894/using-dd-to-clone-a-hdd-to-an-ssd and refs therein
 alias dd-disk-clone="dd status=progress bs=64K conv=noerror,sync iflag=fullblock"
