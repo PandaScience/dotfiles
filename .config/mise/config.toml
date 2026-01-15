@@ -10,6 +10,7 @@ experimental = true
 usage = "latest"
 
 # misc
+viddy = "latest"
 kafkactl = "latest"
 oras = "latest"
 "ubi:lindell/multi-gitter" = "latest"
@@ -27,6 +28,7 @@ aws-cli = "latest"
 terraform = "latest"
 opentofu = "latest"
 "ubi:busser/tfautomv" = "latest"
+terraform-docs = "latest"
 
 # k8s
 kubectl = "latest"
@@ -48,3 +50,4 @@ crossplane-cli = "latest"
 # - tree
 # - who-can
 # - resource-capacity
+# - blame
