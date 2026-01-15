@@ -13,7 +13,7 @@ usage = "latest"
 viddy = "latest"
 kafkactl = "latest"
 oras = "latest"
-"ubi:lindell/multi-gitter" = "latest"
+"github:lindell/multi-gitter" = "latest"
 
 # eso
 opa = "latest"
@@ -27,7 +27,7 @@ aws-cli = "latest"
 # IaC
 terraform = "latest"
 opentofu = "latest"
-"ubi:busser/tfautomv" = "latest"
+"github:busser/tfautomv" = "latest"
 terraform-docs = "latest"
 
 # k8s
@@ -41,7 +41,7 @@ argocd = "latest"
 "aqua:fluxcd/flux2" = "2.5.1"
 kubeone = "latest"
 crossplane-cli = "latest"
-"ubi:vitobotta/hetzner-k3s" = "latest"
+"github:vitobotta/hetzner-k3s" = "latest"
 # "http:up" = {version = "v0.41.0", url = "https://cli.upbound.io/stable/{{version}}/bin/linux_amd64/up"} # or version="current"
 
 # krew plugins
