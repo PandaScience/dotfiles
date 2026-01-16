@@ -20,19 +20,26 @@
 [core]
 	editor = nvim
 	pager = delta
+[interactive]
+	diffFilter = delta --color-only
 [delta]
 	features = decorations
 	line-numbers = true
 	diff-so-fancy = true
 	navigate = true
 
-# set meld as diff & merge tool
 [merge]
 	tool = meld
 [mergetool "meld"]
-	# cmd = meld "$LOCAL" "$BASE" "$REMOTE" --output "$MERGED"
-	cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
-	hideResolved = true
+	cmd = meld "$LOCAL" "$BASE" "$REMOTE" --output "$MERGED" --auto-merge
+	;cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
+
+	# explanation: https://stackoverflow.com/a/79488890
+	# let git auto-resolve as much as possible, overwrites $LOCAL and $REMOTE accordingly
+	; hideResolved = true
+	# let meld auto-resolve as much as possible, does not overwrite $LOCAL and $REMOTE
+	# NOTE: does not work when mergetool.meld.cmd is used as well -> set as cmdline option there
+	; useAutoMerge = true
 [diff]
 	tool = meld
 [diff "sopsdiffer"]
