@@ -292,10 +292,13 @@ bindkey "^[c^[c" widget-kill_command_to_clipboard
 
 # edit file with fzf selection; see https://github.com/junegunn/fzf/issues/3650
 widget-fzf_edit_file() {
-  fzf \
-    --preview 'bat --style=plain --color=always {}' \
-    --bind 'enter:become(nvim {})' <"${TTY}"
-  zle reset-prompt
+  local file=$(fzf --preview 'bat --style=plain --color=always {}' <"${TTY}")
+  if [[ -n $file ]]; then
+    BUFFER="vim $file"
+    zle accept-line
+  else
+    zle reset-prompt
+  fi
 }
 zle -N widget-fzf_edit_file
 bindkey "^p" widget-fzf_edit_file
