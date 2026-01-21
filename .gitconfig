@@ -42,6 +42,7 @@
 	; useAutoMerge = true
 [diff]
 	tool = meld
+	colorMoved = default
 [diff "sopsdiffer"]
 	textconv = sops decrypt
 [difftool]
