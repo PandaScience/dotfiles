@@ -41,6 +41,9 @@
 	# NOTE: does not work when mergetool.meld.cmd is used as well -> set as cmdline option there
 	; useAutoMerge = true
 [diff]
+	# https://difftastic.wilfred.me.uk/git.html
+	# make difft default; opt-out with --no-ext-diff
+	; external = difft
 	tool = meld
 	colorMoved = default
 [diff "sopsdiffer"]
@@ -64,6 +67,8 @@
 	root = rev-parse --show-toplevel
 	uncommit = reset --soft HEAD~
 	unstage = reset HEAD --
+
+	difft = -c diff.external=difft diff
 
 	# re-applying same commit msg after a `git uncommit`
 	commit--reuse-after-uncommit = commit --reuse-message=ORIG_HEAD
