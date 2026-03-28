@@ -1,6 +1,9 @@
 [settings]
 experimental = true
 
+[shell_alias]
+claude = "nono run --allow-cwd --profile claude-custom -- claude"
+
 # NOTE: enable this only in local configs, comes with performance penalty!
 # https://mise.jdx.dev/configuration.html#idiomatic-version-files
 # idiomatic_version_file_enable_tools = ["terraform", "opentofu", "python"]
@@ -8,6 +11,14 @@ experimental = true
 [tools]
 # required for auto-completion by mise itself
 usage = "latest"
+
+# ai
+claude = "latest"
+"github:always-further/nono" = "latest"
+
+# go
+"go:golang.org/x/pkgsite/cmd/pkgsite" = "latest"
+"go:github.com/kisielk/errcheck" = "latest"
 
 # misc
 viddy = "latest"
@@ -33,15 +44,18 @@ terraform-docs = "latest"
 # k8s
 kubectl = "latest"
 "aqua:kubecolor/kubecolor" = "latest"
-"aqua:danielfoehrKn/kubeswitch" = "latest"
+kubeswitch = "latest"
 krew = "latest"
 k9s = "latest"
-istioctl = "latest"
 argocd = "latest"
-"aqua:fluxcd/flux2" = "2.5.1"
-kubeone = "latest"
+flux2 = "2.5.1"
+istioctl = "latest"
 crossplane-cli = "latest"
 "github:vitobotta/hetzner-k3s" = "latest"
+kubebuilder = "latest"
+kind = "latest"
+kyverno = "latest"
+velero = "latest"
 # "http:up" = {version = "v0.41.0", url = "https://cli.upbound.io/stable/{{version}}/bin/linux_amd64/up"} # or version="current"
 
 # krew plugins
