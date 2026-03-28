@@ -316,22 +316,37 @@ bindkey "^o" widget-fzf_cd_to_path
 
 # z with fzf selection
 widget-fzf_z() {
-  eval cd "$(z | tac | fzf | awk '{print $2}')"
-  zle kill-buffer
-  zle accept-line
-  # NOTE: if you prefer to have cd cmds in history do instead:
-  # (this is also how fzf is doing it for ALT+C, check /usr/share/fzf/key-bindings.zsh)
-  # local dir="$(z | tac | fzf | awk '{print $2}')"
-  # BUFFER="cd -- ${dir}"
-  # TODO: below really required?
-  # local ret=$?
-  # unset dir
-  # zle reset-prompt
-  # return $ret
+    local dir
+    dir=$(z | tac | fzf | awk '{print $2}')
+    [[ -n "$dir" ]] && cd -- ${~dir}
+    # triggers p10k's prompt recalculation so all lines redraw correctly
+    local f; for f in "${precmd_functions[@]}"; do "$f" 2>/dev/null; done
+    zle reset-prompt
 }
 zle -N widget-fzf_z
 bindkey "^z" widget-fzf_z
 
+# ripgrep search with fzf
+widget-fzf_live-grep() {
+  local selection
+  selection=$(fzf --ansi --disabled \
+    --query "$BUFFER" \
+    --bind "start:reload(rg --column --line-number --no-heading --color=always --smart-case {q} || true)" \
+    --bind "change:reload(rg --column --line-number --no-heading --color=always --smart-case {q} || true)" \
+    --layout=reverse)
+
+  if [[ $? -eq 0 && -n "$selection" ]]; then
+    # ripgrep output format is file:line:column:text; use zsh array splitting to extract file and line number
+    local parts=("${(@s/:/)selection}")
+    BUFFER="vim ${parts[1]} +${parts[2]}"
+    zle accept-line
+  else
+    # no need for special p10k handling here since cwd doesn't change
+    zle reset-prompt
+  fi
+}
+zle -N widget-fzf_live-grep
+bindkey '^S' widget-fzf_live-grep
 
 #---------- MISC --------------------------------------------------------------
 
