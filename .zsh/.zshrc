@@ -360,18 +360,12 @@ fi
 (( ${+commands[broot]} )) && source "${HOME}"/.config/broot/launcher/bash/br
 
 # zsh-native autocompletions
-(( ${+commands[kubectl]} )) && source <(kubectl completion zsh)
+local -a completion_tools=(kubectl minikube k3d kind istioctl kubeone argocd flux helm dlv kubebuilder kafkactl kyverno)
+for tool in "${completion_tools[@]}"; do
+  (( ${+commands[$tool]} )) && source <($tool completion zsh)
+done
 (( ${+commands[kubecolor]} )) && compdef kubecolor=kubectl
-(( ${+commands[minikube]} )) && source <(minikube completion zsh)
-(( ${+commands[k3d]} )) && source <(k3d completion zsh)
-(( ${+commands[istioctl]} )) && source <(istioctl completion zsh)
-(( ${+commands[kubeone]} )) && source <(kubeone completion zsh)
-(( ${+commands[argocd]} )) && source <(argocd completion zsh)
-(( ${+commands[flux]} )) && source <(flux completion zsh)
-(( ${+commands[helm]} )) && source <(helm completion zsh)
 (( ${+commands[switcher]} )) && source <(switcher init zsh) && source <(switcher completion zsh)
-(( ${+commands[dlv]} )) && source <(dlv completion zsh)
-(( ${+commands[kafkactl]} )) && source <(kafkactl completion zsh)
 
 # google cloud CLI binary & completion for AUR package
 if pacman -Qi google-cloud-cli &> /dev/null; then
