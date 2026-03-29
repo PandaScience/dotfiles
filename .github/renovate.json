@@ -1,19 +1,32 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:base"],
+  "extends": ["config:recommended"],
+  "minimumReleaseAge": "14 days",
   "packageRules": [
     {
       "matchManagers": ["mise"],
       "groupName": "mise tools",
-      "minimumReleaseAge": "14 days",
-      "schedule": ["every 2 weeks on monday"],
-      "automerge": true,
-      "automergeType": "pr",
-      "automergeStrategy": "squash",
-      "prTitle": "tools: bump mise tool versions",
+      // Schedule is managed by the GitHub Actions workflow cron
+      // "schedule": ["every friday"],
+      "automerge": false,
+      // "automergeType": "pr",
+      // "automergeStrategy": "squash",
       "commitMessagePrefix": "tools:",
       "commitMessageAction": "bump",
-      "commitMessageTopic": "mise tool versions"
+      "commitMessageTopic": "mise tool versions",
+      "commitMessageExtra": "",
+      // mise reports versions without the "v" prefix but upstream GitHub releases
+      // use "vX.Y.Z" tags, so Renovate cannot resolve the commit SHA for digests.
+      "pinDigests": false
+    },
+    {
+      "matchManagers": ["github-actions"],
+      "groupName": "github actions",
+      "automerge": false,
+      "commitMessagePrefix": "ci:",
+      "commitMessageAction": "bump",
+      "commitMessageTopic": "github action versions",
+      "pinDigests": true
     }
   ]
 }
