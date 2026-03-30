@@ -48,8 +48,6 @@ autoload edit-command-line
 zle -N edit-command-line
 bindkey "^X^E" edit-command-line
 
-# undo last expansion
-bindkey '^z' undo
 
 #---------- PLUGINS -----------------------------------------------------------
 
@@ -139,7 +137,7 @@ export ZSHZ_NO_RESOLVE_SYMLINKS=1
 # source fuzzy finder config & keybindings, https://wiki.archlinux.org/title/Fzf#Zsh
 fzf1="/usr/share/fzf/completion.zsh"
 fzf2="/usr/share/fzf/key-bindings.zsh"
-if [[ -f $fzf1 ]] || [[ -e $fzf1 ]]; then
+if [[ -f $fzf1 && -f $fzf2 ]]; then
   . "$fzf1"
   . "$fzf2"
 fi
@@ -172,7 +170,7 @@ export FZF_ALT_C_OPTS="
 #---------- HISTORY -----------------------------------------------------------
 
 # https://askubuntu.com/questions/23630/how-do-you-share-history-between-terminals-in-zsh
-HISTFILE="$HOME/.zsh/.zhistory"
+HISTFILE="$ZDOTDIR/.zhistory"
 HISTSIZE=10000000
 SAVEHIST=$HISTSIZE
 setopt BANG_HIST                 # Treat the '!' character specially during expansion.
@@ -187,7 +185,7 @@ setopt HIST_IGNORE_SPACE         # Don't record an entry starting with a space.
 setopt HIST_SAVE_NO_DUPS         # Don't write duplicate entries in the history file.
 setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording entry.
 setopt HIST_VERIFY               # Don't execute immediately upon history expansion.
-setopt HIST_BEEP                 # Beep when accessing nonexistent history.
+# setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 
 #---------- FURTHER ZSH SETTINGS ----------------------------------------------
 
@@ -198,7 +196,7 @@ WORDCHARS=${WORDCHARS//[\/]}
 setopt INTERACTIVE_COMMENTS
 # correct commands and options
 setopt CORRECT
-setopt CORRECT_ALL
+# setopt CORRECT_ALL
 # cd by typing the path
 setopt AUTO_CD
 # enable dir stack with cd -<TAB>
@@ -236,7 +234,7 @@ bindkey -M isearch '.' self-insert
 # toggle comment
 widget-toggle_comment() {
   if [[ "${BUFFER}" =~ "^#" ]]; then
-    BUFFER=$(echo ${BUFFER} | sed -e 's/^#[[:space:]]*//')
+    BUFFER="${BUFFER##\#[[:space:]]#}"
   else
     BUFFER="# ${BUFFER}"
   fi
@@ -253,7 +251,7 @@ widget-inline_alias() {
   local ALIAS_RHS="${${ALIAS_FULL#*\'}%\'}"
   if [[ "$RBUFFER" =~ "  #" ]]; then
     RBUFFER="${RBUFFER%   #*}"
-  elif [[ ! -z "$ALIAS_RHS" ]]; then
+  elif [[ -n "$ALIAS_RHS" ]]; then
     RBUFFER="${RBUFFER}   # ${ALIAS_RHS}"
     # apply syntax highlighting to new buffer
     zle redisplay
@@ -332,8 +330,7 @@ widget-fzf_live-grep() {
   selection=$(fzf --ansi --disabled \
     --query "$BUFFER" \
     --bind "start:reload(rg --column --line-number --no-heading --color=always --smart-case {q} || true)" \
-    --bind "change:reload(rg --column --line-number --no-heading --color=always --smart-case {q} || true)" \
-    --layout=reverse)
+    --bind "change:reload(rg --column --line-number --no-heading --color=always --smart-case {q} || true)")
 
   if [[ $? -eq 0 && -n "$selection" ]]; then
     # ripgrep output format is file:line:column:text; use zsh array splitting to extract file and line number
@@ -357,15 +354,16 @@ source "${ZDOTDIR}/.aliases"
 export PATH=${HOME}/.local/bin:${PATH}
 
 # add go package binaries to $PATH
-if [ ${+commands[go]} ]; then
+if (( ${+commands[go]} )); then
   export GOPATH=${HOME}/.go
   export PATH=${GOPATH}/bin:${PATH}
 fi
 
 # add rust package binaries to $PATH
-if [ ${+commands[cargo]} ]; then
-  export CARGOPATH=${HOME}/.cargo
-  export PATH=${CARGOPATH}/bin:${PATH}
+if (( ${+commands[cargo]} )); then
+  export CARGO_HOME=${HOME}/.cargo
+  export RUSTUP_HOME=${HOME}/.rustup
+  export PATH=${CARGO_HOME}/bin:${PATH}
 fi
 
 # add krew binaries to path
@@ -381,31 +379,17 @@ for tool in "${completion_tools[@]}"; do
 done
 (( ${+commands[kubecolor]} )) && compdef kubecolor=kubectl
 (( ${+commands[switcher]} )) && source <(switcher init zsh) && source <(switcher completion zsh)
-
-# google cloud CLI binary & completion for AUR package
-if pacman -Qi google-cloud-cli &> /dev/null; then
-  source /etc/profile.d/google-cloud-cli.sh
-  source ${GOOGLE_CLOUD_SDK_HOME}/completion.zsh.inc
-fi
+# jj standard completion
+# (( ${+commands[jj]} )) && source <(jj util completion zsh)
+## jj dynamic completion
+(( ${+commands[jj]} )) && source <(COMPLETE=zsh jj)
 
 # autocomplete via bash
-autoload bashcompinit && bashcompinit
-complete -C "$(which aws_completer)" aws
-complete -o nospace -C "$(which terraform)" terraform
-
-# azure CLI autocomplete (bash)
-if pacman -Qi azure-cli &> /dev/null; then
-  source /usr/share/bash-completion/completions/az
+if (( ${+commands[aws_completer]} || ${+commands[terraform]} )); then
+  autoload bashcompinit && bashcompinit
+  complete -C "$(which aws_completer)" aws
+  complete -o nospace -C "$(which terraform)" terraform
 fi
-
-# autocomplete 'the proper way' with files from /usr/share/zsh/site-functions/*
-# see: https://github.com/gopasspw/gopass/blob/master/docs/setup.md
-# and: https://github.com/gopasspw/gopass/issues/585
-
-# let gpg not encrypt anonymously, otherwise OpenKeyChain / APS won't work
-# https://github.com/android-password-store/Android-Password-Store/issues/173
-# https://github.com/drduh/YubiKey-Guide/issues/152
-export GOPASS_GPG_OPTS="--no-throw-keyids"
 
 # set editor for crontab etc.
 export VISUAL="nvim"
