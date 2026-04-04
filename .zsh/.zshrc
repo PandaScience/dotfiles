@@ -380,8 +380,16 @@ fi
 # zsh-native autocompletions
 local -a completion_tools=(kubectl minikube k3d kind istioctl kubeone argocd flux helm dlv kubebuilder kafkactl kyverno)
 for tool in "${completion_tools[@]}"; do
-  (( ${+commands[$tool]} )) && source <($tool completion zsh)
+  if (( ${+commands[$tool]} )); then
+    local cache="${ZSH_CACHE_DIR}/_${tool}_completion"
+    if [[ ! -f "$cache" || "$commands[$tool]" -nt "$cache" ]]; then
+      $tool completion zsh >| "$cache"
+    fi
+    source "$cache"
+  fi
 done
+
+# completions with special needs (PI)
 (( ${+commands[kubecolor]} )) && compdef kubecolor=kubectl
 (( ${+commands[switcher]} )) && source <(switcher init zsh) && source <(switcher completion zsh)
 # jj standard completion
