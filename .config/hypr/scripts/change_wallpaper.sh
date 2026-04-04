@@ -7,6 +7,6 @@ wallpath="${HOME}/Pictures/wallpapers/"
 wallpaper="$(find "$wallpath" | shuf -n1)"
 
 # set new wallpaper
-swww img "$wallpaper" --transition-step 40 --transition-fps 60 --transition-type any
-# create png copy in cache for easier referemce, e.g. by swaylock or hyprlock
+awww img "$wallpaper" --transition-step 40 --transition-fps 60 --transition-type any
+# create png copy in cache for easier reference, e.g. by swaylock or hyprlock
 magick "$wallpaper" "$wallcache"
