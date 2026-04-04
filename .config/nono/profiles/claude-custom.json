@@ -1,0 +1,17 @@
+{
+  "extends": "claude-code",
+  "meta": {
+    "name": "claude-custom",
+    "description": "Claude profile with access to certain bin and config paths like mise etc."
+  },
+  "security": {
+    "groups": []
+  },
+  "workdir": {
+    "access": "readwrite"
+  },
+  "filesystem": {
+    "allow": ["~/.cache/go-build/"],
+    "read": ["~/.gitconfig.d/", "~/.local/share/mise/installs/", "~/.config/gh"]
+  }
+}
