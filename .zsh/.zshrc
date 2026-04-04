@@ -304,10 +304,15 @@ bindkey "^p" widget-fzf_edit_file
 # cd-to-path with fzf selection
 # NOTE: don't use built-in fzf-cd-widget, it will leave "builtin cd -- <path>" entries in history
 widget-fzf_cd_to_path() {
-  local pth="$(fd --type d --hidden --exclude .git | fzf --preview 'tree -C')"
-  [[ -n $pth ]] && cd $pth
-  zle kill-buffer
-  zle accept-line
+  local pth
+  pth=$(fd --type d --hidden --exclude .git | fzf --preview 'tree -C')
+  if [[ -n $pth ]]; then
+    cd -- ${~pth}
+    zle kill-buffer
+    zle accept-line
+  else
+    zle reset-prompt
+  fi
 }
 zle -N widget-fzf_cd_to_path
 bindkey "^o" widget-fzf_cd_to_path
