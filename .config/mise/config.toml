@@ -25,6 +25,7 @@ oc = "nono run --allow-cwd --profile opencode-custom -- opencode"
 "go:golang.org/x/tools/cmd/goimports" = "0.43.0"
 
 # misc
+"pipx:zmk" = "0.4.1"
 "npm:@fsouza/prettierd" = "0.25.3"
 "aqua:sachaos/viddy" = "1.3.0"
 "aqua:deviceinsight/kafkactl" = "5.18.0"
