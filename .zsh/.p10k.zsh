@@ -51,6 +51,7 @@
     background_jobs         # presence of background jobs
     direnv                  # direnv status (https://direnv.net/)
     asdf                    # asdf version manager (https://github.com/asdf-vm/asdf)
+    mise                    # mise-en-place version manager (https://mise.jdx.dev/)
     virtualenv              # python virtual environment (https://docs.python.org/3/library/venv.html)
     anaconda                # conda environment (https://conda.io/)
     pyenv                   # python environment (https://github.com/pyenv/pyenv)
@@ -1575,6 +1576,21 @@
   typeset -g POWERLEVEL9K_TIME_VISUAL_IDENTIFIER_EXPANSION=
   # Custom prefix.
   # typeset -g POWERLEVEL9K_TIME_PREFIX='%fat '
+
+  ###############[ mise: mise-en-place version manager (https://mise.jdx.dev/) ]###############
+  # Show a toolbox icon when a local mise config is active in the current directory tree.
+  # Uses pure zsh file checks (no subprocess) for instant-prompt compatibility.
+  function prompt_mise() {
+    local dir=$PWD
+    while [[ $dir == $HOME/* ]]; do
+      if [[ -f $dir/.mise.toml || -f $dir/.mise.local.toml || -f $dir/.tool-versions ]]; then
+        p10k segment -i '󰦬' -f 208 -t 'mise'
+        return
+      fi
+      dir=${dir:h}
+    done
+  }
+  function instant_prompt_mise() { prompt_mise }
 
   # Example of a user-defined prompt segment. Function prompt_example will be called on every
   # prompt if `example` prompt segment is added to POWERLEVEL9K_LEFT_PROMPT_ELEMENTS or
