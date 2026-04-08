@@ -60,6 +60,9 @@ oc = "nono run --allow-cwd --profile opencode-custom -- opencode"
 "aqua:kubernetes-sigs/kind" = "0.31.0"
 "aqua:kyverno/kyverno" = "1.17.1"
 "aqua:vmware-tanzu/velero" = "1.18.0"
+"npm:@devcontainers/cli" = "0.85.0"
+"aqua:homeport/dyff" = "1.11.3"
+"aqua:koalaman/shellcheck" = "0.11.0"
 
 # krew plugins
 # - get-all
