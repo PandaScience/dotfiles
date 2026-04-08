@@ -4,6 +4,7 @@ alias edit_aliases='vim ~/.zsh/.aliases'
 alias -g pnl="| tr ': ' '\n'"
 
 # convenience (re)definitions
+alias curl=curlie
 alias vim=nvim
 alias v=nvim
 alias e=nvim
