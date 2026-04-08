@@ -26,6 +26,7 @@
       "commitMessagePrefix": "ci:",
       "commitMessageAction": "bump",
       "commitMessageTopic": "github action versions",
+      "commitMessageExtra": "",
       "pinDigests": true
     }
   ]
