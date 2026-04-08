@@ -266,7 +266,7 @@ widget-fzf_alias() {
   # emulate -L zsh
   local CURRENT_WORD="${LBUFFER/* /}${RBUFFER/ */}"
   zle backward-word
-  RBUFFER="$(alias | grep -i "^$CURRENT_WORD" | column -ts '=' | fzf | cut -f1 -d ' ' )"
+  RBUFFER="$(alias | grep -iF "^$CURRENT_WORD" | column -ts '=' | fzf | cut -f1 -d ' ' )"
   zle forward-word
   zle redisplay
 }
@@ -292,7 +292,7 @@ bindkey "^[c^[c" widget-kill_command_to_clipboard
 widget-fzf_edit_file() {
   local file=$(fzf --preview 'bat --style=plain --color=always {}' <"${TTY}")
   if [[ -n $file ]]; then
-    BUFFER="vim $file"
+    BUFFER="${EDITOR:-vim} ${(q)file}"
     zle accept-line
   else
     zle reset-prompt
@@ -340,7 +340,7 @@ widget-fzf_live-grep() {
   if [[ $? -eq 0 && -n "$selection" ]]; then
     # ripgrep output format is file:line:column:text; use zsh array splitting to extract file and line number
     local parts=("${(@s/:/)selection}")
-    BUFFER="vim ${parts[1]} +${parts[2]}"
+    BUFFER="${EDITOR:-vim} ${(q)parts[1]} +${parts[2]}"
     zle accept-line
   else
     # no need for special p10k handling here since cwd doesn't change
@@ -379,15 +379,17 @@ fi
 
 # zsh-native autocompletions
 local -a completion_tools=(kubectl minikube k3d kind istioctl kubeone argocd flux helm dlv kubebuilder kafkactl kyverno)
+local tool cache
 for tool in "${completion_tools[@]}"; do
   if (( ${+commands[$tool]} )); then
-    local cache="${ZSH_CACHE_DIR}/_${tool}_completion"
+    cache="${ZSH_CACHE_DIR}/_${tool}_completion"
     if [[ ! -f "$cache" || "$commands[$tool]" -nt "$cache" ]]; then
       $tool completion zsh >| "$cache"
     fi
     source "$cache"
   fi
 done
+unset completion_tools tool cache
 
 # completions with special needs (PI)
 (( ${+commands[kubecolor]} )) && compdef kubecolor=kubectl
