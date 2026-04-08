@@ -7,12 +7,9 @@
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 #
-# include direnv as described here: https://github.com/romkatv/powerlevel10k#how-do-i-initialize-direnv-when-using-instant-prompt
-(( ${+commands[direnv]} )) && emulate zsh -c "$(direnv export zsh)"
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
-(( ${+commands[direnv]} )) && emulate zsh -c "$(direnv hook zsh)"
 
 # activate mise-en-place
 if (( ${+commands[mise]} )); then
