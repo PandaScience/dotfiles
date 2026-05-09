@@ -80,3 +80,15 @@ gopen() {
     sed -e 's|git@\(.*\):|https://\1/|' <<< "$url" | xargs xdg-open
   fi
 }
+
+# jujutsu aliases
+jlq_function() {
+  local
+  jj log --no-graph --template 'change_id.short() ++ " | " ++ description.first_line().trim() ++ " | " ++ author.name() ++ " | " ++ author.timestamp().ago() ++ if(bookmarks, " | " ++ bookmarks.map(|b| b.name()).join(","), "") ++ " | " ++ if(signature, "✓", "◻<fe0f>")'
+}
+alias jlg="jj log -r @- -T 'separate(\" \", change_id.shortest(8), description.first_line(), author.name(), if(signature, \"✓\", \"x\"))'"
+alias jst='jj status'
+alias jcs='jj show'
+alias jwd='jj diff'
+alias jsq='jj rebase'
+alias jsqi='jj rebase -i'
