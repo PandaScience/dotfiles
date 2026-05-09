@@ -1,7 +1,11 @@
 [settings]
 experimental = true
 
+[env]
+TRIVY_IGNOREFILE = "~/.config/trivy/.trivyignore"
+
 [shell_alias]
+# claude = "nono run --dry-run -v --allow-cwd --profile claude-custom -- claude"
 claude = "nono run --allow-cwd --profile claude-custom -- claude"
 oc = "nono run --allow-cwd --profile opencode-custom -- opencode"
 

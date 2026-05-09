@@ -1,0 +1,5 @@
+# === ignore misconfigurations
+# ignore untrusted registry
+AVD-KSV-0125
+# ignore no cpu limit set
+AVD-KSV-0011
