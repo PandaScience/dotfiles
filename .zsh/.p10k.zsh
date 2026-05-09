@@ -35,6 +35,7 @@
     # os_icon               # os identifier
     dir                     # current directory
     vcs                     # git status
+    jj                      # jujutsu vcs status (https://github.com/jj-vcs/jj)
     # =========================[ Line #2 ]=========================
     newline                 # \n
     prompt_char             # prompt symbol
@@ -1576,6 +1577,42 @@
   typeset -g POWERLEVEL9K_TIME_VISUAL_IDENTIFIER_EXPANSION=
   # Custom prefix.
   # typeset -g POWERLEVEL9K_TIME_PREFIX='%fat '
+
+  ####################################[ jj: jujutsu vcs ]#####################################
+  # Shows bookmark (or shortest unique change ID), with conflict (~) and modified (●) indicators.
+  # Colors: green=clean, yellow=modified, red=conflict — matching the git vcs segment.
+  function prompt_jj() {
+    # Detect jj repo by walking up the directory tree
+    local dir=$PWD
+    while [[ $dir != / ]]; do
+      [[ -d $dir/.jj ]] && break
+      dir=${dir:h}
+    done
+    [[ -d $dir/.jj ]] || return
+
+    # First character encodes state (0=clean, 1=modified, 2=conflict), rest is display text.
+    local raw
+    raw=$(jj log -r @ --no-graph -T '
+      if(conflict, "2", if(empty, "0", "1")) ++
+      separate(" ",
+        if(local_bookmarks, local_bookmarks.map(|b| b.name()).join(", "), change_id.shortest().prefix()),
+        if(conflict, "~"),
+        if(!empty, "●")
+      )
+    ' 2>/dev/null) || return
+    [[ -n $raw ]] || return
+
+    local color
+    case ${raw[1]} in
+      0) color=76  ;;  # clean
+      1) color=178 ;;  # modified
+      2) color=196 ;;  # conflict
+    esac
+
+    p10k segment -f $color -t ${raw[2,-1]}
+  }
+  # jj shells out and is too slow for instant prompt
+  function instant_prompt_jj() {}
 
   ###############[ mise: mise-en-place version manager (https://mise.jdx.dev/) ]###############
   # Show a toolbox icon when a local mise config is active in the current directory tree.
