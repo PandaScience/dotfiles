@@ -35,6 +35,9 @@ zstyle ':completion:*:warnings' format ' %F{red}-- no matches found --%f'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*:*:-command-:*:*' group-order alias builtins functions commands
+# reordering suggestions for git subcommands
+zstyle ':completion:*:*:git-rebase:*' group-order commits heads-local heads-remote heads commit-tags
+zstyle ':completion:*:*:git-show:*' group-order commits heads-local heads-remote heads commit-tags
 
 # enable Shift+Tab for reverse search: https://unix.stackexchange.com/a/84869
 zmodload zsh/complist
