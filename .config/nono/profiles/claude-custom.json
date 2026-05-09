@@ -11,7 +11,7 @@
     "access": "readwrite"
   },
   "filesystem": {
-    "allow": ["~/.cache/go-build/"],
+    "allow": ["~/.cache/go-build/", "/tmp", "/tmp/claude-1000"],
     "read": ["~/.gitconfig.d/", "~/.local/share/mise/installs/", "~/.config/gh"]
   }
 }
