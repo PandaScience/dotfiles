@@ -32,6 +32,8 @@ alias kns='switch ns'
 alias kg='kubectl get'
 alias kd='kubectl describe'
 
+alias -g yc="-oyaml --force-colors | less -R"
+
 decodeK8sSecret() {
   local secret=$1
   cat $secret | jq '.data | map_values(@base64d)'
