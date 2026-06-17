@@ -37,6 +37,7 @@ alias gbx='git branch --delete'
 alias gbX='git branch --delete --force'
 alias gbXi='git-branch-delete-interactive'
 alias gbxm='git-branch-delete-all-merged'
+alias gbxu='git push origin --delete $(git branch --show-current)'
 
 # fzf branch selection
 alias gyb='git switch $(git branch --all | grep -v "^*" | sed "s|remotes/origin/||g" | fzf)'

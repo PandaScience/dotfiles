@@ -29,6 +29,7 @@ tree() { br -i -c :pt "$@" }
 alias kubectl=kubecolor
 alias ks='switch'
 alias kns='switch ns'
+alias kss='switch && switch ns'
 alias kg='kubectl get'
 alias kd='kubectl describe'
 
