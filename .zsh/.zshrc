@@ -263,10 +263,8 @@ bindkey "^G" widget-inline_alias
 
 # fuzzy search aliases
 widget-fzf_alias() {
-  # emulate -L zsh
-  local CURRENT_WORD="${LBUFFER/* /}${RBUFFER/ */}"
   zle backward-word
-  RBUFFER="$(alias | grep -iF "^$CURRENT_WORD" | column -ts '=' | fzf | cut -f1 -d ' ' )"
+  RBUFFER="$(alias | column -ts '=' | fzf | cut -f1 -d ' ' )"
   zle forward-word
   zle redisplay
 }
