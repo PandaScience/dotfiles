@@ -28,6 +28,7 @@ dir = "~/Claude"
 "aqua:anthropics/claude-code" = "2.1.148"
 "aqua:anomalyco/opencode" = "1.15.7"
 "github:always-further/nono" = "0.57.0"
+"github:earendil-works/pi" = "0.79.4"
 
 # go
 # pkgsite has no git tags or releases, so we have to use the latest version
@@ -74,6 +75,7 @@ dir = "~/Claude"
 "npm:@devcontainers/cli" = "0.87.0"
 "aqua:homeport/dyff" = "1.12.0"
 "aqua:koalaman/shellcheck" = "0.11.0"
+"aqua:metalbear-co/mirrord" = "3.212.0"
 
 # krew plugins
 # - get-all
@@ -82,3 +84,4 @@ dir = "~/Claude"
 # - who-can
 # - resource-capacity
 # - blame
+# - kor
