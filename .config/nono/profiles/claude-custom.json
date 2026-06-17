@@ -1,17 +1,25 @@
 {
-  "extends": "claude-code",
   "meta": {
     "name": "claude-custom",
     "description": "Claude profile with access to certain bin and config paths like mise etc."
   },
-  "security": {
-    "groups": []
-  },
   "workdir": {
     "access": "readwrite"
   },
+  "security": {
+    "groups": ["git_config"]
+  },
   "filesystem": {
-    "allow": ["~/.cache/go-build/", "/tmp", "/tmp/claude-1000"],
+    "allow": [
+      "$WORKDIR",
+      "~/Claude",
+      "~/.cache/go-build/",
+      "/tmp/",
+      "/tmp/claude-1000/"
+    ],
     "read": ["~/.gitconfig.d/", "~/.local/share/mise/installs/", "~/.config/gh"]
+  },
+  "network": {
+    "block": false
   }
 }
