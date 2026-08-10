@@ -1,16 +1,26 @@
-# NOTE: scaling is not affected when applying new profile as long as
-# it is not explicitly defined there
+# Every output sets scale and position explicitly, on purpose.
+#
+# Hyprland accumulates the set of properties a wlr-output-management client has
+# ever committed and keeps forcing the last value for each of them, so a
+# property left out of a profile does not fall back to hyprland.conf — it keeps
+# whatever the previously applied profile set. Being explicit everywhere makes
+# profile switches independent of which profile ran before.
+# See https://github.com/hyprwm/Hyprland/pull/14343.
+#
+# `mode` is deliberately only set where a specific mode is required: it takes
+# part in profile matching, so a mode the display does not support makes the
+# whole profile stop matching.
 
 [[profile]]
 name = "framework"
 exec = ["bash $HOME/.local/bin/shikane-notify.sh"]
-output = [{ search = "BOE", enable = true, scale = 1.175 }]
+output = [{ search = "BOE", enable = true, scale = 1.175, position = "0,0" }]
 
 
 [[profile]]
 name = "t14"
 exec = ["bash $HOME/.local/bin/shikane-notify.sh"]
-output = [{ search = "m=LP140WU4-SPK1", enable = true, scale = 1 }]
+output = [{ search = "m=LP140WU4-SPK1", enable = true, scale = 1, position = "0,0" }]
 
 
 [[profile]]
@@ -18,26 +28,48 @@ name = "Iiyama"
 exec = ["bash $HOME/.local/bin/shikane-notify.sh"]
 output = [
     {search = "eDP-1", enable = false},
-    {search = "PL3497WQP", enable = true, mode="3440x1440@120"},
+    {search = "PL3497WQP", enable = true, mode="3440x1440@120", scale = 1, position = "0,0"},
+]
+
+
+# Split per laptop: the panels need different scales, and relying on the scale
+# carrying over from the "t14" / "framework" profile breaks whenever shikane
+# starts with the ARZOPA already attached.
+[[profile]]
+name = "arzopa-left-t14"
+exec = ["bash $HOME/.local/bin/shikane-notify.sh"]
+output = [
+    {search = "ARZOPA", enable = true, scale = 1, position = "0,0"},
+    {search = "m=LP140WU4-SPK1", enable = true, scale = 1, position = "1920,0"},
 ]
 
 
 [[profile]]
-name = "arzopa-left"
+name = "arzopa-left-framework"
 exec = ["bash $HOME/.local/bin/shikane-notify.sh"]
 output = [
-    {search = "ARZOPA", enable = true, position = "0,0"},
-    {search = "eDP-1", enable = true, position = "1920,0"},
+    {search = "ARZOPA", enable = true, scale = 1, position = "0,0"},
+    # 2256 / 1.175 = 1920 logical, so the ARZOPA to its left is exactly 1920 wide
+    {search = "BOE", enable = true, scale = 1.175, position = "1920,0"},
 ]
 
 
 [[profile]]
-name = "arzopa-right"
+name = "arzopa-right-t14"
 exec = ["bash $HOME/.local/bin/shikane-notify.sh"]
 output = [
-    # works for both laptops since after scaling 2256 / 1.175 = 1920
-    {search = "eDP-1", enable = true, position = "0,0"},
-    {search = "ARZOPA", enable = true, position = "1920,0"},
+    {search = "m=LP140WU4-SPK1", enable = true, scale = 1, position = "0,0"},
+    {search = "ARZOPA", enable = true, scale = 1, position = "1920,0"},
+]
+
+
+[[profile]]
+name = "arzopa-right-framework"
+exec = ["bash $HOME/.local/bin/shikane-notify.sh"]
+output = [
+    # 2256 / 1.175 = 1920 logical, so the ARZOPA lands flush at x=1920
+    {search = "BOE", enable = true, scale = 1.175, position = "0,0"},
+    {search = "ARZOPA", enable = true, scale = 1, position = "1920,0"},
 ]
 
 
@@ -81,6 +113,7 @@ exec = ["bash $HOME/.local/bin/shikane-notify.sh"]
     enable = true
     search = ["v=AOC", "m=Q27G2G4"]
     mode = "2560x1440@60Hz"
+    scale = 1
     position = "0,0"
 
     [[profile.output]]
@@ -88,6 +121,7 @@ exec = ["bash $HOME/.local/bin/shikane-notify.sh"]
     # NOTE: on hyprland: "v=Xiaomi Corporation" whereas on sway: "v=XMI"
     search = ["v/Xiaomi Corporation|XMI", "m=Mi Monitor"]
     mode = "3440x1440@50Hz"
+    scale = 1
     position = "2560,0"
 
 
@@ -107,3 +141,5 @@ exec = ["bash $HOME/.local/bin/shikane-notify.sh"]
     enable = true
     search = ["v/Xiaomi Corporation|XMI", "m=Mi Monitor"]
     mode = "3440x1440@50Hz"
+    scale = 1
+    position = "0,0"
