@@ -32,6 +32,7 @@ alias kns='switch ns'
 alias kss='switch && switch ns'
 alias kg='kubectl get'
 alias kd='kubectl describe'
+alias kx='kubectl explain'
 
 alias -g yc="-oyaml --force-colors | less -R"
 
