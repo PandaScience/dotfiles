@@ -20,4 +20,6 @@ pkill -x shikane
 sleep 0.5
 hyprctl reload
 
-setsid -f shikane
+# keep the same logging as the autostart invocation, otherwise a rescue leaves
+# shikane mute and the next incident is undiagnosable
+SHIKANE_LOG=${SHIKANE_LOG:-debug} setsid -f systemd-cat -t shikane shikane
