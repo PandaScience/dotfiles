@@ -22,13 +22,13 @@ dir = "~/Claude"
 
 [tools]
 # required for auto-completion by mise itself
-"aqua:jdx/usage" = "3.5.6"
+"aqua:jdx/usage" = "3.6.0"
 
 # ai
-"aqua:anthropics/claude-code" = "2.1.218"
-"aqua:anomalyco/opencode" = "1.18.4"
-"github:always-further/nono" = "0.69.0"
-"github:earendil-works/pi" = "0.82.0"
+"aqua:anthropics/claude-code" = "2.1.232"
+"aqua:anomalyco/opencode" = "1.18.18"
+"github:always-further/nono" = "0.73.0"
+"github:earendil-works/pi" = "0.84.2"
 
 # go
 # pkgsite has no git tags or releases, so we have to use the latest version
@@ -38,18 +38,18 @@ dir = "~/Claude"
 
 # misc
 "pipx:zmk" = "0.4.1"
-"npm:@fsouza/prettierd" = "0.28.0"
+"npm:@fsouza/prettierd" = "0.29.0"
 "aqua:sachaos/viddy" = "1.3.1"
-"aqua:deviceinsight/kafkactl" = "5.19.0"
+"aqua:deviceinsight/kafkactl" = "5.20.0"
 "aqua:oras-project/oras" = "1.3.3"
 "github:lindell/multi-gitter" = "0.63.1"
 
 # esoterics
-"aqua:kcl-lang/cli" = "0.12.7"
+"aqua:kcl-lang/cli" = "0.12.8"
 # "aqua:kcl-lang/kcl" = "latest" # https://github.com/kcl-lang/kcl.nvim/issues/18
 
 # cloud
-"aqua:aws/aws-cli" = "2.36.7"
+"aqua:aws/aws-cli" = "2.36.24"
 
 # IaC
 "aqua:hashicorp/terraform" = "1.15.8"
@@ -63,8 +63,8 @@ dir = "~/Claude"
 "aqua:danielfoehrKn/kubeswitch" = "0.9.3"
 "aqua:kubernetes-sigs/krew" = "0.5.0"
 "aqua:derailed/k9s" = "0.51.0"
-"aqua:argoproj/argo-cd" = "3.4.5"
-"aqua:fluxcd/flux2" = "2.9.3"
+"aqua:argoproj/argo-cd" = "3.5.1"
+"aqua:fluxcd/flux2" = "2.9.4"
 "aqua:istio/istio/istioctl" = "1.30.3"
 "aqua:crossplane/crossplane" = "2.3.4"
 "github:vitobotta/hetzner-k3s" = "2.6.0"
@@ -75,7 +75,7 @@ dir = "~/Claude"
 "npm:@devcontainers/cli" = "0.88.0"
 "aqua:homeport/dyff" = "1.12.0"
 "aqua:koalaman/shellcheck" = "0.11.0"
-"aqua:metalbear-co/mirrord" = "3.237.0"
+"aqua:metalbear-co/mirrord" = "3.247.0"
 
 # krew plugins
 # - get-all
