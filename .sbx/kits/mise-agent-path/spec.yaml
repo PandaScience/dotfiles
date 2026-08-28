@@ -1,0 +1,67 @@
+schemaVersion: "2"
+kind: mixin
+name: mise-agent-path
+displayName: mise shims for non-interactive shells
+description: >-
+  Appends `mise activate bash --shims` to /etc/sandbox-persistent.sh so Cursor
+  agents, sbx exec, and other non-interactive bash see tools from .mise.toml.
+  Stack after docker.io/sbx/mise-kit (the Hub kit only hooks ~/.bashrc).
+  Also writes /home/agent/.cursor/sandbox.json with type workspace_readwrite and
+  extra r+w paths for mise data dirs and docker.sock, plus GitHub hosts on
+  networkPolicy.allow (api.github.com is not in Cursor's default list). Do not
+  set networkPolicy.default to deny — that would drop Docker Hub and other
+  defaults. Do not use insecure_none: team/hardcoded policy can ignore a weaken.
+  permissions.network.allow covers mise.en.dev so `mise install` can reach the
+  company registry without a per-sandbox `sbx policy allow`.
+
+permissions:
+  network:
+    allow:
+      - mise.en.dev:443
+
+setup:
+  install:
+    - command: |
+        set -euo pipefail
+        if ! grep -qF 'mise activate bash --shims' /etc/sandbox-persistent.sh 2>/dev/null; then
+          cat >> /etc/sandbox-persistent.sh <<'EOF'
+
+        # mise (non-interactive / Cursor agent)
+        eval "$(mise activate bash --shims)"
+        EOF
+        fi
+      user: "1000"
+      description: "Hook mise activate --shims into /etc/sandbox-persistent.sh"
+    - command: |
+        set -euo pipefail
+        mkdir -p /home/agent/.cursor
+        python3 <<'PY'
+        import json
+        from pathlib import Path
+
+        config = {
+            "type": "workspace_readwrite",
+            "additionalReadwritePaths": [
+                "/home/agent/.cache/mise",
+                "/home/agent/.local/share/mise",
+                "/home/agent/.local/state/mise",
+                "/home/agent/.docker",
+                "/run/docker.sock",
+                "/var/run/docker.sock",
+            ],
+            "networkPolicy": {
+                "allow": [
+                    "github.com",
+                    "api.github.com",
+                    "objects.githubusercontent.com",
+                    "release-assets.githubusercontent.com",
+                    "codeload.github.com",
+                ]
+            },
+        }
+        Path("/home/agent/.cursor/sandbox.json").write_text(
+            json.dumps(config, indent=2) + "\n"
+        )
+        PY
+      user: "1000"
+      description: "Cursor sandbox.json: mise dirs, docker.sock, GitHub hosts for mise install"
