@@ -22,7 +22,7 @@ dir = "~/Claude"
 
 [tools]
 # required for auto-completion by mise itself
-"aqua:jdx/usage" = "3.6.0"
+"aqua:jdx/usage" = "5.1.0"
 
 # ai
 "aqua:anthropics/claude-code" = "2.1.232"
