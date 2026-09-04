@@ -25,9 +25,9 @@ dir = "~/Claude"
 "aqua:jdx/usage" = "5.1.0"
 
 # ai
-"aqua:anthropics/claude-code" = "2.1.232"
-"aqua:anomalyco/opencode" = "1.18.18"
-"github:always-further/nono" = "0.73.0"
+"aqua:anthropics/claude-code" = "2.1.238"
+"aqua:anomalyco/opencode" = "1.18.20"
+"github:always-further/nono" = "0.74.0"
 "github:earendil-works/pi" = "0.84.2"
 
 # go
@@ -49,16 +49,16 @@ dir = "~/Claude"
 # "aqua:kcl-lang/kcl" = "latest" # https://github.com/kcl-lang/kcl.nvim/issues/18
 
 # cloud
-"aqua:aws/aws-cli" = "2.36.24"
+"aqua:aws/aws-cli" = "2.36.28"
 
 # IaC
-"aqua:hashicorp/terraform" = "1.15.8"
-"aqua:opentofu/opentofu" = "1.12.5"
+"aqua:hashicorp/terraform" = "1.15.9"
+"aqua:opentofu/opentofu" = "1.12.6"
 "github:busser/tfautomv" = "0.7.0"
 "aqua:terraform-docs/terraform-docs" = "0.24.0"
 
 # k8s
-"aqua:kubernetes/kubernetes/kubectl" = "1.36.3"
+"aqua:kubernetes/kubernetes/kubectl" = "1.36.4"
 "aqua:kubecolor/kubecolor" = "0.6.0"
 "aqua:danielfoehrKn/kubeswitch" = "0.9.3"
 "aqua:kubernetes-sigs/krew" = "0.5.0"
@@ -66,16 +66,16 @@ dir = "~/Claude"
 "aqua:argoproj/argo-cd" = "3.5.1"
 "aqua:fluxcd/flux2" = "2.9.4"
 "aqua:istio/istio/istioctl" = "1.30.3"
-"aqua:crossplane/crossplane" = "2.3.4"
+"aqua:crossplane/crossplane" = "2.4.0"
 "github:vitobotta/hetzner-k3s" = "2.6.0"
 "aqua:kubernetes-sigs/kubebuilder" = "4.15.0"
 "aqua:kubernetes-sigs/kind" = "0.32.0"
-"aqua:kyverno/kyverno" = "1.18.2"
+"aqua:kyverno/kyverno" = "1.19.0"
 "aqua:vmware-tanzu/velero" = "1.18.2"
 "npm:@devcontainers/cli" = "0.88.0"
 "aqua:homeport/dyff" = "1.12.0"
 "aqua:koalaman/shellcheck" = "0.11.0"
-"aqua:metalbear-co/mirrord" = "3.247.0"
+"aqua:metalbear-co/mirrord" = "3.249.0"
 
 # krew plugins
 # - get-all
