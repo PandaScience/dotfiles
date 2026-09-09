@@ -18,8 +18,6 @@ hl.on("hyprland.start", function()
 		"sleep 3 && blueman-applet",
 		"gammastep-indicator",
 		"sleep 3 && keepassxc", -- wait till waybar is loaded so the tray icon is visible
-		"SHIKANE_LOG=debug systemd-cat -t shikane shikane",
-		"systemd-cat -t monitor-watchdog ~/.config/hypr/scripts/monitor-watchdog.sh",
 		"udiskie --smart-tray --appindicator",
 		"easyeffects --gapplication-service && easyeffects -l lappy_mctopface",
 		-- WARNING: disabled until wl-clipboard honors KDE mime hint to not store
@@ -32,6 +30,5 @@ end)
 
 -- :: Autoreload Apps (on every reload) :: -------------------------------------
 run({
-	"shikanectl reload",
 	"~/.config/hypr/scripts/init_wallpaper.sh",
 })
