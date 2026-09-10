@@ -1,12 +1,13 @@
 -- :: Monitors :: --------------------------------------------------------------
 -- Native hl.monitor() rules (not wlr-output-management).
--- Auto-detect = connected set. Ambiguous layouts = prefs + keybind.
--- Solo Xiaomi: 3440x1440@60 (preferred is 50; 60 works and is easier on the eyes).
--- Dual AOC+Mi on one USB4 cable: Aquamarine REJECTED — not a mode-string bug.
--- $MEH+D flips dual (AOC+Mi).
+-- Hotplug: first matching profile in PROFILES (auto).
+-- Named:  hyprctl eval 'require("monitors").apply("dock-xiaomi")'
+--         no-ops + toast (hl.notification) if the required heads are not attached.
+-- Solo Xiaomi: 3440x1440@60 (preferred is 50). Dual AOC+Mi: Aquamarine REJECTED.
 
 -- stylua: ignore start
 local STATE = os.getenv("HOME") .. "/.config/hypr/.monitor-prefs.lua"
+local MI    = "3440x1440@60.00Hz"
 
 -- :: Prefs :: -----------------------------------------------------------------
 -- remembered sides (not detectable from EDID); survive hyprctl reload
@@ -27,6 +28,12 @@ local function save_prefs()
 		prefs.dock, prefs.arzopa, prefs.office
 	))
 	f:close()
+end
+
+local function remember(key, val)
+	if prefs[key] == val then return end
+	prefs[key] = val
+	save_prefs()
 end
 
 -- :: Heads :: -----------------------------------------------------------------
@@ -94,91 +101,156 @@ local function take_over(external, laptop, mode)
 	off(laptop)
 end
 
-local function notify(name)
+-- toast = Hyprland built-in notification (hl.notification.create), not notify-send
+local function toast(name)
 	pcall(function()
 		hl.notification.create({
 			text      = "Profile " .. name,
 			timeout   = 2500,
-			icon      = "ok",
+			icon      = "info", -- built-in set is only warn/info/hint/error/question/ok
 			font_size = 24,
 			color     = "rgba(33ccffee)", -- same cyan as active_border
 		})
 	end)
 end
 
--- :: Apply :: -----------------------------------------------------------------
--- take_over: overlap at 0x0 is fine; it ends when eDP goes off.
--- side-by-side (laptop stays on): move the laptop to its final X first.
-local last_name = ""
-
-local function apply()
-	local list = heads()
-	local c    = classify(list)
-
-	local name
-	if c.xiaomi and c.aoc and prefs.dock ~= "center" then
-		name = "dock"
-		on(c.aoc,    "0x0")
-		on(c.xiaomi, "2560x0", 1, "3440x1440@60.00Hz")
-		off(c.laptop)
-
-	elseif c.xiaomi then -- AOC not in the Lua list (often still on the dock, disabled)
-		name = "dock-xiaomi"
-		hl.monitor({ output = "desc:Q27G2G4", disabled = true })
-		-- Mi left (main), laptop right — move laptop first so they do not overlap at 0x0
-		if c.laptop then on(c.laptop, "3440x0", c.scale) end
-		on(c.xiaomi, "0x0", 1, "3440x1440@60.00Hz")
-		off(c.aoc)
-
-	elseif c.aoc then
-		name = "dock-aoc"
-		take_over(c.aoc, c.laptop)
-
-	elseif c.iiyama then
-		name = "Iiyama"
-		take_over(c.iiyama, c.laptop)
-
-	elseif c.s34 and c.laptop then
-		name = "office-wide"
-		on(c.laptop, "3440x0", c.scale)
-		on(c.s34,    "0x0")
-
-	elseif c.p27 and c.laptop then -- P27h left/right is a pref, not hardware
-		if prefs.office == "left" then
-			name = "office-left"
+-- :: Profiles :: --------------------------------------------------------------
+-- have: hardware present (named apply). auto: also prefs, first match wins.
+-- pick: persist the pref so the next hotplug stays on this side.
+local PROFILES = {
+	{
+		name = "dock",
+		have = function(c) return c.xiaomi and c.aoc end,
+		auto = function(c) return c.xiaomi and c.aoc and prefs.dock ~= "center" end,
+		pick = function() remember("dock", "dual") end,
+		run  = function(c)
+			on(c.aoc,    "0x0")
+			on(c.xiaomi, "2560x0", 1, MI)
+			off(c.laptop)
+		end,
+	},
+	{
+		name = "dock-xiaomi",
+		have = function(c) return c.xiaomi end,
+		pick = function() remember("dock", "center") end,
+		run  = function(c)
+			hl.monitor({ output = "desc:Q27G2G4", disabled = true })
+			-- Mi left (main), laptop right — move laptop first so they do not overlap at 0x0
+			if c.laptop then on(c.laptop, "3440x0", c.scale) end
+			on(c.xiaomi, "0x0", 1, MI)
+			off(c.aoc)
+		end,
+	},
+	{
+		name = "dock-aoc",
+		have = function(c) return c.aoc end,
+		run  = function(c) take_over(c.aoc, c.laptop) end,
+	},
+	{
+		name = "Iiyama",
+		have = function(c) return c.iiyama end,
+		run  = function(c) take_over(c.iiyama, c.laptop) end,
+	},
+	{
+		name = "office-wide",
+		have = function(c) return c.s34 and c.laptop end,
+		run  = function(c)
+			on(c.laptop, "3440x0", c.scale)
+			on(c.s34,    "0x0")
+		end,
+	},
+	{
+		name = "office-left",
+		have = function(c) return c.p27 and c.laptop end,
+		auto = function(c) return c.p27 and c.laptop and prefs.office == "left" end,
+		pick = function() remember("office", "left") end,
+		run  = function(c)
 			on(c.laptop, "2560x0", c.scale)
 			on(c.p27,    "0x0")
-		else
-			name = "office-right"
+		end,
+	},
+	{
+		name = "office-right",
+		have = function(c) return c.p27 and c.laptop end,
+		pick = function() remember("office", "right") end,
+		run  = function(c)
 			on(c.laptop, "0x0", c.scale)
 			on(c.p27,    "1920x0")
-		end
-
-	elseif c.arzopa and c.laptop then -- same pair either side; pref only
-		if prefs.arzopa == "left" then
-			name = "arzopa-left"
+		end,
+	},
+	{
+		name = "arzopa-left",
+		have = function(c) return c.arzopa and c.laptop end,
+		auto = function(c) return c.arzopa and c.laptop and prefs.arzopa == "left" end,
+		pick = function() remember("arzopa", "left") end,
+		run  = function(c)
 			on(c.laptop, "1920x0", c.scale)
 			on(c.arzopa, "0x0")
-		else
-			name = "arzopa-right"
+		end,
+	},
+	{
+		name = "arzopa-right",
+		have = function(c) return c.arzopa and c.laptop end,
+		pick = function() remember("arzopa", "right") end,
+		run  = function(c)
 			on(c.laptop, "0x0", c.scale)
 			on(c.arzopa, "1920x0")
+		end,
+	},
+	{
+		name = "framework",
+		have = function(c) return c.laptop and has(c.laptop, "BOE") end,
+		run  = function(c) on(c.laptop, "0x0", c.scale) end,
+	},
+	{
+		name = "t14",
+		have = function(c) return c.laptop and not has(c.laptop, "BOE") end,
+		run  = function(c) on(c.laptop, "0x0", c.scale) end,
+	},
+	{
+		name = "fallback",
+		have = function() return true end,
+		run  = function()
+			-- last real output vanished; light a built-in before FALLBACK sticks
+			hl.monitor({ output = "eDP-1",    disabled = false, mode = "preferred", position = "0x0", scale = 1 })
+			hl.monitor({ output = "desc:BOE", disabled = false, mode = "preferred", position = "0x0", scale = 1.175 })
+		end,
+	},
+}
+
+-- :: Apply :: -----------------------------------------------------------------
+-- apply()         = auto (hotplug / $MEH+M). bind may pass a non-string; ignore it.
+-- apply("dock")   = named; toast (notification) "no dock" if heads missing; remembers pref.
+local last_name = ""
+
+local function apply(want)
+	if type(want) ~= "string" then want = nil end
+	local c = classify(heads())
+
+	local function go(p)
+		if want and p.pick then p.pick() end
+		p.run(c)
+		if p.name ~= last_name then
+			last_name = p.name
+			toast(p.name)
 		end
-
-	elseif c.laptop then
-		name = has(c.laptop, "BOE") and "framework" or "t14"
-		on(c.laptop, "0x0", c.scale)
-
-	else
-		name = "fallback"
-		-- last real output vanished; light a built-in before FALLBACK sticks
-		hl.monitor({ output = "eDP-1",    disabled = false, mode = "preferred", position = "0x0", scale = 1 })
-		hl.monitor({ output = "desc:BOE", disabled = false, mode = "preferred", position = "0x0", scale = 1.175 })
 	end
 
-	if name ~= last_name then -- toast only on a profile change, not every hotplug
-		last_name = name
-		notify(name)
+	if want then
+		for _, p in ipairs(PROFILES) do
+			if p.name == want then
+				if not p.have(c) then toast("no " .. want) return end
+				go(p)
+				return
+			end
+		end
+		toast("no " .. want)
+		return
+	end
+
+	for _, p in ipairs(PROFILES) do
+		local ok = p.auto or p.have
+		if ok(c) then go(p) return end
 	end
 end
 
@@ -200,18 +272,5 @@ hl.on("hyprland.start",  apply) -- cold start: parse may run before outputs exis
 
 pcall(apply) -- reload path (start does not fire again); pcall = don't abort config
 
--- toggle a pref and re-apply (used by $MEH+D/A/O)
-local function flip(key, a, b)
-	prefs[key] = (prefs[key] == a) and b or a
-	save_prefs()
-	apply()
-end
-
--- bindings.lua: $MEH+M re-apply, D/A/O flip prefs
-return {
-	apply         = apply,
-	toggle_dock   = function() flip("dock",   "dual",  "center") end,
-	toggle_arzopa = function() flip("arzopa", "right", "left") end,
-	toggle_office = function() flip("office", "right", "left") end,
-}
+return { apply = apply }
 -- stylua: ignore end
