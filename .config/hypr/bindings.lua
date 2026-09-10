@@ -85,10 +85,7 @@ bind("Print",                cmd("slurp | grim -g - $HOME/$(date +'screenshot_%Y
 bind(key(MOD, "SHIFT", "P"), cmd("slurp | grim -g - $HOME/$(date +'screenshot_%Y-%m-%d-%H%M%S.png')"))
 
 -- :: WM & Status Bar :: -------------------------------------------------------
-bind(key(MEH, "M"), mon.apply)         -- re-apply / light the laptop
-bind(key(MEH, "D"), mon.toggle_dock)   -- dock dual ↔ center (AOC still linked)
-bind(key(MEH, "A"), mon.toggle_arzopa) -- ARZOPA right ↔ left
-bind(key(MEH, "O"), mon.toggle_office) -- office P27h right ↔ left
+bind(key(MEH, "M"), mon.apply) -- auto re-apply; named: hyprctl eval 'require("monitors").apply("dock-xiaomi")'
 bind(key(MEH, "E"),          dsp.exit())
 bind(key(MOD, "ESCAPE"),     cmd("pkill wlogout || wlogout"))
 bind(key(MOD, "SHIFT", "R"), cmd("hyprctl reload"))
