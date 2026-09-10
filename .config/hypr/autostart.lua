@@ -20,11 +20,10 @@ hl.on("hyprland.start", function()
 		"sleep 3 && keepassxc", -- wait till waybar is loaded so the tray icon is visible
 		"udiskie --smart-tray --appindicator",
 		"easyeffects --gapplication-service && easyeffects -l lappy_mctopface",
-		-- WARNING: disabled until wl-clipboard honors KDE mime hint to not store
-		-- sensitive data from pw-managers like keepassxc:
-		-- https://github.com/bugaevc/wl-clipboard/issues/177
-		-- "wl-paste --type text  --watch cliphist store",
-		-- "wl-paste --type image --watch cliphist store",
+		-- 2.3.0: x-kde-passwordManagerHint → CLIPBOARD_STATE=sensitive (#177);
+		-- cliphist 0.7 skips those (KeePassXC sets the hint)
+		"wl-paste --type text  --watch cliphist store",
+		"wl-paste --type image --watch cliphist store",
 	})
 end)
 
