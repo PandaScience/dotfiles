@@ -1,4 +1,8 @@
-/* widget tree: box.modules-left > widget > box#module1, label#module2 */
+/* widget tree:
+ *   0.15 custom:     widget > label#custom-foo.module
+ *   waybar-git 0.16: widget > box#custom-foo.module > label.module.text-button
+ *     (AIconLabel, PR discussion / custom.cpp @ 6d60c8e)
+ */
 
 * {
   border: none;
@@ -20,6 +24,15 @@ window#waybar {
   padding: 0 12px;
   border-radius: 4px;
   color: #000000;
+}
+
+/* AIconLabel inner label: do not stack .module padding/color (would go black + wide) */
+box.module > label.module {
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+  color: inherit;
+  background-color: transparent;
 }
 
 /* sway mode */
