@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# Set BAT0 charge start/end thresholds (ThinkPad sysfs).
+set -euo pipefail
+
+B=/sys/class/power_supply/BAT0
+S=$B/charge_control_start_threshold
+E=$B/charge_control_end_threshold
+
+[[ -f $S && -f $E ]] || { echo "error: thresholds not supported on $B" >&2; exit 1; }
+
+if [[ $# -eq 0 ]]; then
+  echo "start=$(<$S) end=$(<$E) capacity=$(<$B/capacity)% status=$(<$B/status)"
+  exit 0
+fi
+
+[[ $# -eq 2 && $1 -ge 0 && $1 -lt $2 && $2 -le 100 ]] || {
+  echo "usage: bat-charge <start> <end>   # e.g. bat-charge 75 80" >&2
+  exit 1
+}
+
+printf '%s\n' "$1" | sudo tee "$S" >/dev/null
+printf '%s\n' "$2" | sudo tee "$E" >/dev/null
+echo "start=$(<$S) end=$(<$E)"
