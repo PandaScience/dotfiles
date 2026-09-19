@@ -93,6 +93,7 @@ hl.config({
 	},
 	dwindle = {
 		preserve_split = true,
+		force_split = 2, -- new window = right or bottom (0 = mouse, 1 = left/top)
 	},
 })
 
