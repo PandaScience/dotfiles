@@ -23,6 +23,7 @@
 
   "modules-right": [
     "custom/vpn",
+    "custom/wg",
     "custom/kernel",
     "backlight",
     "group/audio",

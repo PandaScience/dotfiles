@@ -2,6 +2,7 @@
   "sway/workspaces": {
     "sort-by": "number",
     "on-click": "activate",
+    "tooltip": false,
     "format": "{name} {icon}",
     "format-icons": {
       "focused": "",
@@ -18,6 +19,7 @@
     "all-outputs": true,
     "sort-by": "number",
     "on-click": "activate",
+    "tooltip": false,
     "format": "{icon}",
     "format-icons": {
       "active": "",
@@ -102,6 +104,14 @@
     "format": "VPN ",
     "exec": "~/.config/waybar/scripts/vpn.sh",
     "exec-if": "nmcli con show --active | grep -qw vpn",
+    "return-type": "json",
+    "interval": 5
+  },
+
+  "custom/wg": {
+    "format": "WG ",
+    "exec": "~/.config/waybar/scripts/vpn.sh",
+    "exec-if": "nmcli con show --active | grep -qw wireguard",
     "return-type": "json",
     "interval": 5
   },

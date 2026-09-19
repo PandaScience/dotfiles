@@ -135,6 +135,10 @@ box.module > label.module {
   background-color: #ff1111;
 }
 
+#custom-wg {
+  background-color: #ffaa11;
+}
+
 #custom-kernel {
   background-color: #bee1e6;
 }
