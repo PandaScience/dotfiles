@@ -32,6 +32,30 @@ A possible workaround is to manually copy the user block into
 `~/.local/share/yadm/repo.git/config`. This is where also the class information
 is stored.
 
+## Sparse checkout
+
+Keep `README.md` and `LICENSE` in the repo, not in `$HOME`. Run these from `$HOME` — elsewhere non-cone mode fails with `please run from the toplevel directory`.
+
+```bash
+yadm sparse-checkout init --no-cone
+yadm sparse-checkout set '/*' '!/README.md' '!/LICENSE'
+yadm sparse-checkout list
+```
+
+Temporarily get `README.md` back, then hide it again:
+
+```bash
+yadm sparse-checkout set '/*'
+# done:
+yadm sparse-checkout set '/*' '!/README.md' '!/LICENSE'
+```
+
+Disable sparse checkout (full worktree, both files return):
+
+```bash
+yadm sparse-checkout disable
+```
+
 ---
 
 This README is configured as suggested [in this repo](https://github.com/seanbreckenridge/dotfiles/blob/master/.config/yadm/yadm-with-README.md)
