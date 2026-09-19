@@ -21,7 +21,7 @@ alias tf='terraform'
 alias pel='echo -e "\n\n\n\n\n\n\n\n\n\n"'
 alias yless="jless --yaml"
 alias icat="kitten icat"
-alias mr="mise r"
+alias mx="mise r"
 alias btd="bluetoothctl disconnect"
 alias btc="bluetoothctl connect"
 tree() { br -i -c :pt "$@" }
@@ -36,18 +36,24 @@ alias kx='kubectl explain'
 
 alias -g yc="-oyaml --force-colors | less -R"
 
-decodeK8sSecret() {
-  local secret=$1
-  cat $secret | jq '.data | map_values(@base64d)'
-}
-# alias -g decodeK8sSecret="jq '.data | map_values(@base64d)'"
+# usage: ksec foo   |   ksec foo -n bar
+ksec() { k get secret "$@" -ojson | jq '.data | map_values(@base64d)'; }
 
 
 # see https://superuser.com/questions/1050894/using-dd-to-clone-a-hdd-to-an-ssd and refs therein
 alias dd-disk-clone="dd status=progress bs=64K conv=noerror,sync iflag=fullblock"
 
-# let watch expand aliases (see https://unix.stackexchange.com/a/25329)
+# let watch expand the next word as an alias (https://unix.stackexchange.com/a/25329)
+# usage: watch k get pods
 alias watch='watch -n1 '
+
+# viddy always runs via sh -c, so trailing-space aliases never reach it — expand here
+# usage: viddy k get pods
+viddy() {
+	local -a cmd=("$@")
+	(( ${+aliases[$cmd[1]]} )) && cmd=("${(z)aliases[$cmd[1]]}" "${(@)cmd[2,-1]}")
+	command viddy -n 1 -- "${cmd[@]}"
+}
 
 # follow copied and moved files to destination directory
 # https://unix.stackexchange.com/questions/49802/follow-a-moved-file-to-its-destination-directory
