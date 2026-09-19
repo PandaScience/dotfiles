@@ -1,3 +1,0 @@
-git-me() {
-	export GIT_SSH_COMMAND="ssh -i ~/.ssh/personal/yubikey.pub -o IdentitiesOnly=yes"
-}
