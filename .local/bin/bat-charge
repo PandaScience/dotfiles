@@ -18,6 +18,16 @@ fi
   exit 1
 }
 
-printf '%s\n' "$1" | sudo tee "$S" >/dev/null
-printf '%s\n' "$2" | sudo tee "$E" >/dev/null
+set_one() { printf '%s\n' "$2" | sudo tee "$1" >/dev/null; }
+
+cur_e=$(<$E)
+# Never leave start >= end even briefly: raise end first, else lower start first.
+if (( $2 > cur_e || $1 >= cur_e )); then
+  set_one "$E" "$2"
+  set_one "$S" "$1"
+else
+  set_one "$S" "$1"
+  set_one "$E" "$2"
+fi
+
 echo "start=$(<$S) end=$(<$E)"
