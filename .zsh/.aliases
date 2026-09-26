@@ -38,6 +38,12 @@ alias -g yc="-oyaml --force-colors | less -R"
 
 # usage: ksec foo   |   ksec foo -n bar
 ksec() { k get secret "$@" -ojson | jq '.data | map_values(@base64d)'; }
+_ksec() {
+	words=(kubectl get secret "${(@)words[2,-1]}")
+	(( CURRENT += 2 ))
+	_kubectl
+}
+compdef _ksec ksec
 
 
 # see https://superuser.com/questions/1050894/using-dd-to-clone-a-hdd-to-an-ssd and refs therein
@@ -60,6 +66,7 @@ viddy() {
 goto() { [ -d "$1"  ] && cd "$1" || cd "$(dirname "$1")";  }
 cpf() { cp "$@" && goto "$_";  }
 mvf() { mv "$@" && goto "$_";  }
+mkcd() { mkdir -p -- "$1" && cd -- "$1"; }
 
 # swap names of two files and stop when there is a problem with tmpfile
 swap(){
