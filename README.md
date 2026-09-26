@@ -56,7 +56,4 @@ Disable sparse checkout (full worktree, both files return):
 yadm sparse-checkout disable
 ```
 
----
 
-This README is configured as suggested [in this repo](https://github.com/seanbreckenridge/dotfiles/blob/master/.config/yadm/yadm-with-README.md)
-using pre-commit and post-merge hooks.
