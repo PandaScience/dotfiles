@@ -56,4 +56,16 @@ Disable sparse checkout (full worktree, both files return):
 yadm sparse-checkout disable
 ```
 
+## Updating main without switching branches
 
+First make sure we can fast-forward origin/main to whatever is in local test branch (i.e. rebase test first onto origin/main), then run
+
+```bash
+yadm push origin test:main
+```
+
+Afterwards update local main branch with
+
+```bash
+yadm fetch origin main:main
+```
