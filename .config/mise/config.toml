@@ -15,7 +15,7 @@ TRIVY_IGNOREFILE = "~/.config/trivy/.trivyignore"
 
 # ai
 "aqua:anthropics/claude-code" = "2.1.268"
-"aqua:anomalyco/opencode" = "1.18.30"
+"aqua:anomalyco/opencode" = "2.0.16"
 "github:always-further/nono" = "0.76.0"
 
 # go
