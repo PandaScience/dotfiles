@@ -11,6 +11,11 @@ hl.window_rule({
 	float = true,
 })
 
+-- hy3 predicts 0x0 for a new window, so the client asks for the full
+-- monitor and Hyprland latches maximize (fullscreen 1). The split is
+-- computed, then covered until fullscreen is toggled. Ignore that request.
+hl.window_rule({ match = { class = ".*" }, suppress_event = "maximize" })
+
 -- no_gaps_when_only replacement, see
 -- https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/#smart-gaps-ignoring-special-workspaces
 hl.workspace_rule({ workspace = "w[tv1]s[false]", gaps_out = 0, gaps_in = 0 })
