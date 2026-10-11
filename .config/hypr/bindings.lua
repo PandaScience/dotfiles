@@ -102,9 +102,6 @@ bind(key(MOD, "C"),         cmd("pkill wofi || cliphist list | wofi -d | cliphis
 bind(key(MOD, "ALT", "B"),  cmd("pkill rofi-rbw && pkill wofi || rofi-rbw"))
 
 -- :: Layout Shortcuts :: ------------------------------------------------------
--- NOTE: workaround for https://github.com/outfoxxed/hy3/issues/2
-local hy3_movewindow = script("hy3-movewindow.sh")
-
 local arrows = {
 	{ name = "left",  short = "l" },
 	{ name = "right", short = "r" },
@@ -112,11 +109,53 @@ local arrows = {
 	{ name = "down",  short = "d" },
 }
 
+-- hy3 never moves a window onto another monitor (shiftMonitor is unused).
+-- When the window does not change position, send it to the monitor that way.
+local function monitor_that_way(direction)
+	local origin = hl.get_active_window()
+	origin = origin and origin.monitor
+	if not origin then return nil end
+	local ox = origin.x + origin.width / 2
+	local oy = origin.y + origin.height / 2
+	local best, best_d
+	local mons = hl.get_monitors()
+	for i = 1, #mons do
+		local m = mons[i]
+		if m.id ~= origin.id then
+			local dx = (m.x + m.width / 2) - ox
+			local dy = (m.y + m.height / 2) - oy
+			local hit = (direction == "left" and dx < 0 and math.abs(dx) >= math.abs(dy))
+				or (direction == "right" and dx > 0 and math.abs(dx) >= math.abs(dy))
+				or (direction == "up" and dy < 0 and math.abs(dy) >= math.abs(dx))
+				or (direction == "down" and dy > 0 and math.abs(dy) >= math.abs(dx))
+			if hit then
+				local d = dx * dx + dy * dy
+				if not best_d or d < best_d then
+					best, best_d = m.name, d
+				end
+			end
+		end
+	end
+	return best
+end
+
 local function move_window(short, name)
 	return function()
-		if hl.plugin and hl.plugin.hy3 then
-			hl.exec_cmd(hy3_movewindow .. " " .. short)
-			return
+		local plugin = hl.plugin and hl.plugin.hy3
+		local before = hl.get_active_window()
+		local at = before and before.at
+		if plugin then
+			local ok = pcall(function()
+				hl.dispatch(plugin.move_window(short))
+			end)
+			local after = hl.get_active_window()
+			if ok and at and after and after.at and at.x == after.at.x and at.y == after.at.y then
+				local mon = monitor_that_way(name)
+				if mon then
+					hl.dispatch(dsp.window.move({ monitor = mon, follow = true }))
+				end
+			end
+			if ok then return end
 		end
 		hl.dispatch(dsp.window.move({ direction = name }))
 	end
