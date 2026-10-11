@@ -44,6 +44,7 @@ TRIVY_IGNOREFILE = "~/.config/trivy/.trivyignore"
 "aqua:opentofu/opentofu" = "1.12.6"
 "github:busser/tfautomv" = "0.7.0"
 "aqua:terraform-docs/terraform-docs" = "0.24.0"
+"github:stackitcloud/stackit-cli" = "0.73.0"
 
 # k8s
 "aqua:kubernetes-sigs/kustomize" = "5.8.1"
