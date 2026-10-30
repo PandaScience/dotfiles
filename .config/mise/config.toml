@@ -14,14 +14,14 @@ TRIVY_IGNOREFILE = "~/.config/trivy/.trivyignore"
 "aqua:jdx/usage" = "6.12.1"
 
 # ai
-"aqua:anthropics/claude-code" = "2.1.295"
-"aqua:anomalyco/opencode" = "2.0.26"
-"github:always-further/nono" = "0.79.0"
+"aqua:anthropics/claude-code" = "2.1.301"
+"aqua:anomalyco/opencode" = "2.0.31"
+"github:always-further/nono" = "0.80.0"
 
 # go
 # pkgsite has no git tags or releases, so we have to use the latest version
 "go:golang.org/x/pkgsite/cmd/pkgsite" = "latest"
-"go:github.com/kisielk/errcheck" = "1.20.0"
+"go:github.com/kisielk/errcheck" = "1.30.0"
 "go:golang.org/x/tools/cmd/goimports" = "0.43.0"
 
 # misc
@@ -37,14 +37,14 @@ TRIVY_IGNOREFILE = "~/.config/trivy/.trivyignore"
 # "aqua:kcl-lang/kcl" = "latest" # https://github.com/kcl-lang/kcl.nvim/issues/18
 
 # cloud
-"aqua:aws/aws-cli" = "2.37.11"
+"aqua:aws/aws-cli" = "2.38.1"
 
 # IaC
-"aqua:hashicorp/terraform" = "1.16.5"
+"aqua:hashicorp/terraform" = "1.16.6"
 "aqua:opentofu/opentofu" = "1.13.1"
 "github:busser/tfautomv" = "0.7.0"
 "aqua:terraform-docs/terraform-docs" = "0.24.0"
-"github:stackitcloud/stackit-cli" = "0.74.0"
+"github:stackitcloud/stackit-cli" = "0.75.0"
 
 # k8s
 "aqua:kubernetes-sigs/kustomize" = "5.8.1"
@@ -52,9 +52,9 @@ TRIVY_IGNOREFILE = "~/.config/trivy/.trivyignore"
 "aqua:kubecolor/kubecolor" = "0.8.0"
 "aqua:danielfoehrKn/kubeswitch" = "0.9.3"
 "aqua:derailed/k9s" = "0.51.0"
-"aqua:argoproj/argo-cd" = "3.5.4"
+"aqua:argoproj/argo-cd" = "3.5.5"
 "aqua:fluxcd/flux2" = "2.9.6"
-"aqua:istio/istio/istioctl" = "1.31.1"
+"aqua:istio/istio/istioctl" = "1.31.2"
 "aqua:crossplane/crossplane" = "2.4.2"
 "github:vitobotta/hetzner-k3s" = "2.6.0"
 "aqua:kubernetes-sigs/kubebuilder" = "4.16.0"
@@ -64,7 +64,7 @@ TRIVY_IGNOREFILE = "~/.config/trivy/.trivyignore"
 "npm:@devcontainers/cli" = "0.89.0"
 "aqua:homeport/dyff" = "1.12.0"
 "aqua:koalaman/shellcheck" = "0.11.0"
-"aqua:metalbear-co/mirrord" = "3.271.0"
+"aqua:metalbear-co/mirrord" = "3.274.0"
 
 # kubectl plugins -> let mise manage former krew plugins incl. version pinning
 "aqua:stern/stern" = { version = "1.34.0", rename_exe = "kubectl-stern" }
