@@ -11,7 +11,7 @@ TRIVY_IGNOREFILE = "~/.config/trivy/.trivyignore"
 
 [tools]
 # required for auto-completion by mise itself
-"aqua:jdx/usage" = "6.12.1"
+"aqua:jdx/usage" = "7.1.4"
 
 # ai
 "aqua:anthropics/claude-code" = "2.1.295"
