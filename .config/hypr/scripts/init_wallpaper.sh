@@ -8,4 +8,4 @@ sleep 1
 # check if swww is already running and start if necessary
 awww query || awww-daemon
 # set background to last used wallpaper
-awww img ~/.cache/current_wallpaper.jpg
+awww img ~/.cache/current_wallpaper.png
