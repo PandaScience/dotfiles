@@ -85,7 +85,7 @@ bind("Print",                cmd("slurp | grim -g - $HOME/$(date +'screenshot_%Y
 bind(key(MOD, "SHIFT", "P"), cmd("slurp | grim -g - $HOME/$(date +'screenshot_%Y-%m-%d-%H%M%S.png')"))
 
 -- :: WM & Status Bar :: -------------------------------------------------------
-bind(key(MEH, "M"), mon.apply) -- auto re-apply; named: hyprctl eval 'require("monitors").apply("dock-xiaomi")'
+bind(key(MEH, "M"), mon.apply) -- auto; named CLI: mon dock-dual|dock-mi|dock-mi-laptop|dock-aoc
 bind(key(MEH, "E"),          dsp.exit())
 bind(key(MOD, "ESCAPE"),     cmd("pkill wlogout || wlogout"))
 bind(key(MOD, "SHIFT", "R"), cmd("hyprctl reload"))

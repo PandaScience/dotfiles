@@ -1,0 +1,41 @@
+#!/bin/sh
+# Named monitor profile. Layout lives in monitors.lua; this only re-enables
+# disabled heads (Lua get_monitors omits them) then calls apply.
+# Never hyprctl-from-hyprctl-eval — nested IPC deadlocks.
+#
+# Usage: mon <profile> | mon
+
+[ "$#" -eq 0 ] && {
+	cat <<'EOF'
+Usage: mon <profile>
+
+  dock-dual | dock-mi | dock-mi-laptop | dock-aoc
+  Iiyama | office-{wide,left,right} | arzopa-{left,right}
+  framework | t14 | fallback
+
+  MEH+M = auto from prefs (not this CLI)
+EOF
+	exit 0
+}
+
+# Re-enable a disabled head off-canvas; Lua apply() places it.
+enable() {
+	name=$(hyprctl -j monitors all 2>/dev/null \
+		| jq -r --arg n "$1" \
+			'.[] | select(.disabled == true and ((.description // "") | contains($n))) | .name' \
+		| head -n1)
+	[ -n "$name" ] || return 0
+	hyprctl eval "hl.monitor({ output = \"$name\", disabled = false, mode = \"preferred\", position = \"-4096x-4096\", scale = 1 })" >/dev/null
+}
+
+wake=
+case "$1" in
+dock-dual)      enable "Mi Monitor"; enable Q27G2G4; wake=1 ;;
+dock-aoc)       enable Q27G2G4; wake=1 ;;
+dock-mi)        enable "Mi Monitor"; wake=1 ;;
+dock-mi-laptop) enable "Mi Monitor"; enable "LP140WU4-SPK1"; wake=1 ;;
+esac
+
+# modeset is async; apply.have() misses the head without a beat
+[ -n "$wake" ] && sleep 0.5
+exec hyprctl eval "require(\"monitors\").apply(\"$1\")"
