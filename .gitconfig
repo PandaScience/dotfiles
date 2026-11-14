@@ -27,7 +27,7 @@
 	line-numbers = true
 	diff-so-fancy = true
 	navigate = true
-
+	hunk-header-style = omit
 [merge]
 	tool = meld
 [mergetool "meld"]
