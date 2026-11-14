@@ -376,7 +376,26 @@ fi
 (( ${+commands[broot]} )) && source "${HOME}"/.config/broot/launcher/bash/br
 
 # zsh-native autocompletions
-local -a completion_tools=(kubectl minikube k3d kind istioctl kubeone argocd flux helm dlv kubebuilder kafkactl kyverno sbx stern)
+local -a completion_tools=(
+  kubectl
+  minikube
+  k3d
+  kind
+  istioctl
+  kubeone
+  argocd
+  flux
+  flux-operator
+  flate
+  helm
+  dlv
+  kubebuilder
+  kafkactl
+  kyverno
+  sbx
+  stern
+  stackit
+)
 local tool cache
 for tool in "${completion_tools[@]}"; do
   if (( ${+commands[$tool]} )); then
