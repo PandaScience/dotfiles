@@ -11,13 +11,13 @@ TRIVY_IGNOREFILE = "~/.config/trivy/.trivyignore"
 
 [tools]
 # required for auto-completion by mise itself
-"aqua:jdx/usage" = "7.1.4"
+"aqua:jdx/usage" = "7.3.0"
 
 # ai
-"aqua:anthropics/claude-code" = "2.1.314"
-"aqua:anomalyco/opencode" = "2.2.3"
+"aqua:anthropics/claude-code" = "2.1.318"
+"aqua:anomalyco/opencode" = "2.2.5"
 "github:always-further/nono" = "0.81.0"
-"aqua:herdrdev/herdr" = "0.9.3"
+"aqua:herdrdev/herdr" = "0.9.5"
 
 # go
 # pkgsite has no git tags or releases, so we have to use the latest version
@@ -38,7 +38,7 @@ TRIVY_IGNOREFILE = "~/.config/trivy/.trivyignore"
 # "aqua:kcl-lang/kcl" = "latest" # https://github.com/kcl-lang/kcl.nvim/issues/18
 
 # cloud
-"aqua:aws/aws-cli" = "2.39.2"
+"aqua:aws/aws-cli" = "2.39.5"
 
 # IaC
 "aqua:hashicorp/terraform" = "1.17.1"
@@ -54,9 +54,9 @@ TRIVY_IGNOREFILE = "~/.config/trivy/.trivyignore"
 "aqua:kubecolor/kubecolor" = "0.8.0"
 "aqua:danielfoehrKn/kubeswitch" = "0.9.3"
 "aqua:derailed/k9s" = "0.51.0"
-"aqua:argoproj/argo-cd" = "3.5.6"
+"aqua:argoproj/argo-cd" = "3.6.1"
 "aqua:fluxcd/flux2" = "2.10.0"
-"aqua:controlplaneio-fluxcd/flux-operator" = "0.62.0"
+"aqua:controlplaneio-fluxcd/flux-operator" = "0.62.1"
 "github:home-operations/flate" = "0.6.5"
 "aqua:istio/istio/istioctl" = "1.31.3"
 "aqua:crossplane/crossplane" = "2.5.0"
@@ -68,7 +68,7 @@ TRIVY_IGNOREFILE = "~/.config/trivy/.trivyignore"
 "npm:@devcontainers/cli" = "0.90.0"
 "aqua:homeport/dyff" = "1.12.0"
 "aqua:koalaman/shellcheck" = "0.11.0"
-"aqua:metalbear-co/mirrord" = "3.281.0"
+"aqua:metalbear-co/mirrord" = "3.285.0"
 
 # kubectl plugins -> let mise manage former krew plugins incl. version pinning
 "aqua:stern/stern" = { version = "1.35.0", rename_exe = "kubectl-stern" }
