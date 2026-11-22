@@ -99,6 +99,7 @@ bind(key(MOD, "Return"),    cmd("kitty"))
 bind(key(HYPER, "W"),       cmd("warpd --hint2 --oneshot"))
 bind(key(MOD, "D"),         cmd("pkill wofi || wofi --show drun"))
 bind(key(MOD, "C"),         cmd("pkill wofi || cliphist list | wofi -d | cliphist decode | wl-copy"))
+bind(key(MOD, "Period"),    cmd("pkill wofi || " .. script("emoji.sh")))
 bind(key(MOD, "ALT", "B"),  cmd("pkill rofi-rbw && pkill wofi || rofi-rbw"))
 
 -- :: Layout Shortcuts :: ------------------------------------------------------
