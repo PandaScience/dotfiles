@@ -55,8 +55,11 @@ alias gbb='git rev-list --left-right --pretty=oneline' # usage: gbb branch1...br
 alias gyc='git switch -c'
 alias guc='git reset --soft HEAD~' # -> i.e. git uncommit
 alias gui='git restore --staged'
+alias guI='git restore --staged --patch'
 alias guw='git restore'
+alias guW='git restore --patch'
 alias gux='git restore --staged --worktree'
+alias guX='git restore --staged --worktree --patch'
 alias grv='git revise'
 
 # "git origin diff" - in analogy to gwd and gid
