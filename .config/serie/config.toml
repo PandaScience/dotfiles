@@ -1,0 +1,18 @@
+[core.option]
+order = "topo"
+
+[core.search]
+ignore_case = true
+fuzzy = true
+
+[keybind]
+user_command_1 = ["d"]
+user_command_2 = ["shift-d"]
+user_command_3 = ["shift-r"]
+user_command_4 = ["s"]
+
+[core.user_command]
+commands_1 = { name = "diff (delta)", commands = ["sh", "-c", "git --no-pager diff {{first_parent_hash}} {{target_hash}} | delta --paging=never --width {{area_width}}"] }
+commands_2 = { name = "diff (difftastic)", commands = ["sh", "-c", "DFT_COLOR=always DFT_WIDTH={{area_width}} GIT_EXTERNAL_DIFF=difft git --no-pager diff {{first_parent_hash}} {{target_hash}}"] }
+commands_3 = { name = "git revise", type = "suspend", commands = ["git", "revise", "{{target_hash}}"], refresh = true }
+commands_4 = { name = "verify signature", commands = ["git", "log", "--show-signature", "-1", "{{target_hash}}"] }
