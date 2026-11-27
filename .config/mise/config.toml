@@ -14,8 +14,8 @@ TRIVY_IGNOREFILE = "~/.config/trivy/.trivyignore"
 "aqua:jdx/usage" = "7.3.0"
 
 # ai
-"aqua:anthropics/claude-code" = "2.1.318"
-"aqua:anomalyco/opencode" = "2.2.5"
+"aqua:anthropics/claude-code" = "2.1.323"
+"aqua:anomalyco/opencode" = "2.3.0"
 "github:always-further/nono" = "0.81.0"
 "aqua:herdrdev/herdr" = "0.9.5"
 
@@ -38,15 +38,15 @@ TRIVY_IGNOREFILE = "~/.config/trivy/.trivyignore"
 # "aqua:kcl-lang/kcl" = "latest" # https://github.com/kcl-lang/kcl.nvim/issues/18
 
 # cloud
-"aqua:aws/aws-cli" = "2.39.5"
+"aqua:aws/aws-cli" = "2.40.2"
 
 # IaC
-"aqua:hashicorp/terraform" = "1.17.1"
+"aqua:hashicorp/terraform" = "1.17.2"
 "aqua:opentofu/opentofu" = "1.13.9"
-"aqua:gruntwork-io/terragrunt" = "1.2.1"
+"aqua:gruntwork-io/terragrunt" = "1.2.2"
 "github:busser/tfautomv" = "0.7.0"
-"aqua:terraform-docs/terraform-docs" = "0.24.0"
-"github:stackitcloud/stackit-cli" = "0.76.0"
+"aqua:terraform-docs/terraform-docs" = "0.25.1"
+"github:stackitcloud/stackit-cli" = "0.77.2"
 
 # k8s
 "aqua:kubernetes-sigs/kustomize" = "5.8.1"
@@ -57,18 +57,18 @@ TRIVY_IGNOREFILE = "~/.config/trivy/.trivyignore"
 "aqua:argoproj/argo-cd" = "3.6.1"
 "aqua:fluxcd/flux2" = "2.10.0"
 "aqua:controlplaneio-fluxcd/flux-operator" = "0.62.1"
-"github:home-operations/flate" = "0.6.5"
-"aqua:istio/istio/istioctl" = "1.31.3"
+"github:home-operations/flate" = "0.7.3"
+"aqua:istio/istio/istioctl" = "1.32.0"
 "aqua:crossplane/crossplane" = "2.5.0"
-"github:vitobotta/hetzner-k3s" = "2.7.0"
+"github:vitobotta/hetzner-k3s" = "2.8.0"
 "aqua:kubernetes-sigs/kubebuilder" = "4.16.0"
 "aqua:kubernetes-sigs/kind" = "0.33.0"
-"aqua:kyverno/kyverno" = "1.19.2"
+"aqua:kyverno/kyverno" = "1.20.0"
 "aqua:vmware-tanzu/velero" = "1.18.4"
 "npm:@devcontainers/cli" = "0.90.0"
 "aqua:homeport/dyff" = "1.12.0"
 "aqua:koalaman/shellcheck" = "0.11.0"
-"aqua:metalbear-co/mirrord" = "3.285.0"
+"aqua:metalbear-co/mirrord" = "3.287.0"
 
 # kubectl plugins -> let mise manage former krew plugins incl. version pinning
 "aqua:stern/stern" = { version = "1.35.0", rename_exe = "kubectl-stern" }
@@ -78,5 +78,5 @@ TRIVY_IGNOREFILE = "~/.config/trivy/.trivyignore"
 "github:aquasecurity/kubectl-who-can" = { version = "v0.4.0", rename_exe = "kubectl-who_can" }
 "github:robscott/kube-capacity" = { version = "v0.8.0", rename_exe = "kubectl-resource_capacity" }
 "github:knight42/kubectl-blame" = { version = "v0.1.1", rename_exe = "kubectl-blame" }
-"github:yonahd/kor" = { version = "v0.6.9", rename_exe = "kubectl-kor" }
+"github:yonahd/kor" = { version = "v0.7.0", rename_exe = "kubectl-kor" }
 "github:databus23/kubectl-diff-watch" = { version = "v0.1.0", rename_exe = "kubectl-diff_watch" }
